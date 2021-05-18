@@ -44,9 +44,9 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -70,8 +70,6 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">D3 + Plot + Jupyter</h1>
@@ -102,47 +100,47 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="Getting%20Started.html">
-     Learning D3.js - Part 1 - From the Top!
+     Getting Started
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Now%20with%20data%21.html">
-     Learning D3.js - Part 2 - Now with data!
+     Now with data!
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Style%2C%20Scales%2C%20and%20Shapes.html">
-     Learning D3.js - Part 3 - Styles, Scales, and Shapes
+     Styles, Scales, and Shapes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Connected%20Scatterplot.html">
-     Learning D3.js - Part 4 - Connected Scatterplot
+     Connected Scatterplot
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Bar%20Charts.html">
-     Learning D3.js - Part ? - BarCharts - The Lost Episode
+     Bar Charts
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Scaling%2C%20Legends%2C%20and%20Color.html">
-     Learning D3.js - Part 7 - Scaling, Legends, and Color
+     Scaling, Legends, and Color
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Transitions.html">
-     D3 - Lesson 9 - Transitions
+     Transitions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Network%20Graphs.html">
-     Learning D3.js - Part 6 - Network Graph
+     Network Graph
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Making%20a%20Map.html">
-     Learning D3.js - Part X - Making a Map
+     Making a Map
     </a>
    </li>
   </ul>
@@ -221,6 +219,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -304,7 +305,7 @@ For example, here’s some sample Matplotlib code:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.pyplot._IonContext at 0x2977fafa808&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.pyplot._IonContext at 0x19de3ab9108&gt;
 </pre></div>
 </div>
 </div>
@@ -345,7 +346,7 @@ with your book. For more information about this, see <a class="reference externa
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -377,7 +378,7 @@ with your book. For more information about this, see <a class="reference externa
         
           By Patrick M. Dudas<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

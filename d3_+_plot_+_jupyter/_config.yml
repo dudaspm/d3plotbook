@@ -73,8 +73,10 @@ binder_repo_branch               : master  # The branch on which your textbook i
 binderhub_interact_text          : "Interact via Binder"  # The text that interact buttons will contain.
 
 # Thebelab settings
+launch_buttons:
+  thebe                  : true
 use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
-thebelab_button_text             : "Thebelab"  # The text to display inside the Thebelab initialization button
+thebelab_button_text             : "Testing"  # The text to display inside the Thebelab initialization button
 codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 # nbinteract settings

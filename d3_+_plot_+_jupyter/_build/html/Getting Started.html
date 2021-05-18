@@ -44,9 +44,9 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -70,8 +70,6 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">D3 + Plot + Jupyter</h1>
@@ -132,7 +130,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Transitions.html">
-     D3 - Lesson 9 - Transitions
+     Transitions
     </a>
    </li>
    <li class="toctree-l2">
@@ -142,7 +140,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Making%20a%20Map.html">
-     Learning D3.js - Part X - Making a Map
+     Making a Map
     </a>
    </li>
   </ul>
@@ -221,6 +219,9 @@
         
         
         
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -273,18 +274,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enabling-d3-in-jupyter-illumidesk">
-     Enabling D3 in Jupyter/IllumiDesk
+    <a class="reference internal nav-link" href="#enabling-d3-in-jupyterlab-google-colab">
+     Enabling D3 in JupyterLab/Google Colab
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enabling-d3-in-google-colab">
-     Enabling D3 in Google Colab
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#both-colab-and-jupyter-will-be-able-to-run-the-following-example">
-     Both Colab and Jupyter will be able to run the following example
+    <a class="reference internal nav-link" href="#both-colab-and-jupyterlab-will-be-able-to-run-the-following-example">
+     Both Colab and JupyterLab will be able to run the following example
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -343,92 +339,66 @@
 <p>I DECLARE I WANT TO USE D3!</p>
 <p>No, no…close… but we need to do this in a way that tells the notebook you want to use the D3.js.</p>
 </div>
-<div class="section" id="enabling-d3-in-jupyter-illumidesk">
-<h3>Enabling D3 in Jupyter/IllumiDesk<a class="headerlink" href="#enabling-d3-in-jupyter-illumidesk" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="enabling-d3-in-jupyterlab-google-colab">
+<h3>Enabling D3 in JupyterLab/Google Colab<a class="headerlink" href="#enabling-d3-in-jupyterlab-google-colab" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
 
-<span class="k">def</span> <span class="nf">configure_d3</span><span class="p">():</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    require.config({</span>
-<span class="s2">      paths: {</span>
-<span class="s2">        d3: &quot;https://d3js.org/d3.v6.min&quot;</span>
-<span class="s2">      }</span>
-<span class="s2">    })&quot;&quot;&quot;</span><span class="p">))</span>
-
-
-<span class="n">configure_d3</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">load_d3_in_cell_output</span><span class="p">():</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;script src=&#39;https://d3js.org/d3.v6.min.js&#39;&gt;&lt;/script&gt;&quot;</span><span class="p">))</span>
+<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">load_d3_in_cell_output</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/javascript">
-    require.config({
-      paths: {
-        d3: "https://d3js.org/d3.v6.min"
-      }
-    })</script></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
 </div>
 </div>
-<div class="section" id="enabling-d3-in-google-colab">
-<h3>Enabling D3 in Google Colab<a class="headerlink" href="#enabling-d3-in-google-colab" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span>from IPython.display import  HTML
-
-def load_d3_in_cell_output():
-  display(HTML(&quot;<span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#39;https://d3js.org/d3.v6.min.js&#39;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>&quot;))
-get_ipython().events.register(&#39;pre_run_cell&#39;, load_d3_in_cell_output)
-</pre></div>
-</div>
-</div>
-<div class="section" id="both-colab-and-jupyter-will-be-able-to-run-the-following-example">
-<h3>Both Colab and Jupyter will be able to run the following example<a class="headerlink" href="#both-colab-and-jupyter-will-be-able-to-run-the-following-example" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="both-colab-and-jupyterlab-will-be-able-to-run-the-following-example">
+<h3>Both Colab and JupyterLab will be able to run the following example<a class="headerlink" href="#both-colab-and-jupyterlab-will-be-able-to-run-the-following-example" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;testing&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;example1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
     
-    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#testing&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#example1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
 
     <span class="kd">var</span> <span class="nx">circle</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="mf">150</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="mf">100</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">40</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="mf">50</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
-<span class="p">});</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="testing"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example1"></div>
 
 <script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 300
+    var width = 300
+    var height = 100
 
-    var svg = d3.select("div#testing").append("svg")
+    var svg = d3.select("div#example1").append("svg")
         .attr("width", width)
         .attr("height", height)
 
     var circle = svg.append("circle")
         .attr("cx", 150)
-        .attr("cy", 100)
-        .attr("r", 40)
+        .attr("cy", 50)
+        .attr("r", 20)
         .attr("fill", "blue")
         .attr("stroke", "black")
 
-});
 </script>
 </div></div>
 </div>
@@ -446,59 +416,55 @@ require(['d3'], function (d3) {
 <img  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/intro_2.PNG'  width="300" /><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;example2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
     
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#example2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
 
-<span class="p">});</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example2"></div>
 
 <script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 600
-    const height = 400
+    var width = 600
+    var height = 400
 
-    const svg = d3.select("div#gohere2").append("svg")
+    var svg = d3.select("div#example2").append("svg")
         .attr("width", width)
         .attr("height", height)
 
-});
 </script>
 </div></div>
 </div>
 <p>Let’s walk through this…</p>
-<p>Variable types, as the name suggests, are the types of variables you can have in Javascript. For now, we will use one type: const or const(ant). This means the variable will be const(ant) throughout our code.</p>
+<p>Variable types, as the name suggests, are the types of variables you can have in Javascript. For now, we will use one type: var or var(iable). This means the variable will available throughout our code.</p>
 <p>Variables we will need:</p>
 <ul class="simple">
 <li><p>Well the first two are pretty straight forward, we need our canvas to have a width and height. So…</p>
 <ul>
-<li><p>const width = 600</p>
+<li><p>var width = 600</p>
 <ul>
-<li><p>or in human words… our variable called “width” will be a constant 600.</p></li>
+<li><p>or in human words… our variable called “width” will be 600.</p></li>
 </ul>
 </li>
-<li><p>const height = 400</p>
+<li><p>var height = 400</p>
 <ul>
-<li><p>or in human words… our variable called “height” will be a constant 400.</p></li>
+<li><p>or in human words… our variable called “height” will be 400.</p></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><p>and this one is bit more difficult, but we need to our canvas to be these values</p>
 <ul>
-<li><p>const svg = d3.select(“div#gohere”).append(“svg”).attr(“width”, width).attr(“height”, height)</p>
+<li><p>var svg = d3.select(“div#example2”).append(“svg”).attr(“width”, width).attr(“height”, height)</p>
 <ul>
 <li><p>we’re going to talk more about d3.select and d3.selectAll later, but for now you can assume that we are selecting the given cell (our easel) that we are in and adding our canvas of width (600) and height (400) to it`</p></li>
 </ul>
@@ -519,14 +485,13 @@ require(['d3'], function (d3) {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;example3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
     
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#example3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
     
@@ -534,20 +499,18 @@ require(['d3'], function (d3) {
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="mf">160</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="mf">280</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">80</span><span class="p">)</span>
-<span class="p">});</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere3"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example3"></div>
 
 <script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 600
-    const height = 400
+    var width = 600
+    var height = 400
 
-    const svg = d3.select("div#gohere3").append("svg")
+    var svg = d3.select("div#example3").append("svg")
         .attr("width", width)
         .attr("height", height)
 
@@ -555,7 +518,6 @@ require(['d3'], function (d3) {
         .attr("cx", 160)
         .attr("cy", 280)
         .attr("r", 80)
-});
 </script>
 </div></div>
 </div>
@@ -585,14 +547,13 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;example4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
     
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#example4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
     
@@ -600,20 +561,19 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="mf">160</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="mf">280</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">80</span><span class="p">)</span>
-<span class="p">});</span>
+
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere4"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example4"></div>
 
 <script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 600
-    const height = 400
+    var width = 600
+    var height = 400
 
-    const svg = d3.select("div#gohere4").append("svg")
+    var svg = d3.select("div#example4").append("svg")
         .attr("width", width)
         .attr("height", height)
 
@@ -621,7 +581,7 @@ require(['d3'], function (d3) {
         .attr("cx", 160)
         .attr("cy", height - 280)
         .attr("r", 80)
-});
+
 </script>
 </div></div>
 </div>
@@ -629,18 +589,80 @@ require(['d3'], function (d3) {
 <p>Your turn: Create a new easel and canvas. On the canvas, add 3 circles to your canvas at different places and of different sizes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### code here ###</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
+&lt;div id=&quot;example5&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;   
+    var width = 600
+    var height = 400
+    
+    var svg = d3.select(&quot;div#example5&quot;).append(&quot;svg&quot;)
+        .attr(&quot;width&quot;, width)
+        .attr(&quot;height&quot;, height)
+    
+    # YOUR CODE HERE #
+
+&lt;/script&gt;
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example5"></div>
+
+<script type="text/javascript">   
+    var width = 600
+    var height = 400
+
+    var svg = d3.select("div#example5").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    # YOUR CODE HERE #
+
+</script>
+</div></div>
 </div>
 <p>Your turn: Create a new easel and canvas. On the canvas, add a rectangle to your canvas at different places and of different sizes.</p>
+<p>To help, here is an SVG Rectangle</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">svg</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;600&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;400&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">rect</span> <span class="na">x</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">y</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;30&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;30&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
+</pre></div>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### code here ###</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%html
+&lt;div id=&quot;example6&quot;&gt;&lt;/div&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;   
+    var width = 600
+    var height = 400
+    
+    var svg = d3.select(&quot;div#example6&quot;).append(&quot;svg&quot;)
+        .attr(&quot;width&quot;, width)
+        .attr(&quot;height&quot;, height)
+    
+    # YOUR CODE HERE #
+
+&lt;/script&gt;
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example6"></div>
+
+<script type="text/javascript">   
+    var width = 600
+    var height = 400
+
+    var svg = d3.select("div#example6").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    # YOUR CODE HERE #
+
+</script>
+</div></div>
 </div>
 </div>
 </div>
@@ -650,7 +672,7 @@ require(['d3'], function (d3) {
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -684,7 +706,7 @@ require(['d3'], function (d3) {
         
           By Patrick M. Dudas<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>

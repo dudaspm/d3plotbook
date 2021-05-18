@@ -44,9 +44,9 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -68,8 +68,6 @@
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
-      
-      <img src="_static/logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">D3 + Plot + Jupyter</h1>
@@ -100,47 +98,47 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="Getting%20Started.html">
-     Learning D3.js - Part 1 - From the Top!
+     Getting Started
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Now%20with%20data%21.html">
-     Learning D3.js - Part 2 - Now with data!
+     Now with data!
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Style%2C%20Scales%2C%20and%20Shapes.html">
-     Learning D3.js - Part 3 - Styles, Scales, and Shapes
+     Styles, Scales, and Shapes
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Connected%20Scatterplot.html">
-     Learning D3.js - Part 4 - Connected Scatterplot
+     Connected Scatterplot
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Bar%20Charts.html">
-     Learning D3.js - Part ? - BarCharts - The Lost Episode
+     Bar Charts
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Scaling%2C%20Legends%2C%20and%20Color.html">
-     Learning D3.js - Part 7 - Scaling, Legends, and Color
+     Scaling, Legends, and Color
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Transitions.html">
-     D3 - Lesson 9 - Transitions
+     Transitions
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Network%20Graphs.html">
-     Learning D3.js - Part 6 - Network Graph
+     Network Graph
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="Making%20a%20Map.html">
-     Learning D3.js - Part X - Making a Map
+     Making a Map
     </a>
    </li>
   </ul>
@@ -375,7 +373,7 @@ see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyS
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
+            repo: "executablebooks/jupyter-book",
             ref: "master",
         },
         codeMirrorConfig: {
@@ -407,7 +405,7 @@ see <a class="reference external" href="https://myst-nb.readthedocs.io/">The MyS
         
           By Patrick M. Dudas<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2020.<br/>
       </p>
     </div>
   </footer>
