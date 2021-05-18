@@ -44,9 +44,9 @@
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe,.cell"
-        const thebe_selector_input = "pre,.cell_input div.highlight"
-        const thebe_selector_output = ".output,.cell_output"
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
     </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
@@ -197,6 +197,18 @@
 
             <!-- Source interaction buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/master//docs/Getting Started.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
             <!-- Full screen (wrap in <a> to have style consistency -->
 
 <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
@@ -211,7 +223,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Getting Started.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/master?urlpath=tree/docs/Getting Started.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -219,9 +231,11 @@
         
         
         
-        <button type="button" class="btn btn-secondary topbarbtn"
-            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
-                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/master/docs/Getting Started.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
         
     </div>
 </div>
@@ -623,7 +637,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div></div>
 </div>
 <p>Your turn: Create a new easel and canvas. On the canvas, add a rectangle to your canvas at different places and of different sizes.</p>
-<p>To help, here is an SVG Rectang</p>
+<p>To help, here is an SVG Rectangle</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">svg</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;600&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;400&quot;</span><span class="p">&gt;</span>
   <span class="p">&lt;</span><span class="nt">rect</span> <span class="na">x</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">y</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;30&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;30&quot;</span> <span class="p">/&gt;</span>
 <span class="p">&lt;/</span><span class="nt">svg</span><span class="p">&gt;</span>
@@ -672,7 +686,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
     {
         requestKernel: true,
         binderOptions: {
-            repo: "executablebooks/jupyter-book",
+            repo: "binder-examples/jupyter-stacks-datascience",
             ref: "master",
         },
         codeMirrorConfig: {
