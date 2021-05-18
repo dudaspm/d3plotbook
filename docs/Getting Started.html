@@ -351,6 +351,8 @@
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
 </div>
 </div>
 <div class="section" id="both-colab-and-jupyterlab-will-be-able-to-run-the-following-example">
@@ -380,7 +382,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example1"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example1"></div>
 
 <script type="text/javascript">   
     var width = 300
@@ -429,7 +431,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example2"></div>
 
 <script type="text/javascript">   
     var width = 600
@@ -443,26 +445,26 @@
 </div></div>
 </div>
 <p>Let’s walk through this…</p>
-<p>Variable types, as the name suggests, are the types of variables you can have in Javascript. For now, we will use one type: const or const(ant). This means the variable will be const(ant) throughout our code.</p>
+<p>Variable types, as the name suggests, are the types of variables you can have in Javascript. For now, we will use one type: var or var(iable). This means the variable will available throughout our code.</p>
 <p>Variables we will need:</p>
 <ul class="simple">
 <li><p>Well the first two are pretty straight forward, we need our canvas to have a width and height. So…</p>
 <ul>
-<li><p>const width = 600</p>
+<li><p>var width = 600</p>
 <ul>
-<li><p>or in human words… our variable called “width” will be a constant 600.</p></li>
+<li><p>or in human words… our variable called “width” will be 600.</p></li>
 </ul>
 </li>
-<li><p>const height = 400</p>
+<li><p>var height = 400</p>
 <ul>
-<li><p>or in human words… our variable called “height” will be a constant 400.</p></li>
+<li><p>or in human words… our variable called “height” will be 400.</p></li>
 </ul>
 </li>
 </ul>
 </li>
 <li><p>and this one is bit more difficult, but we need to our canvas to be these values</p>
 <ul>
-<li><p>const svg = d3.select(“div#gohere”).append(“svg”).attr(“width”, width).attr(“height”, height)</p>
+<li><p>var svg = d3.select(“div#example2”).append(“svg”).attr(“width”, width).attr(“height”, height)</p>
 <ul>
 <li><p>we’re going to talk more about d3.select and d3.selectAll later, but for now you can assume that we are selecting the given cell (our easel) that we are in and adding our canvas of width (600) and height (400) to it`</p></li>
 </ul>
@@ -502,7 +504,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example3"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example3"></div>
 
 <script type="text/javascript">   
     var width = 600
@@ -551,7 +553,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
     <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
     
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#example4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#example4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
     
@@ -565,13 +567,13 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example4"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example4"></div>
 
 <script type="text/javascript">   
     var width = 600
     var height = 400
 
-    const svg = d3.select("div#example4").append("svg")
+    var svg = d3.select("div#example4").append("svg")
         .attr("width", width)
         .attr("height", height)
 
@@ -594,7 +596,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
     var width = 600
     var height = 400
     
-    const svg = d3.select(&quot;div#example5&quot;).append(&quot;svg&quot;)
+    var svg = d3.select(&quot;div#example5&quot;).append(&quot;svg&quot;)
         .attr(&quot;width&quot;, width)
         .attr(&quot;height&quot;, height)
     
@@ -605,13 +607,13 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example5"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example5"></div>
 
 <script type="text/javascript">   
     var width = 600
     var height = 400
 
-    const svg = d3.select("div#example5").append("svg")
+    var svg = d3.select("div#example5").append("svg")
         .attr("width", width)
         .attr("height", height)
 
@@ -636,7 +638,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
     var width = 600
     var height = 400
     
-    const svg = d3.select(&quot;div#example6&quot;).append(&quot;svg&quot;)
+    var svg = d3.select(&quot;div#example6&quot;).append(&quot;svg&quot;)
         .attr(&quot;width&quot;, width)
         .attr(&quot;height&quot;, height)
     
@@ -647,13 +649,13 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example6"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example6"></div>
 
 <script type="text/javascript">   
     var width = 600
     var height = 400
 
-    const svg = d3.select("div#example6").append("svg")
+    var svg = d3.select("div#example6").append("svg")
         .attr("width", width)
         .attr("height", height)
 
