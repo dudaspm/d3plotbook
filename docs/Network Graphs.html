@@ -1,0 +1,918 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Network Graph &#8212; D3 + Plot + Jupyter</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Learning D3.js - Part X - Making a Map" href="Making%20a%20Map.html" />
+    <link rel="prev" title="D3 - Lesson 9 - Transitions" href="Transitions.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">D3 + Plot + Jupyter</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   D3 + Plot in Jupyter Notebooks
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="content.html">
+   Content in Jupyter Book
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="Getting%20Started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Now%20with%20data%21.html">
+     Now with data!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Style%2C%20Scales%2C%20and%20Shapes.html">
+     Styles, Scales, and Shapes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Connected%20Scatterplot.html">
+     Connected Scatterplot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Bar%20Charts.html">
+     Bar Charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Scaling%2C%20Legends%2C%20and%20Color.html">
+     Scaling, Legends, and Color
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Transitions.html">
+     D3 - Lesson 9 - Transitions
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Network Graph
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Making%20a%20Map.html">
+     Learning D3.js - Part X - Making a Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Network Graphs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Network Graphs.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d3-js-force-directed-graph-notebook-https-observablehq-com-d3-force-directed-graph">
+   D3.js Force-Directed Graph Notebook: https://observablehq.com/@d3/force-directed-graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-d3-js">
+   Start D3.js
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#getting-the-data-into-d3-js">
+   Getting the Data into D3.js
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-graph">
+   Creating the Graph
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#simulation-time">
+   Simulation Time
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#making-it-move">
+   Making it move
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="network-graph">
+<h1>Network Graph<a class="headerlink" href="#network-graph" title="Permalink to this headline">¶</a></h1>
+<p>For this exercise we will be creating a random graph using NetworkX.</p>
+<cite>
+    Aric A. Hagberg, Daniel A. Schult and Pieter J. Swart, “Exploring network structure, dynamics, and function using NetworkX”, in Proceedings of the 7th Python in Science Conference (SciPy2008), Gäel Varoquaux, Travis Vaught, and Jarrod Millman (Eds), (Pasadena, CA USA), pp. 11–15, Aug 2008
+    </cite>
+<p><a class="reference external" href="https://networkx.org/">https://networkx.org/</a></p>
+<p><a class="reference external" href="https://networkx.org/documentation/latest/auto_examples/index.html">https://networkx.org/documentation/latest/auto_examples/index.html</a></p>
+<p>We will be using the Barabási–Albert algorithm to create the network</p>
+<cite>
+    A. L. Barabási and R. Albert “Emergence of scaling in random networks”, Science 286, pp 509-512, 1999.
+</cite>
+<p><a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.generators.random_graphs.barabasi_albert_graph.html?highlight=barabasi#networkx.generators.random_graphs.barabasi_albert_graph">https://networkx.org/documentation/stable/reference/generated/networkx.generators.random_graphs.barabasi_albert_graph.html?highlight=barabasi#networkx.generators.random_graphs.barabasi_albert_graph</a></p>
+<div class="section" id="d3-js-force-directed-graph-notebook-https-observablehq-com-d3-force-directed-graph">
+<h2>D3.js Force-Directed Graph Notebook: <a class="reference external" href="https://observablehq.com/&#64;d3/force-directed-graph">https://observablehq.com/&#64;d3/force-directed-graph</a><a class="headerlink" href="#d3-js-force-directed-graph-notebook-https-observablehq-com-d3-force-directed-graph" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>%%capture
+!pip3 install networkx
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">json</span>
+
+<span class="n">graphsize</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">nodes</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">links</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">Graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">barabasi_albert_graph</span><span class="p">(</span><span class="n">graphsize</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">j</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># JSON object</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;{&quot;</span>    
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\t</span><span class="s2">&quot;nodes&quot;: [&quot;&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">nodes</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">][</span><span class="s1">&#39;name&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">n</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">],</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\t</span><span class="s2">&quot;links&quot;:[</span><span class="se">\n</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">nx</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
+    <span class="n">links</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">link</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">links</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">link</span><span class="p">)][</span><span class="s1">&#39;source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">link</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">links</span><span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">link</span><span class="p">)][</span><span class="s1">&#39;target&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">link</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">links</span><span class="p">[</span><span class="n">l</span><span class="p">]))</span> <span class="o">+</span> <span class="s2">&quot;,</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">]</span><span class="se">\n</span><span class="s2">&quot;</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="s2">&quot;}&quot;</span>
+<span class="c1">#print (j)</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;network.json&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="start-d3-js">
+<h2>Start D3.js<a class="headerlink" href="#start-d3-js" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="k">def</span> <span class="nf">configure_d3</span><span class="p">():</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    require.config({</span>
+<span class="s2">      paths: {</span>
+<span class="s2">        d3: &quot;https://d3js.org/d3.v6.min&quot;</span>
+<span class="s2">      }</span>
+<span class="s2">    })&quot;&quot;&quot;</span><span class="p">))</span>
+
+
+<span class="n">configure_d3</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/javascript">
+    require.config({
+      paths: {
+        d3: "https://d3js.org/d3.v6.min"
+      }
+    })</script></div>
+</div>
+</div>
+<div class="section" id="getting-the-data-into-d3-js">
+<h2>Getting the Data into D3.js<a class="headerlink" href="#getting-the-data-into-d3-js" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;network.json&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+            <span class="nx">links</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="nx">source</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">],</span> <span class="nx">target</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">]}))</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">links</span><span class="p">)</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.json('network.json')
+        .then(function(data) {
+            nodes = data.nodes.map(d=> d)
+            console.log(nodes)
+            links = data.links.map(d=> ({source:nodes[d.source], target:nodes[d.target]}))
+            console.log(links)
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="creating-the-graph">
+<h2>Creating the Graph<a class="headerlink" href="#creating-the-graph" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;network.json&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+            <span class="nx">links</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="nx">source</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">],</span> <span class="nx">target</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">]}))</span>
+            <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">600</span>
+
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+
+            <span class="kd">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">svg</span>
+                <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.link&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">links</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;link&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#999&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;.6px&quot;</span><span class="p">);</span>
+
+            <span class="c1">// append the nodes with specified data and style properties</span>
+            <span class="kd">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">svg</span>
+                <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle.node&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#fff&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;1.5px&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mf">2</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;steelblue&quot;</span> <span class="o">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+            
+            <span class="c1">// attach titles to nodes, so when the mouse hovers over the nodes it projects the name</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="p">});</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="gohere1"></div>
+
+<script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.json('network.json')
+        .then(function(data) {
+            nodes = data.nodes.map(d=> d)
+            links = data.links.map(d=> ({source:nodes[d.source], target:nodes[d.target]}))
+            const width = 600
+            const height = 600
+
+            const svg = d3.select("div#gohere1").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            const link = svg
+                .selectAll("line.link")
+                .data(links)
+                .join("line")
+                .attr("class", "link")
+                .style("stroke", "#999")
+                .style("stroke-width", ".6px");
+
+            // append the nodes with specified data and style properties
+            const node = svg
+                .selectAll("circle.node")
+                .data(nodes)
+                .join("circle")
+                .attr("class", "node")
+                .attr("r", 5)
+                .style("stroke", "#fff")
+                .style("stroke-width", "1.5px")
+                .style("fill", (d,i)=> (i%2) ? "steelblue" : "purple")
+
+            // attach titles to nodes, so when the mouse hovers over the nodes it projects the name
+            node.append("title")
+                .text(function(d) { return d.name; });
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="simulation-time">
+<h2>Simulation Time<a class="headerlink" href="#simulation-time" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;network.json&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+            <span class="nx">links</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="nx">source</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">],</span> <span class="nx">target</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">]}))</span>
+            <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">600</span>
+
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+
+            <span class="kd">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">svg</span>
+                <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.link&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">links</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;link&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#999&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;.6px&quot;</span><span class="p">);</span>
+
+            <span class="c1">// append the nodes with specified data and style properties</span>
+            <span class="kd">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">svg</span>
+                <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle.node&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#fff&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;1.5px&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mf">2</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;steelblue&quot;</span> <span class="o">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+            
+            <span class="c1">// attach titles to nodes, so when the mouse hovers over the nodes it projects the name</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="p">});</span>
+
+            <span class="c1">// this actually adheres the data to the force base layout and starts the layout</span>
+            <span class="kd">const</span> <span class="nx">simulation</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceSimulation</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> 
+                       <span class="nx">d3</span><span class="p">.</span><span class="nx">forceLink</span><span class="p">(</span><span class="nx">links</span><span class="p">).</span><span class="nx">id</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+                       <span class="p">.</span><span class="nx">distance</span><span class="p">(</span><span class="mf">10</span><span class="p">)</span>
+                       <span class="p">.</span><span class="nx">strength</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+                      <span class="p">)</span>
+                <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;charge&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceManyBody</span><span class="p">())</span>
+                <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceCenter</span><span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mf">2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">/</span> <span class="mf">2</span><span class="p">))</span>
+                <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;tick&quot;</span><span class="p">,</span> <span class="nx">ticked</span><span class="p">);</span>            
+            
+            <span class="c1">// this is the main mechanism of the force based diagram</span>
+            <span class="c1">// which moves the nodes and links from their starting and finishing positions</span>
+            <span class="c1">// once it hits equilibrium, it will stop moving the positions</span>
+            <span class="kd">function</span> <span class="nx">ticked</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.link&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">x</span> <span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">y</span> <span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">x</span> <span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">y</span> <span class="p">)</span>
+                
+                <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle.node&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+            <span class="p">};</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="gohere2"></div>
+
+<script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.json('network.json')
+        .then(function(data) {
+            nodes = data.nodes.map(d=> d)
+            links = data.links.map(d=> ({source:nodes[d.source], target:nodes[d.target]}))
+            const width = 600
+            const height = 600
+
+            const svg = d3.select("div#gohere2").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            const link = svg
+                .selectAll("line.link")
+                .data(links)
+                .join("line")
+                .attr("class", "link")
+                .style("stroke", "#999")
+                .style("stroke-width", ".6px");
+
+            // append the nodes with specified data and style properties
+            const node = svg
+                .selectAll("circle.node")
+                .data(nodes)
+                .join("circle")
+                .attr("class", "node")
+                .attr("r", 5)
+                .style("stroke", "#fff")
+                .style("stroke-width", "1.5px")
+                .style("fill", (d,i)=> (i%2) ? "steelblue" : "purple")
+
+            // attach titles to nodes, so when the mouse hovers over the nodes it projects the name
+            node.append("title")
+                .text(function(d) { return d.name; });
+
+            // this actually adheres the data to the force base layout and starts the layout
+            const simulation = d3.forceSimulation(nodes)
+                .force("link", 
+                       d3.forceLink(links).id(d => d.name)
+                       .distance(10)
+                       .strength(1)
+                      )
+                .force("charge", d3.forceManyBody())
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .on("tick", ticked);            
+
+            // this is the main mechanism of the force based diagram
+            // which moves the nodes and links from their starting and finishing positions
+            // once it hits equilibrium, it will stop moving the positions
+            function ticked() {
+                svg.selectAll("line.link")
+                    .attr("x1", d => d.source.x )
+                    .attr("y1", d => d.source.y )
+                    .attr("x2", d => d.target.x )
+                    .attr("y2", d => d.target.y )
+
+                svg.selectAll("circle.node")
+                    .attr("cx", d => d.x)
+                    .attr("cy", d => d.y)
+            };
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="making-it-move">
+<h2>Making it move<a class="headerlink" href="#making-it-move" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s1">&#39;network.json&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">nodes</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">nodes</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+            <span class="nx">links</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">links</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="nx">source</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">],</span> <span class="nx">target</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">]}))</span>
+            <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">600</span>
+
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+
+            <span class="kd">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">svg</span>
+                <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.link&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">links</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;link&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#999&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;.6px&quot;</span><span class="p">);</span>
+
+            <span class="c1">// append the nodes with specified data and style properties</span>
+            <span class="kd">const</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">svg</span>
+                <span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle.node&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;node&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#fff&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="s2">&quot;1.5px&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="mf">2</span><span class="p">)</span> <span class="o">?</span> <span class="s2">&quot;steelblue&quot;</span> <span class="o">:</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">drag</span><span class="p">()</span>
+                      <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;start&quot;</span><span class="p">,</span> <span class="nx">dragstarted</span><span class="p">)</span>
+                      <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;drag&quot;</span><span class="p">,</span> <span class="nx">dragged</span><span class="p">)</span>
+                      <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;end&quot;</span><span class="p">,</span> <span class="nx">dragended</span><span class="p">))</span>
+            
+            <span class="c1">// attach titles to nodes, so when the mouse hovers over the nodes it projects the name</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span> <span class="p">});</span>
+
+            <span class="c1">// this actually adheres the data to the force base layout and starts the layout</span>
+            <span class="kd">const</span> <span class="nx">simulation</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceSimulation</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> 
+                       <span class="nx">d3</span><span class="p">.</span><span class="nx">forceLink</span><span class="p">(</span><span class="nx">links</span><span class="p">).</span><span class="nx">id</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+                       <span class="p">.</span><span class="nx">distance</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="mf">0</span><span class="p">)</span>
+                       <span class="p">.</span><span class="nx">strength</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span>
+                      <span class="p">)</span>
+                <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;charge&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceManyBody</span><span class="p">())</span>
+                <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceCenter</span><span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mf">2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">/</span> <span class="mf">2</span><span class="p">))</span>
+                <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;tick&quot;</span><span class="p">,</span> <span class="nx">ticked</span><span class="p">);</span>            
+            
+            <span class="c1">// this is the main mechanism of the force based diagram</span>
+            <span class="c1">// which moves the nodes and links from their starting and finishing positions</span>
+            <span class="c1">// once it hits equilibrium, it will stop moving the positions</span>
+            <span class="kd">function</span> <span class="nx">ticked</span><span class="p">()</span> <span class="p">{</span>
+                <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.link&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="p">})</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span> <span class="p">})</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="p">})</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span> <span class="p">});</span>
+                <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle.node&quot;</span><span class="p">).</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span> <span class="p">})</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">d</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span> <span class="p">});</span>
+            <span class="p">};</span>
+            
+
+            <span class="kd">function</span> <span class="nx">dragstarted</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">event</span><span class="p">.</span><span class="nx">active</span><span class="p">)</span> <span class="nx">simulation</span><span class="p">.</span><span class="nx">alphaTarget</span><span class="p">(</span><span class="mf">0.3</span><span class="p">).</span><span class="nx">restart</span><span class="p">();</span>
+                <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">fx</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+                <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">fy</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="kd">function</span> <span class="nx">dragged</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">fx</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+                <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">fy</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+            <span class="p">}</span>
+
+            <span class="kd">function</span> <span class="nx">dragended</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">event</span><span class="p">.</span><span class="nx">active</span><span class="p">)</span> <span class="nx">simulation</span><span class="p">.</span><span class="nx">alphaTarget</span><span class="p">(</span><span class="mf">0</span><span class="p">);</span>
+                <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">fx</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">x</span><span class="p">;</span>
+                <span class="nx">event</span><span class="p">.</span><span class="nx">subject</span><span class="p">.</span><span class="nx">fy</span> <span class="o">=</span> <span class="nx">event</span><span class="p">.</span><span class="nx">y</span><span class="p">;</span>
+            <span class="p">}</span>            
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="gohere3"></div>
+
+<script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.json('network.json')
+        .then(function(data) {
+            nodes = data.nodes.map(d=> d)
+            links = data.links.map(d=> ({source:nodes[d.source], target:nodes[d.target]}))
+            const width = 600
+            const height = 600
+
+            const svg = d3.select("div#gohere3").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            const link = svg
+                .selectAll("line.link")
+                .data(links)
+                .join("line")
+                .attr("class", "link")
+                .style("stroke", "#999")
+                .style("stroke-width", ".6px");
+
+            // append the nodes with specified data and style properties
+            const node = svg
+                .selectAll("circle.node")
+                .data(nodes)
+                .join("circle")
+                .attr("class", "node")
+                .attr("r", 5)
+                .style("stroke", "#fff")
+                .style("stroke-width", "1.5px")
+                .style("fill", (d,i)=> (i%2) ? "steelblue" : "purple")
+                .call(d3.drag()
+                      .on("start", dragstarted)
+                      .on("drag", dragged)
+                      .on("end", dragended))
+
+            // attach titles to nodes, so when the mouse hovers over the nodes it projects the name
+            node.append("title")
+                .text(function(d) { return d.name; });
+
+            // this actually adheres the data to the force base layout and starts the layout
+            const simulation = d3.forceSimulation(nodes)
+                .force("link", 
+                       d3.forceLink(links).id(d => d.name)
+                       .distance(d => 0)
+                       .strength(1)
+                      )
+                .force("charge", d3.forceManyBody())
+                .force("center", d3.forceCenter(width / 2, height / 2))
+                .on("tick", ticked);            
+
+            // this is the main mechanism of the force based diagram
+            // which moves the nodes and links from their starting and finishing positions
+            // once it hits equilibrium, it will stop moving the positions
+            function ticked() {
+                svg.selectAll("line.link").attr("x1", function(d) { return d.source.x; })
+                    .attr("y1", function(d) { return d.source.y; })
+                    .attr("x2", function(d) { return d.target.x; })
+                    .attr("y2", function(d) { return d.target.y; });
+                svg.selectAll("circle.node").attr("cx", function(d) { return d.x; })
+                    .attr("cy", function(d) { return d.y; });
+            };
+
+
+            function dragstarted(event) {
+                if (!event.active) simulation.alphaTarget(0.3).restart();
+                event.subject.fx = event.subject.x;
+                event.subject.fy = event.subject.y;
+            }
+
+            function dragged(event) {
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }
+
+            function dragended(event) {
+                if (!event.active) simulation.alphaTarget(0);
+                event.subject.fx = event.x;
+                event.subject.fy = event.y;
+            }            
+
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Transitions.html" title="previous page">D3 - Lesson 9 - Transitions</a>
+    <a class='right-next' id="next-link" href="Making%20a%20Map.html" title="next page">Learning D3.js - Part X - Making a Map</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Patrick M. Dudas<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
