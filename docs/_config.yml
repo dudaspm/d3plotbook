@@ -78,6 +78,7 @@ launch_buttons:
     thebe                  : true
     use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
     thebelab_button_text             : "Testing"  # The text to display inside the Thebelab initialization button
+    notebook_interface: "jupyterlab"
     codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 repository:
