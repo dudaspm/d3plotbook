@@ -61,7 +61,7 @@ jupyterhub_url                   : ""  # The URL for your JupyterHub. If no URL,
 jupyterhub_interact_text         : "Interact"  # The text that interact buttons will contain.
 
 # Binder link settings
-use_binder_button                : false  # If 'true', add a binder button for interactive links
+use_binder_button                : true  # If 'true', add a binder button for interactive links
 binderhub_url                    : https://mybinder.org  # The URL for your BinderHub. If no URL, use ""
 
 
@@ -74,17 +74,19 @@ binderhub_interact_text          : "Interact via Binder"  # The text that intera
 
 # Thebelab settings
 launch_buttons:
-    colab_url: "https://colab.research.google.com"
-    thebe                  : true
-    use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
-    thebelab_button_text             : "Testing"  # The text to display inside the Thebelab initialization button
-    codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
+  thebe                  : true
+use_thebelab_button              : true  # If 'true', display a button to allow in-page running code cells with Thebelab
+thebelab_button_text             : "Testing"  # The text to display inside the Thebelab initialization button
+codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 repository:
   url: https://github.com/dudaspm/d3plotbook
+  path_to_book: /docs  # An optional path to your book, defaults to repo root
 html:
   use_edit_page_button: true
-  
+
+launch_buttons:
+  colab_url: "https://colab.research.google.com"
 
 # nbinteract settings
 use_show_widgets_button              : true  # If 'true', display a button to allow in-page running code cells with nbinteract
@@ -151,4 +153,4 @@ plugins:
   - jekyll-scholar
 
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
-jupyter_book_version: "0.10.2"
+jupyter_book_version: "0.6.4"
