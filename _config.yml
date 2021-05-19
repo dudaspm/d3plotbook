@@ -69,7 +69,7 @@ binder_repo_base                 : https://github.com/dudaspm/d3plotbook  #@@@ C
 binder_repo_org                  : dudaspm  #@@@ CHANGE THIS @@@ - 9# # Your GitHub username
 
 binder_repo_name                 : d3plotbook  # The project repo name
-binder_repo_branch               : master  # The branch on which your textbook is hosted.
+binder_repo_branch               : main  # The branch on which your textbook is hosted.
 binderhub_interact_text          : "Interact via Binder"  # The text that interact buttons will contain.
 
 # Thebelab settings
@@ -82,6 +82,7 @@ launch_buttons:
 
 repository:
   url: https://github.com/dudaspm/d3plotbook
+  branch: main
 html:
   use_edit_page_button: true
   
