@@ -82,7 +82,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   D3 + Plot in Jupyter Notebooks
+   D3 + Plot in JupyterLab Notebooks
   </a>
  </li>
 </ul>
@@ -253,9 +253,21 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#let-s-look-at-our-data">
-   Let’s look at our data
+  <a class="reference internal nav-link" href="#data-shapefiles">
+   Data (Shapefiles)
   </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acknowledgement">
+     Acknowledgement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-look-at-our-data">
+     Let’s look at our data
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-the-projection-for-the-us">
@@ -282,73 +294,174 @@
 </div></blockquote>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
 
-<span class="k">def</span> <span class="nf">configure_d3</span><span class="p">():</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    require.config({</span>
-<span class="s2">      paths: {</span>
-<span class="s2">        d3: &quot;https://d3js.org/d3.v6.min&quot;</span>
-<span class="s2">      }</span>
-<span class="s2">    })&quot;&quot;&quot;</span><span class="p">))</span>
-
-
-<span class="n">configure_d3</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">load_d3_in_cell_output</span><span class="p">():</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;script src=&#39;https://d3js.org/d3.v6.min.js&#39;&gt;&lt;/script&gt;&quot;</span><span class="p">))</span>
+<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">load_d3_in_cell_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="data-shapefiles">
+<h2>Data (Shapefiles)<a class="headerlink" href="#data-shapefiles" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="acknowledgement">
+<h3>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this headline">¶</a></h3>
+<p><cite>Bureau, US Census. “Cartographic Boundary Files - Shapefile.” The United States Census Bureau, <a class="reference external" href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html</a>. Accessed 25 May 2021.<cite> <span id="id1">[<span>bureau_cartographic_nodate</span>]</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># URL to https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_county_20m.zip&#39;</span>
+<span class="c1"># get the zip file</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="c1"># create a new file called 2018_us_county_500k.zip</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cb_2018_us_county_20m.zip&#39;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+<span class="c1"># write the zip from www2.census.gov to this new file</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="c1"># close the new file </span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<script type="application/javascript">
-    require.config({
-      paths: {
-        d3: "https://d3js.org/d3.v6.min"
-      }
-    })</script></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
+</div>
+<p>The way we need to get this zip file to <a class="reference external" href="http://ogre.adc4gis.com">ogre.adc4gis.com</a> is to use a POST. Thanks to Rob Story’s Github file for providing much of the details here <span id="id2">[<span>rob_story_shapefile_nodate</span>]</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;http://ogre.adc4gis.com/convert&#39;</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cb_2018_us_county_20m.zip&#39;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+<span class="n">shp_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;upload&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calling Ogre to perform shapefile to geoJSON conversion...&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span> 
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">shp_data</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with the HTTP request&quot;</span><span class="p">)</span>
+    <span class="k">raise</span>
+<span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="c1"># close the new file </span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cb_2018_us_county_20m.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File is ready, called: cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calling Ogre to perform shapefile to geoJSON conversion...
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File is ready, called: cb_2018_us_county_20m.json
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 <div class="section" id="let-s-look-at-our-data">
-<h2>Let’s look at our data<a class="headerlink" href="#let-s-look-at-our-data" title="Permalink to this headline">¶</a></h2>
+<h3>Let’s look at our data<a class="headerlink" href="#let-s-look-at-our-data" title="Permalink to this headline">¶</a></h3>
+<p>This is a basic “read-in” function for D3.js, specifically, for JSON.</p>
+<p>For this function, d3.js uses <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">Promises</a> to make sure we get our file first, then tell the program what we are going to do with this file (using <em>.then</em>) and if it does go as planned, an error (using <em>.catch</em>). This is important to understand because your data is not available <strong>outside</strong> of the promise.</p>
+<p>For the purposes of viewing the structure of a typical geo(json) file. I made a mini-version. Here is the structure of these files.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Preview of the JSON file<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">pre</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> As you can see, the structure of this document contains a FeatureCollection and each <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Feature<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> is a reference to a county. Let&#39;s take a look at the first county.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>The first feature (or location)<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">pre</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>For each county we have two sets of data. The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>geometry<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> and the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>properties<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>. 
+The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>geometry<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> reflects all the latitudes and longitudes to create a single county. 
+Think of this as &quot;Connect the Dots&quot; and all the dots connected form the shape (or polygon) of each county.
+Below, we focus on the properties. 
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>The properties of the first feature (or location)<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">pre</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>properties<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> are the meta-data of each county. As an example, the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> is Bladen. 
+There are a couple we need to point out for later but are also helpful for understanding shapefiles in general. 
+This being the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>FIPS<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> or the Federal Information Processing Standards. 
+Look at the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>STATEFP<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> for the county, this is 37, meaning North Carolina. Here is a list of the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696&quot;</span><span class="p">&gt;</span>State FIPS<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
+Now the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>COUNTYFP<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>, is the FIPS of the that specific county within North Carolina. 
+Finally, you might see this information combined, like the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>GEOID<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>. 
+The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>GEOID<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> is 37017 or Bladen, North Carolina. 
+<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
     
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#output1&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s1">&#39;{&quot;type&quot;:&quot;FeatureCollection&quot;, &quot;features&quot;: []}&#39;</span><span class="p">)</span>
-            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#output2&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mf">0</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39;\t&#39;</span><span class="p">))</span>
-            
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;/files/cb_2018_us_county_20m-mini.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>        
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output1&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output2&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mf">0</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output3&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mf">0</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
         <span class="p">})</span>
         <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
         <span class="p">})</span>
-    
-<span class="p">})</span>
+
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="output1"></div>
-<div id="output2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><em>Preview of the JSON file</em>
+<pre id="output1"></pre>
+<br>
+<p> As you can see, the structure of this document contains a FeatureCollection and each <em>Feature</em> is a reference to a county. Let's take a look at the first county.</p>
+<hr>
+<em>The first feature (or location)</em>
+<pre id="output2"></pre>
+<br>
+<p>For each county we have two sets of data. The <em>geometry</em> and the <em>properties</em>. 
+The <em>geometry</em> reflects all the latitudes and longitudes to create a single county. 
+Think of this as "Connect the Dots" and all the dots connected form the shape (or polygon) of each county.
+Below, we focus on the properties. 
+</p>
+<hr>
+<em>The properties of the first feature (or location)</em>
+<pre id="output3"></pre>
+<br>
+<p> The <em>properties</em> are the meta-data of each county. As an example, the <em>Name</em> is Bladen. 
+There are a couple we need to point out for later but are also helpful for understanding shapefiles in general. 
+This being the <em>FIPS</em> or the Federal Information Processing Standards. 
+Look at the <em>STATEFP</em> for the county, this is 37, meaning North Carolina. Here is a list of the <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696">State FIPS</a>.
+Now the <em>COUNTYFP</em>, is the FIPS of the that specific county within North Carolina. 
+Finally, you might see this information combined, like the <em>GEOID</em>. 
+The <em>GEOID</em> is 37017 or Bladen, North Carolina. 
+</p>
+
 <script type="text/javascript">   
-require(['d3'], function (d3) {
 
-    d3.json("https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json")
-        .then(function(us) {
-            d3.select("div#output1").text('{"type":"FeatureCollection", "features": []}')
-            d3.select("div#output2").text(JSON.stringify(us["features"][0],null,'\t'))
-
+    d3.json("/files/cb_2018_us_county_20m-mini.json")
+        .then(function(us) {        
+            d3.select("pre#output1").text(JSON.stringify(us,null,' '))
+            d3.select("pre#output2").text(JSON.stringify(us["features"][0],null,' '))
+            d3.select("pre#output3").text(JSON.stringify(us["features"][0]["properties"],null,' '))
         })
         .catch(function(error){
             console.log(error)
         })
 
-})
 </script>
 </div></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Common Question</p>
+<p>Why do we need a FIPS number if the name is available?</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Answer!</p>
+<p>Sometimes people use different names for different locations. Example: New York and New York State.
+Both are correct, but would look different based on the data. Instead, we can use FIPS 36.
+Also, there might be inconsistencies based on what is capitalized and what is not. North Dakota is not the same as north dakota.</p>
+</div>
 </div>
 </div>
 <div class="section" id="creating-the-projection-for-the-us">
@@ -394,7 +507,7 @@ require(['d3'], function (d3) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="map1"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map1"></div>
 <script type="text/javascript">   
 require(['d3'], function (d3) {
 
@@ -481,7 +594,7 @@ To do this, we need to filter to PA’s data.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="map2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map2"></div>
 <script type="text/javascript">   
 require(['d3'], function (d3) {
 
@@ -549,7 +662,7 @@ require(['d3'], function (d3) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="output3"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="output3"></div>
 <div id="output4"></div>
 <script type="text/javascript">   
 require(['d3'], function (d3) {
@@ -634,7 +747,7 @@ require(['d3'], function (d3) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="map3"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map3"></div>
 <div id="legend1"></div>
 <script type="text/javascript">   
 require(['d3'], function (d3) {
@@ -760,7 +873,7 @@ require(['d3'], function (d3) {
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html">
 <script type="text/javascript">   
 require(['d3'], function (d3) {
 
