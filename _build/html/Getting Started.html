@@ -83,7 +83,7 @@
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   D3 + Plot in Jupyter Notebooks
+   D3 + Plot in JupyterLab Notebooks
   </a>
  </li>
 </ul>
@@ -291,8 +291,8 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#enabling-d3-in-jupyterlab-google-colab">
-     Enabling D3 in JupyterLab/Google Colab
+    <a class="reference internal nav-link" href="#required-first-step-enabling-d3-in-jupyterlab-google-colab">
+     (Required First Step) Enabling D3 in JupyterLab/Google Colab
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -356,8 +356,8 @@
 <p>I DECLARE I WANT TO USE D3!</p>
 <p>No, no…close… but we need to do this in a way that tells the notebook you want to use the D3.js.</p>
 </div>
-<div class="section" id="enabling-d3-in-jupyterlab-google-colab">
-<h3>Enabling D3 in JupyterLab/Google Colab<a class="headerlink" href="#enabling-d3-in-jupyterlab-google-colab" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="required-first-step-enabling-d3-in-jupyterlab-google-colab">
+<h3>(Required First Step) Enabling D3 in JupyterLab/Google Colab<a class="headerlink" href="#required-first-step-enabling-d3-in-jupyterlab-google-colab" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
@@ -368,9 +368,8 @@
 </pre></div>
 </div>
 </div>
-<div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
 </div>
+<p>The example below should output a blue circle. If so, everything is working properly! If not, please make sure to run the “Required First Step.”</p>
 </div>
 <div class="section" id="both-colab-and-jupyterlab-will-be-able-to-run-the-following-example">
 <h3>Both Colab and JupyterLab will be able to run the following example<a class="headerlink" href="#both-colab-and-jupyterlab-will-be-able-to-run-the-following-example" title="Permalink to this headline">¶</a></h3>
@@ -391,15 +390,15 @@
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="mf">150</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="mf">50</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
 
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example1"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example1"></div>
 
 <script type="text/javascript">   
     var width = 300
@@ -413,8 +412,8 @@
         .attr("cx", 150)
         .attr("cy", 50)
         .attr("r", 20)
-        .attr("fill", "blue")
-        .attr("stroke", "black")
+        .style("fill", "blue")
+        .style("stroke", "black")
 
 </script>
 </div></div>
@@ -448,7 +447,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example2"></div>
 
 <script type="text/javascript">   
     var width = 600
@@ -521,7 +520,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example3"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example3"></div>
 
 <script type="text/javascript">   
     var width = 600
@@ -584,7 +583,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example4"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example4"></div>
 
 <script type="text/javascript">   
     var width = 600
@@ -624,7 +623,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example5"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example5"></div>
 
 <script type="text/javascript">   
     var width = 600
@@ -666,7 +665,7 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example6"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="example6"></div>
 
 <script type="text/javascript">   
     var width = 600
