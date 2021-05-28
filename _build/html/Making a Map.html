@@ -396,7 +396,7 @@ The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</s
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
     
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;/files/cb_2018_us_county_20m-mini.json&quot;</span><span class="p">)</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;cb_2018_us_county_20m-mini.json&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>        
             <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output1&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
             <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output2&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mf">0</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
@@ -439,7 +439,7 @@ The <em>GEOID</em> is 37017 or Bladen, North Carolina.
 
 <script type="text/javascript">   
 
-    d3.json("/files/cb_2018_us_county_20m-mini.json")
+    d3.json("cb_2018_us_county_20m-mini.json")
         .then(function(us) {        
             d3.select("pre#output1").text(JSON.stringify(us,null,' '))
             d3.select("pre#output2").text(JSON.stringify(us["features"][0],null,' '))

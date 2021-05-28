@@ -1,0 +1,30 @@
+{
+    "features": [
+        {
+            "geometry": {
+                "coordinates": [
+                    [
+                        [
+                            -78.901998,
+                            34.835268
+                        ]
+                    ]
+                ],
+                "type": "Polygon"
+            },
+            "properties": {
+                "AFFGEOID": "0500000US37017",
+                "ALAND": 2265887723,
+                "AWATER": 33010866,
+                "COUNTYFP": "017",
+                "COUNTYNS": "01026336",
+                "GEOID": "37017",
+                "LSAD": "06",
+                "NAME": "Bladen",
+                "STATEFP": "37"
+            },
+            "type": "Feature"
+        }
+    ],
+    "type": "FeatureCollection"
+}
