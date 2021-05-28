@@ -345,7 +345,7 @@
 <span class="c1"># close the new file </span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cb_2018_us_county_20m.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
-    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span><span class="n">sort_keys</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;: &#39;</span><span class="p">)))</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span><span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File is ready, called: cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -354,7 +354,23 @@
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calling Ogre to perform shapefile to geoJSON conversion...
 </pre></div>
 </div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>File is ready, called: cb_2018_us_county_20m.json
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="n">c705cc29c01</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with the HTTP request&quot;</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="k">raise</span>
+<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># close the new file</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="nn">c:\users\dudas\anaconda3\envs\wintest\lib\site-packages\requests\models.py</span> in <span class="ni">raise_for_status</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">941</span> 
+<span class="g g-Whitespace">    </span><span class="mi">942</span>         <span class="k">if</span> <span class="n">http_error_msg</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">943</span>             <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">http_error_msg</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span> 
+<span class="g g-Whitespace">    </span><span class="mi">945</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+<span class="ne">HTTPError</span>: 500 Server Error: Internal Server Error for url: http://ogre.adc4gis.com/convert
 </pre></div>
 </div>
 </div>
@@ -365,53 +381,9 @@
 <p>This is a basic “read-in” function for D3.js, specifically, for JSON.</p>
 <p>For this function, d3.js uses <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">Promises</a> to make sure we get our file first, then tell the program what we are going to do with this file (using <em>.then</em>) and if it does go as planned, an error (using <em>.catch</em>). This is important to understand because your data is not available <strong>outside</strong> of the promise.</p>
 <p>For the purposes of viewing the structure of a typical geo(json) file. I made a mini-version. Here is the structure of these files.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Preview of the JSON file<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">pre</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> As you can see, the structure of this document contains a FeatureCollection and each <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Feature<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> is a reference to a county. Let&#39;s take a look at the first county.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>The first feature (or location)<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">pre</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>For each county we have two sets of data. The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>geometry<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> and the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>properties<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>. 
-The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>geometry<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> reflects all the latitudes and longitudes to create a single county. 
-Think of this as &quot;Connect the Dots&quot; and all the dots connected form the shape (or polygon) of each county.
-Below, we focus on the properties. 
-<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>The properties of the first feature (or location)<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">pre</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">pre</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span> The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>properties<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> are the meta-data of each county. As an example, the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>Name<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> is Bladen. 
-There are a couple we need to point out for later but are also helpful for understanding shapefiles in general. 
-This being the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>FIPS<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> or the Federal Information Processing Standards. 
-Look at the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>STATEFP<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> for the county, this is 37, meaning North Carolina. Here is a list of the <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696&quot;</span><span class="p">&gt;</span>State FIPS<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>.
-Now the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>COUNTYFP<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>, is the FIPS of the that specific county within North Carolina. 
-Finally, you might see this information combined, like the <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>GEOID<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>. 
-The <span class="p">&lt;</span><span class="nt">em</span><span class="p">&gt;</span>GEOID<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span> is 37017 or Bladen, North Carolina. 
-<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-    
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;/files/cb_2018_us_county_20m-mini.json&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>        
-            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output1&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output2&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mf">0</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;pre#output3&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">][</span><span class="mf">0</span><span class="p">][</span><span class="s2">&quot;properties&quot;</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39; &#39;</span><span class="p">))</span>
-        <span class="p">})</span>
-        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
-        <span class="p">})</span>
-
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><em>Preview of the JSON file</em>
+<div class="output text_html"><em>Preview of the JSON file</em>
 <pre id="output1"></pre>
 <br>
 <p> As you can see, the structure of this document contains a FeatureCollection and each <em>Feature</em> is a reference to a county. Let's take a look at the first county.</p>
@@ -439,7 +411,7 @@ The <em>GEOID</em> is 37017 or Bladen, North Carolina.
 
 <script type="text/javascript">   
 
-    d3.json("/files/cb_2018_us_county_20m-mini.json")
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m-mini.json")
         .then(function(us) {        
             d3.select("pre#output1").text(JSON.stringify(us,null,' '))
             d3.select("pre#output2").text(JSON.stringify(us["features"][0],null,' '))
@@ -465,21 +437,46 @@ Also, there might be inconsistencies based on what is capitalized and what is no
 </div>
 </div>
 <div class="section" id="creating-the-projection-for-the-us">
-<h2>Creating the <a class="reference external" href="https://github.com/d3/d3-geo#azimuthal-projections">Projection</a> for the US<a class="headerlink" href="#creating-the-projection-for-the-us" title="Permalink to this headline">¶</a></h2>
+<h2>Creating the <a class="reference external" href="https://github.com/d3/d3-geo">Projection</a> for the US<a class="headerlink" href="#creating-the-projection-for-the-us" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have our data, we need to take the latitudes and longitudes and re-map them to our plot. For our purposes we need to define three things:</p>
+<ul class="simple">
+<li><p>the <em>width</em> of our plot</p></li>
+<li><p>the <em>height</em> of our plot</p></li>
+<li><p>the <em>margins</em> of our plot</p></li>
+</ul>
+<p>the <em>re-mapping</em> is actually done for us using</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">d3</span><span class="p">.</span><span class="nx">geoMercator</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">us</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">top</span><span class="o">-</span><span class="nx">left</span> <span class="nx">corner</span><span class="p">],[</span><span class="nx">bottom</span><span class="o">-</span><span class="nx">right</span> <span class="nx">corner</span><span class="p">]],</span> <span class="nx">the</span> <span class="nx">geojson</span> <span class="nx">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>takes two inputs:</p>
+<ul class="simple">
+<li><p>our dimensions for the graph [[top-left corner],[bottom-right corner]]</p></li>
+<li><p>and the geojson data itself</p></li>
+</ul>
+<p>This will re-map the data.</p>
+<p>Lastly, we need to define our <em>projection</em>. There are a ton of different projection. See <a class="reference external" href="https://github.com/d3/d3-geo">https://github.com/d3/d3-geo</a>.</p>
+<p>We will be using the Composite Project called</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">d3</span><span class="p">.</span><span class="nx">geoAlbersUsa</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>which will prodce the following layout.
+<img alt="geoAlbers USA projection" src="https://raw.githubusercontent.com/d3/d3-geo/master/img/albersUsa-parameters.png" /></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
     
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json&quot;</span><span class="p">)</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">800</span>
-            <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">600</span>
-            <span class="kd">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+            <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
             <span class="c1">// Create the Mercator Projection</span>
-            <span class="nx">projectionUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoMercator</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">us</span><span class="p">)</span>
+            <span class="nx">projectionUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoAlbersUsa</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">us</span><span class="p">)</span>
             <span class="c1">// Create a function to generate our paths (counties)</span>
             <span class="nx">pathGeneratorUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionUS</span><span class="p">)</span>
             
@@ -501,23 +498,21 @@ Also, there might be inconsistencies based on what is capitalized and what is no
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
         <span class="p">})</span>
     
-<span class="p">})</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map1"></div>
+<div class="output text_html"><div id="map1"></div>
 <script type="text/javascript">   
-require(['d3'], function (d3) {
 
-    d3.json("https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json")
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
         .then(function(us) {
-            const width = 800
-            const height = 600
-            const margin = 0
+            var width = 600
+            var height = 400
+            var margin = 0
             // Create the Mercator Projection
-            projectionUS = d3.geoMercator().fitExtent([[margin, margin], [width - margin, height - margin]], us)
+            projectionUS = d3.geoAlbersUsa().fitExtent([[margin, margin], [width - margin, height - margin]], us)
             // Create a function to generate our paths (counties)
             pathGeneratorUS = d3.geoPath().projection(projectionUS)
 
@@ -539,7 +534,142 @@ require(['d3'], function (d3) {
             console.log(error)
         })
 
-})
+</script>
+</div></div>
+</div>
+<p>Let’s add some color to this and color each state. We need to create at least 50 colors. So, for this, we need to see how many states we have and create a linearScale for the colors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;count&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>       
+            <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">states</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))</span>
+            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#count&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Number of states in our dataset: &quot;</span><span class="o">+</span><span class="nx">states</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="count"></div>
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
+        .then(function(us) {       
+            var states = []
+            us["features"].forEach(d=> states.push(+d.properties.STATEFP))
+            states =  [...new Set(states)];
+            d3.select("div#count").text("Number of states in our dataset: "+states.length)
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+<p>Looks like we have 52. So, let’s use this data to color our map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+            <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
+            <span class="c1">// Create the Mercator Projection</span>
+            <span class="nx">projectionUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoAlbersUsa</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">us</span><span class="p">)</span>
+            <span class="c1">// Create a function to generate our paths (counties)</span>
+            <span class="nx">pathGeneratorUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionUS</span><span class="p">)</span>
+            
+            <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">states</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))</span>
+            <span class="nx">states</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span>
+            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
+            
+            <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">states</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+            <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateSpectral</span>
+            
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+            
+            <span class="c1">// construct the element</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">us</span><span class="p">.</span><span class="nx">features</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="nx">pathGeneratorUS</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s2">&quot;white&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">states</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))))</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="s2">&quot;The StateFP is: &quot;</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">)</span>
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="map2"></div>
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
+        .then(function(us) {
+            var width = 600
+            var height = 400
+            var margin = 0
+            // Create the Mercator Projection
+            projectionUS = d3.geoAlbersUsa().fitExtent([[margin, margin], [width - margin, height - margin]], us)
+            // Create a function to generate our paths (counties)
+            pathGeneratorUS = d3.geoPath().projection(projectionUS)
+
+            var states = []
+            us["features"].forEach(d=> states.push(+d.properties.STATEFP))
+            states.sort((a, b) => a - b)
+            states =  [...new Set(states)];
+
+            color = d3.scaleLinear().range([0,1]).domain([0,states.length-1])
+            palette = d3.interpolateSpectral
+
+            const svg = d3.select("div#map2").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            // construct the element
+            svg.selectAll("path")
+                .data(us.features)
+                .join("path")
+                .attr('d', pathGeneratorUS)
+                .attr('fill', "white")
+                .attr('stroke', d=> palette(color(states.indexOf(+d.properties.STATEFP))))
+                .attr('stroke-width', '2')
+                .append("title")
+                .text(d=>"The StateFP is: "+d.properties.STATEFP)
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
 </script>
 </div></div>
 </div>
@@ -550,14 +680,13 @@ To do this, we need to filter to PA’s data.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
     
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json&quot;</span><span class="p">)</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">800</span>
-            <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
             <span class="kd">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
             <span class="c1">// filter data to only PA</span>
             <span class="nx">pa</span> <span class="o">=</span> <span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span> <span class="nx">features</span><span class="o">:</span><span class="nx">us</span><span class="p">.</span><span class="nx">features</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="o">==</span><span class="mf">42</span><span class="p">)})</span>
@@ -567,7 +696,7 @@ To do this, we need to filter to PA’s data.</p>
             <span class="c1">// Create a function to generate our paths (counties)</span>
             <span class="nx">pathGeneratorPA</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionPA</span><span class="p">)</span>
             
-            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
                 <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
                 <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
             
@@ -588,20 +717,18 @@ To do this, we need to filter to PA’s data.</p>
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
         <span class="p">})</span>
     
-<span class="p">})</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map2"></div>
+<div class="output text_html"><div id="map3"></div>
 <script type="text/javascript">   
-require(['d3'], function (d3) {
 
-    d3.json("https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json")
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
         .then(function(us) {
-            const width = 800
-            const height = 600
+            var width = 600
+            var height = 400
             const margin = 0
             // filter data to only PA
             pa = ({type:"FeatureCollection", features:us.features.filter(d=> d.properties.STATEFP==42)})
@@ -611,7 +738,7 @@ require(['d3'], function (d3) {
             // Create a function to generate our paths (counties)
             pathGeneratorPA = d3.geoPath().projection(projectionPA)
 
-            const svg = d3.select("div#map2").append("svg")
+            const svg = d3.select("div#map3").append("svg")
                 .attr("width", width)
                 .attr("height", height)
 
@@ -632,7 +759,6 @@ require(['d3'], function (d3) {
             console.log(error)
         })
 
-})
 </script>
 </div></div>
 </div>
@@ -642,10 +768,8 @@ require(['d3'], function (d3) {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
     
     <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">census</span><span class="p">)</span> <span class="p">{</span>
@@ -656,16 +780,14 @@ require(['d3'], function (d3) {
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
         <span class="p">})</span>
     
-<span class="p">})</span>
+
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="output3"></div>
-<div id="output4"></div>
+<div class="output text_html"><div id="output4"></div>
 <script type="text/javascript">   
-require(['d3'], function (d3) {
 
     d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
         .then(function(census) {
@@ -676,7 +798,7 @@ require(['d3'], function (d3) {
             console.log(error)
         })
 
-})
+
 </script>
 </div></div>
 </div>
@@ -684,17 +806,16 @@ require(['d3'], function (d3) {
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;legend1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
     
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json&quot;</span><span class="p">)</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv&quot;</span><span class="p">)</span>
             <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">census</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">800</span>
-                <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">600</span>
+                <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+                <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
                 <span class="kd">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
                 <span class="c1">// filter data to only PA</span>
                 <span class="nx">pa</span> <span class="o">=</span> <span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span> <span class="nx">features</span><span class="o">:</span><span class="nx">us</span><span class="p">.</span><span class="nx">features</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="o">==</span><span class="mf">42</span><span class="p">)})</span>
@@ -713,7 +834,7 @@ require(['d3'], function (d3) {
                 <span class="c1">// Create a function to generate our paths (counties)</span>
                 <span class="nx">pathGeneratorPA</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionPA</span><span class="p">)</span>
 
-                <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
                     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
                     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
 
@@ -741,23 +862,21 @@ require(['d3'], function (d3) {
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
         <span class="p">})</span>
     
-<span class="p">})</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map3"></div>
+<div class="output text_html"><div id="map4"></div>
 <div id="legend1"></div>
 <script type="text/javascript">   
-require(['d3'], function (d3) {
 
-    d3.json("https://gist.githubusercontent.com/dudaspm/89da9e990236d2bc73a3a6ee00c18bb6/raw/055b78a9d016873c36e28872ab6a4d85d0be858e/usCounties.json")
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
         .then(function(us) {
         d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
             .then(function(census) {
-                const width = 800
-                const height = 600
+                var width = 600
+                var height = 400
                 const margin = 0
                 // filter data to only PA
                 pa = ({type:"FeatureCollection", features:us.features.filter(d=> d.properties.STATEFP==42)})
@@ -776,7 +895,7 @@ require(['d3'], function (d3) {
                 // Create a function to generate our paths (counties)
                 pathGeneratorPA = d3.geoPath().projection(projectionPA)
 
-                const svg = d3.select("div#map3").append("svg")
+                const svg = d3.select("div#map4").append("svg")
                     .attr("width", width)
                     .attr("height", height)
 
@@ -804,7 +923,6 @@ require(['d3'], function (d3) {
             console.log(error)
         })
 
-})
 </script>
 </div></div>
 </div>
@@ -813,13 +931,12 @@ require(['d3'], function (d3) {
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
     
     <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">census</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">800</span>
-            <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-            <span class="kd">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
+            <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
             <span class="nx">census</span> <span class="o">=</span> <span class="nx">census</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">state</span><span class="o">==</span><span class="mf">42</span><span class="p">)</span>
             <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
             <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">census</span><span class="p">,</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">total_no_internet</span><span class="o">/+</span><span class="nx">d</span><span class="p">.</span><span class="nx">universe</span><span class="p">)))</span>
@@ -867,21 +984,19 @@ require(['d3'], function (d3) {
             <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
         <span class="p">})</span>
     
-<span class="p">})</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html">
+<div class="output text_html">
 <script type="text/javascript">   
-require(['d3'], function (d3) {
 
     d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
         .then(function(census) {
-            const width = 800
-            const height = 100
-            const margin = 40 
+            var width = 600
+            var height = 100
+            var margin = 40 
             census = census.filter(d=> d.state==42)
             palette = d3.interpolatePurples
             x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(census,d=> (+d.total_no_internet/+d.universe)))
@@ -929,7 +1044,6 @@ require(['d3'], function (d3) {
             console.log(error)
         })
 
-})
 </script>
 </div></div>
 </div>
