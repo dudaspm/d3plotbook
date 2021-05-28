@@ -340,8 +340,6 @@
     <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">shp_data</span><span class="p">)</span>
 <span class="k">except</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with the HTTP request&quot;</span><span class="p">)</span>
-    <span class="k">raise</span>
-<span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
 <span class="c1"># close the new file </span>
 <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cb_2018_us_county_20m.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
@@ -352,25 +350,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calling Ogre to perform shapefile to geoJSON conversion...
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">HTTPError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="n">c705cc29c01</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">10</span>     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with the HTTP request&quot;</span><span class="p">)</span>
-<span class="g g-Whitespace">     </span><span class="mi">11</span>     <span class="k">raise</span>
-<span class="ne">---&gt; </span><span class="mi">12</span> <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">13</span> <span class="c1"># close the new file</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">c:\users\dudas\anaconda3\envs\wintest\lib\site-packages\requests\models.py</span> in <span class="ni">raise_for_status</span><span class="nt">(self)</span>
-<span class="g g-Whitespace">    </span><span class="mi">941</span> 
-<span class="g g-Whitespace">    </span><span class="mi">942</span>         <span class="k">if</span> <span class="n">http_error_msg</span><span class="p">:</span>
-<span class="ne">--&gt; </span><span class="mi">943</span>             <span class="k">raise</span> <span class="n">HTTPError</span><span class="p">(</span><span class="n">http_error_msg</span><span class="p">,</span> <span class="n">response</span><span class="o">=</span><span class="bp">self</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">944</span> 
-<span class="g g-Whitespace">    </span><span class="mi">945</span>     <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-
-<span class="ne">HTTPError</span>: 500 Server Error: Internal Server Error for url: http://ogre.adc4gis.com/convert
+File is ready, called: cb_2018_us_county_20m.json
 </pre></div>
 </div>
 </div>
@@ -383,7 +363,7 @@
 <p>For the purposes of viewing the structure of a typical geo(json) file. I made a mini-version. Here is the structure of these files.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<div class="output text_html"><em>Preview of the JSON file</em>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><em>Preview of the JSON file</em>
 <pre id="output1"></pre>
 <br>
 <p> As you can see, the structure of this document contains a FeatureCollection and each <em>Feature</em> is a reference to a county. Let's take a look at the first county.</p>
@@ -503,7 +483,7 @@ Also, there might be inconsistencies based on what is capitalized and what is no
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="map1"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map1"></div>
 <script type="text/javascript">   
 
     d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
@@ -561,7 +541,7 @@ Also, there might be inconsistencies based on what is capitalized and what is no
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="count"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="count"></div>
 <script type="text/javascript">   
 
     d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
@@ -629,7 +609,7 @@ Also, there might be inconsistencies based on what is capitalized and what is no
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="map2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map2"></div>
 <script type="text/javascript">   
 
     d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
@@ -722,7 +702,7 @@ To do this, we need to filter to PA’s data.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="map3"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map3"></div>
 <script type="text/javascript">   
 
     d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
@@ -786,7 +766,7 @@ To do this, we need to filter to PA’s data.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="output4"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="output4"></div>
 <script type="text/javascript">   
 
     d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
@@ -838,7 +818,6 @@ To do this, we need to filter to PA’s data.</p>
                     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
                     <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
 
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">censusObject</span><span class="p">)</span>
                 <span class="c1">// construct the element</span>
                 <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
                     <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">pa</span><span class="p">.</span><span class="nx">features</span><span class="p">)</span>
@@ -867,7 +846,7 @@ To do this, we need to filter to PA’s data.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div id="map4"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map4"></div>
 <div id="legend1"></div>
 <script type="text/javascript">   
 
@@ -899,7 +878,6 @@ To do this, we need to filter to PA’s data.</p>
                     .attr("width", width)
                     .attr("height", height)
 
-                console.log(censusObject)
                 // construct the element
                 svg.selectAll("path").append('path')
                     .data(pa.features)
@@ -989,7 +967,7 @@ To do this, we need to filter to PA’s data.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html">
 <script type="text/javascript">   
 
     d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
