@@ -1,0 +1,1114 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Making a Map &#8212; D3 + Plot + Jupyter</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/vendor/fontawesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/copybutton_funcs.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery-3.5.1.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/underscore-1.12.0.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">D3 + Plot + Jupyter</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../intro.html">
+   D3 + Plot in JupyterLab Notebooks
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../content.html">
+   Content in Jupyter Book
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Getting%20Started.html">
+     Getting Started
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Now%20with%20data%21.html">
+     Now with data!
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Style%2C%20Scales%2C%20and%20Shapes.html">
+     Styles, Scales, and Shapes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Connected%20Scatterplot.html">
+     Connected Scatterplot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Bar%20Charts.html">
+     Bar Charts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Scaling%2C%20Legends%2C%20and%20Color.html">
+     Scaling, Legends, and Color
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Transitions.html">
+     Transitions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Network%20Graphs.html">
+     Network Graph
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Making%20a%20Map.html">
+     Making a Map
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/_sources/Making a Map.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/main/_sources/Making a Map.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/main?urlpath=lab/tree/_sources/Making a Map.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/main/_sources/Making a Map.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-shapefiles">
+   Data (Shapefiles)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#acknowledgement">
+     Acknowledgement
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#let-s-look-at-our-data">
+     Let’s look at our data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-the-projection-for-the-us">
+   Creating the Projection for the US
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="making-a-map">
+<h1>Making a Map<a class="headerlink" href="#making-a-map" title="Permalink to this headline">¶</a></h1>
+<p>Let’s talk about making a map in D3. D3 is GREAT for making maps and it pretty straightforward to do so.</p>
+<p>Let’s create a [choropleth map](<a class="reference external" href="https://en.wikipedia.org/wiki/Choropleth_map#:~:text=A%20choropleth%20map%20(from%20Greek,each%20area%2C%20such%20as%20population)">https://en.wikipedia.org/wiki/Choropleth_map#:~:text=A choropleth map (from Greek,each area, such as population)</a> for PA.</p>
+<blockquote>
+<div><p>A really good resource for this: <a class="reference external" href="https://observablehq.com/&#64;floledermann/drawing-maps-from-geodata-in-d3">https://observablehq.com/&#64;floledermann/drawing-maps-from-geodata-in-d3</a></p>
+</div></blockquote>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
+
+<span class="k">def</span> <span class="nf">load_d3_in_cell_output</span><span class="p">():</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;script src=&#39;https://d3js.org/d3.v6.min.js&#39;&gt;&lt;/script&gt;&quot;</span><span class="p">))</span>
+<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">load_d3_in_cell_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
+</div>
+<div class="section" id="data-shapefiles">
+<h2>Data (Shapefiles)<a class="headerlink" href="#data-shapefiles" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="acknowledgement">
+<h3>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this headline">¶</a></h3>
+<p><cite>Bureau, US Census. “Cartographic Boundary Files - Shapefile.” The United States Census Bureau, <a class="reference external" href="https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html">https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html</a>. Accessed 25 May 2021.<cite> <span id="id1">[<span>bureau_cartographic_nodate</span>]</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="c1"># URL to https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html</span>
+<span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://www2.census.gov/geo/tiger/GENZ2018/shp/cb_2018_us_county_20m.zip&#39;</span>
+<span class="c1"># get the zip file</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="c1"># create a new file called 2018_us_county_500k.zip</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cb_2018_us_county_20m.zip&#39;</span><span class="p">,</span> <span class="s2">&quot;wb&quot;</span><span class="p">)</span>
+<span class="c1"># write the zip from www2.census.gov to this new file</span>
+<span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+<span class="c1"># close the new file </span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>b&#39;&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>The way we need to get this zip file to <a class="reference external" href="http://ogre.adc4gis.com">ogre.adc4gis.com</a> is to use a POST. Thanks to Rob Story’s Github file for providing much of the details here <span id="id2">[<span>rob_story_shapefile_nodate</span>]</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="n">url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;http://ogre.adc4gis.com/convert&#39;</span>
+<span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;cb_2018_us_county_20m.zip&#39;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+<span class="n">shp_data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;upload&#39;</span><span class="p">:</span> <span class="n">f</span><span class="p">}</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Calling Ogre to perform shapefile to geoJSON conversion...&#39;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span> 
+    <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">files</span><span class="o">=</span><span class="n">shp_data</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There was an error with the HTTP request&quot;</span><span class="p">)</span>
+<span class="c1"># close the new file </span>
+<span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;cb_2018_us_county_20m.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span> 
+    <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">(),</span><span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> <span class="s1">&#39;:&#39;</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;File is ready, called: cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calling Ogre to perform shapefile to geoJSON conversion...
+File is ready, called: cb_2018_us_county_20m.json
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="let-s-look-at-our-data">
+<h3>Let’s look at our data<a class="headerlink" href="#let-s-look-at-our-data" title="Permalink to this headline">¶</a></h3>
+<p>This is a basic “read-in” function for D3.js, specifically, for JSON.</p>
+<p>For this function, d3.js uses <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">Promises</a> to make sure we get our file first, then tell the program what we are going to do with this file (using <em>.then</em>) and if it does go as planned, an error (using <em>.catch</em>). This is important to understand because your data is not available <strong>outside</strong> of the promise.</p>
+<p>For the purposes of viewing the structure of a typical geo(json) file. I made a mini-version. Here is the structure of these files.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><em>Preview of the JSON file</em>
+<pre id="output1"></pre>
+<br>
+<p> As you can see, the structure of this document contains a FeatureCollection and each <em>Feature</em> is a reference to a county. Let's take a look at the first county.</p>
+<hr>
+<em>The first feature (or location)</em>
+<pre id="output2"></pre>
+<br>
+<p>For each county we have two sets of data. The <em>geometry</em> and the <em>properties</em>. 
+The <em>geometry</em> reflects all the latitudes and longitudes to create a single county. 
+Think of this as "Connect the Dots" and all the dots connected form the shape (or polygon) of each county.
+Below, we focus on the properties. 
+</p>
+<hr>
+<em>The properties of the first feature (or location)</em>
+<pre id="output3"></pre>
+<br>
+<p> The <em>properties</em> are the meta-data of each county. As an example, the <em>Name</em> is Bladen. 
+There are a couple we need to point out for later but are also helpful for understanding shapefiles in general. 
+This being the <em>FIPS</em> or the Federal Information Processing Standards. 
+Look at the <em>STATEFP</em> for the county, this is 37, meaning North Carolina. Here is a list of the <a href="https://www.nrcs.usda.gov/wps/portal/nrcs/detail/?cid=nrcs143_013696">State FIPS</a>.
+Now the <em>COUNTYFP</em>, is the FIPS of the that specific county within North Carolina. 
+Finally, you might see this information combined, like the <em>GEOID</em>. 
+The <em>GEOID</em> is 37017 or Bladen, North Carolina. 
+</p>
+
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m-mini.json")
+        .then(function(us) {        
+            d3.select("pre#output1").text(JSON.stringify(us,null,' '))
+            d3.select("pre#output2").text(JSON.stringify(us["features"][0],null,' '))
+            d3.select("pre#output3").text(JSON.stringify(us["features"][0]["properties"],null,' '))
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Common Question</p>
+<p>Why do we need a FIPS number if the name is available?</p>
+</div>
+<div class="tip admonition">
+<p class="admonition-title">Answer!</p>
+<p>Sometimes people use different names for different locations. Example: New York and New York State.
+Both are correct, but would look different based on the data. Instead, we can use FIPS 36.
+Also, there might be inconsistencies based on what is capitalized and what is not. North Dakota is not the same as north dakota.</p>
+</div>
+</div>
+</div>
+<div class="section" id="creating-the-projection-for-the-us">
+<h2>Creating the <a class="reference external" href="https://github.com/d3/d3-geo">Projection</a> for the US<a class="headerlink" href="#creating-the-projection-for-the-us" title="Permalink to this headline">¶</a></h2>
+<p>Now that we have our data, we need to take the latitudes and longitudes and re-map them to our plot. For our purposes we need to define three things:</p>
+<ul class="simple">
+<li><p>the <em>width</em> of our plot</p></li>
+<li><p>the <em>height</em> of our plot</p></li>
+<li><p>the <em>margins</em> of our plot</p></li>
+</ul>
+<p>the <em>re-mapping</em> is actually done for us using</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">d3</span><span class="p">.</span><span class="nx">geoMercator</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">us</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">top</span><span class="o">-</span><span class="nx">left</span> <span class="nx">corner</span><span class="p">],[</span><span class="nx">bottom</span><span class="o">-</span><span class="nx">right</span> <span class="nx">corner</span><span class="p">]],</span> <span class="nx">the</span> <span class="nx">geojson</span> <span class="nx">file</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>takes two inputs:</p>
+<ul class="simple">
+<li><p>our dimensions for the graph [[top-left corner],[bottom-right corner]]</p></li>
+<li><p>and the geojson data itself</p></li>
+</ul>
+<p>This will re-map the data.</p>
+<p>Lastly, we need to define our <em>projection</em>. There are a ton of different projection. See <a class="reference external" href="https://github.com/d3/d3-geo">https://github.com/d3/d3-geo</a>.</p>
+<p>We will be using the Composite Project called</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">d3</span><span class="p">.</span><span class="nx">geoAlbersUsa</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>which will prodce the following layout.
+<img alt="geoAlbers USA projection" src="https://raw.githubusercontent.com/d3/d3-geo/master/img/albersUsa-parameters.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+            <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
+            <span class="c1">// Create the Mercator Projection</span>
+            <span class="nx">projectionUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoAlbersUsa</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">us</span><span class="p">)</span>
+            <span class="c1">// Create a function to generate our paths (counties)</span>
+            <span class="nx">pathGeneratorUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionUS</span><span class="p">)</span>
+            
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+            
+            <span class="c1">// construct the element</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">us</span><span class="p">.</span><span class="nx">features</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="nx">pathGeneratorUS</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s1">&#39;none&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;#999999&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map1"></div>
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
+        .then(function(us) {
+            var width = 600
+            var height = 400
+            var margin = 0
+            // Create the Mercator Projection
+            projectionUS = d3.geoAlbersUsa().fitExtent([[margin, margin], [width - margin, height - margin]], us)
+            // Create a function to generate our paths (counties)
+            pathGeneratorUS = d3.geoPath().projection(projectionUS)
+
+            const svg = d3.select("div#map1").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            // construct the element
+            svg.selectAll("path")
+                .data(us.features)
+                .join("path")
+                .attr('d', pathGeneratorUS)
+                .attr('fill', 'none')
+                .attr('stroke', '#999999')
+                .attr('stroke-width', '2')
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+<p>Let’s add some color to this and color each state. We need to create at least 50 colors. So, for this, we need to see how many states we have and create a linearScale for the colors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;count&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>       
+            <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">states</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))</span>
+            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#count&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Number of states in our dataset: &quot;</span><span class="o">+</span><span class="nx">states</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="count"></div>
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
+        .then(function(us) {       
+            var states = []
+            us["features"].forEach(d=> states.push(+d.properties.STATEFP))
+            states =  [...new Set(states)];
+            d3.select("div#count").text("Number of states in our dataset: "+states.length)
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+<p>Looks like we have 52. So, let’s use this data to color our map.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+            <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
+            <span class="c1">// Create the Mercator Projection</span>
+            <span class="nx">projectionUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoAlbersUsa</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">us</span><span class="p">)</span>
+            <span class="c1">// Create a function to generate our paths (counties)</span>
+            <span class="nx">pathGeneratorUS</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionUS</span><span class="p">)</span>
+            
+            <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">states</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))</span>
+            <span class="nx">states</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span>
+            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
+            
+            <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">states</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+            <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateSpectral</span>
+            
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+            
+            <span class="c1">// construct the element</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">us</span><span class="p">.</span><span class="nx">features</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="nx">pathGeneratorUS</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s2">&quot;white&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">states</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))))</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="s2">&quot;The StateFP is: &quot;</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">)</span>
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map2"></div>
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
+        .then(function(us) {
+            var width = 600
+            var height = 400
+            var margin = 0
+            // Create the Mercator Projection
+            projectionUS = d3.geoAlbersUsa().fitExtent([[margin, margin], [width - margin, height - margin]], us)
+            // Create a function to generate our paths (counties)
+            pathGeneratorUS = d3.geoPath().projection(projectionUS)
+
+            var states = []
+            us["features"].forEach(d=> states.push(+d.properties.STATEFP))
+            states.sort((a, b) => a - b)
+            states =  [...new Set(states)];
+
+            color = d3.scaleLinear().range([0,1]).domain([0,states.length-1])
+            palette = d3.interpolateSpectral
+
+            const svg = d3.select("div#map2").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            // construct the element
+            svg.selectAll("path")
+                .data(us.features)
+                .join("path")
+                .attr('d', pathGeneratorUS)
+                .attr('fill', "white")
+                .attr('stroke', d=> palette(color(states.indexOf(+d.properties.STATEFP))))
+                .attr('stroke-width', '2')
+                .append("title")
+                .text(d=>"The StateFP is: "+d.properties.STATEFP)
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+<p>This is a county map for the entire US. Let’s focus on just Pennsylvania.
+To do this, we need to filter to PA’s data.</p>
+<p>If we take a look at the data. The data contains a stateFP for the <a class="reference external" href="https://www.bls.gov/respondents/mwr/electronic-data-interchange/appendix-d-usps-state-abbreviations-and-fips-codes.htm">FIPS for each state</a>.</p>
+<p>For PA it is 42.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+            <span class="kd">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
+            <span class="c1">// filter data to only PA</span>
+            <span class="nx">pa</span> <span class="o">=</span> <span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span> <span class="nx">features</span><span class="o">:</span><span class="nx">us</span><span class="p">.</span><span class="nx">features</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="o">==</span><span class="mf">42</span><span class="p">)})</span>
+            
+            <span class="c1">// Create the Mercator Projection</span>
+            <span class="nx">projectionPA</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoMercator</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">pa</span><span class="p">)</span>
+            <span class="c1">// Create a function to generate our paths (counties)</span>
+            <span class="nx">pathGeneratorPA</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionPA</span><span class="p">)</span>
+            
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+            
+            <span class="c1">// construct the element</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">pa</span><span class="p">.</span><span class="nx">features</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="nx">pathGeneratorPA</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;#999999&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39;\t&#39;</span><span class="p">))</span>
+                
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map3"></div>
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
+        .then(function(us) {
+            var width = 600
+            var height = 400
+            const margin = 0
+            // filter data to only PA
+            pa = ({type:"FeatureCollection", features:us.features.filter(d=> d.properties.STATEFP==42)})
+
+            // Create the Mercator Projection
+            projectionPA = d3.geoMercator().fitExtent([[margin, margin], [width - margin, height - margin]], pa)
+            // Create a function to generate our paths (counties)
+            pathGeneratorPA = d3.geoPath().projection(projectionPA)
+
+            const svg = d3.select("div#map3").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+            // construct the element
+            svg.selectAll("path")
+                .data(pa.features)
+                .join("path")
+                .attr('d', pathGeneratorPA)
+                .attr('fill', 'white')
+                .attr('stroke', '#999999')
+                .attr('stroke-width', '2')
+                .append("title")
+                .text(d=> JSON.stringify(d.properties,null,'\t'))
+
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+<p>Let’s get some data to add to our map.</p>
+<p>Example is from <a class="reference external" href="https://observablehq.com/&#64;datadesk/u-s-households-without-internet-access-by-county?collection=&#64;datadesk/u-s-census-data">Los Angeles Times Data and Graphics Department</a></p>
+<p>An example of using data from the Data Desk’s open-source <a class="reference external" href="https://github.com/datadesk/census-data-downloader">census-data-downloader</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">census</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#output4&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">census</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39;\t&#39;</span><span class="p">))</span>
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="output4"></div>
+<script type="text/javascript">   
+
+    d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
+        .then(function(census) {
+            d3.select("div#output4").text(JSON.stringify(census[0],null,'\t'))
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+
+</script>
+</div></div>
+</div>
+<p>So, based on our data we have a state and a county code (like above). Let’s use this data to see the percentage of internet access per county in PA.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;map4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;legend1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">json</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">census</span><span class="p">)</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+                <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+                <span class="kd">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">0</span>
+                <span class="c1">// filter data to only PA</span>
+                <span class="nx">pa</span> <span class="o">=</span> <span class="p">({</span><span class="nx">type</span><span class="o">:</span><span class="s2">&quot;FeatureCollection&quot;</span><span class="p">,</span> <span class="nx">features</span><span class="o">:</span><span class="nx">us</span><span class="p">.</span><span class="nx">features</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="o">==</span><span class="mf">42</span><span class="p">)})</span>
+
+                <span class="c1">// Adding our census data</span>
+                <span class="nx">census</span> <span class="o">=</span> <span class="nx">census</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">state</span><span class="o">==</span><span class="mf">42</span><span class="p">)</span>
+                <span class="nx">censusObject</span> <span class="o">=</span> <span class="p">{}</span>
+                <span class="nx">census</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">censusObject</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">county</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">total_no_internet</span><span class="o">/+</span><span class="nx">d</span><span class="p">.</span><span class="nx">universe</span><span class="p">))</span>
+                
+                <span class="c1">// create our color</span>
+                <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+                <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">census</span><span class="p">,</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">total_no_internet</span><span class="o">/+</span><span class="nx">d</span><span class="p">.</span><span class="nx">universe</span><span class="p">)))</span>
+                
+                <span class="c1">// Create the Mercator Projection</span>
+                <span class="nx">projectionPA</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoMercator</span><span class="p">().</span><span class="nx">fitExtent</span><span class="p">([[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">],</span> <span class="p">[</span><span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]],</span> <span class="nx">pa</span><span class="p">)</span>
+                <span class="c1">// Create a function to generate our paths (counties)</span>
+                <span class="nx">pathGeneratorPA</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">geoPath</span><span class="p">().</span><span class="nx">projection</span><span class="p">(</span><span class="nx">projectionPA</span><span class="p">)</span>
+
+                <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#map4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+
+                <span class="c1">// construct the element</span>
+                <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">pa</span><span class="p">.</span><span class="nx">features</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="nx">pathGeneratorPA</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;fill&#39;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">censusObject</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">COUNTYFP</span><span class="p">])))</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;#999999&#39;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="s2">&quot;Location: &quot;</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">NAME</span><span class="o">+</span><span class="s2">&quot;\nData: &quot;</span><span class="o">+</span><span class="nx">censusObject</span><span class="p">[</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">COUNTYFP</span><span class="p">])</span>
+
+            <span class="p">})</span>
+            <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+            <span class="p">})</span>
+
+                
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="map4"></div>
+<div id="legend1"></div>
+<script type="text/javascript">   
+
+    d3.json("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/cb_2018_us_county_20m.json")
+        .then(function(us) {
+        d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
+            .then(function(census) {
+                var width = 600
+                var height = 400
+                const margin = 0
+                // filter data to only PA
+                pa = ({type:"FeatureCollection", features:us.features.filter(d=> d.properties.STATEFP==42)})
+
+                // Adding our census data
+                census = census.filter(d=> d.state==42)
+                censusObject = {}
+                census.forEach(d=> censusObject[d.county] = (+d.total_no_internet/+d.universe))
+
+                // create our color
+                palette = d3.interpolatePurples
+                color = d3.scaleLinear().range([0,1]).domain(d3.extent(census,d=> (+d.total_no_internet/+d.universe)))
+
+                // Create the Mercator Projection
+                projectionPA = d3.geoMercator().fitExtent([[margin, margin], [width - margin, height - margin]], pa)
+                // Create a function to generate our paths (counties)
+                pathGeneratorPA = d3.geoPath().projection(projectionPA)
+
+                const svg = d3.select("div#map4").append("svg")
+                    .attr("width", width)
+                    .attr("height", height)
+
+                // construct the element
+                svg.selectAll("path").append('path')
+                    .data(pa.features)
+                    .join("path")
+                    .attr('d', pathGeneratorPA)
+                    .attr('fill', d=> palette(color(censusObject[d.properties.COUNTYFP])))
+                    .attr('stroke', '#999999')
+                    .attr('stroke-width', '2')
+                    .append("title")
+                    .text(d=> "Location: "+d.properties.NAME+"\nData: "+censusObject[d.properties.COUNTYFP])
+
+            })
+            .catch(function(error){
+                console.log(error)
+            })
+
+
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">census</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
+            <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
+            <span class="nx">census</span> <span class="o">=</span> <span class="nx">census</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">state</span><span class="o">==</span><span class="mf">42</span><span class="p">)</span>
+            <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+            <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">census</span><span class="p">,</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">total_no_internet</span><span class="o">/+</span><span class="nx">d</span><span class="p">.</span><span class="nx">universe</span><span class="p">)))</span>
+            
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#legend1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+            
+            
+            <span class="kd">const</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+            
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
+
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="mf">5</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;No Internet/All Data (%)&quot;</span><span class="p">)</span>
+                       
+            
+            <span class="kd">const</span> <span class="nx">num</span> <span class="o">=</span> <span class="mf">20</span>
+            <span class="kd">const</span> <span class="nx">values</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="nx">num</span><span class="p">)</span>
+            
+            <span class="kd">const</span> <span class="nx">coloring</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">values</span><span class="p">))</span>
+            <span class="kd">var</span> <span class="nx">defs</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;defs&quot;</span><span class="p">)</span>
+            <span class="kd">var</span> <span class="nx">linearGradient</span> <span class="o">=</span> <span class="nx">defs</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;linearGradient&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;linear-gradient1&quot;</span><span class="p">)</span> 
+
+            <span class="nx">linearGradient</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;stop&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">values</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;stop&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;offset&quot;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d</span><span class="o">/</span><span class="nx">num</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stop-color&quot;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span><span class="nx">palette</span><span class="p">(</span><span class="nx">coloring</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="nx">margin</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span><span class="o">-</span><span class="mf">50</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="nx">margin</span><span class="p">))</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mf">50</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;url(#linear-gradient1)&quot;</span><span class="p">)</span>
+
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+        <span class="p">})</span>
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html">
+<script type="text/javascript">   
+
+    d3.csv("https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv")
+        .then(function(census) {
+            var width = 600
+            var height = 100
+            var margin = 40 
+            census = census.filter(d=> d.state==42)
+            palette = d3.interpolatePurples
+            x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(census,d=> (+d.total_no_internet/+d.universe)))
+
+            const svg = d3.select("div#legend1").append("svg")
+                .attr("width", width)
+                .attr("height", height)
+
+
+            const xAxis = d3.axisBottom().scale(x)
+
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + (height-margin) + ")")
+                .call(xAxis) 
+
+            svg.append("text")
+                .attr("x", width/2)
+                .attr("y", height-5)
+                .style("text-anchor", "middle")
+                .text("No Internet/All Data (%)")
+
+
+            const num = 20
+            const values = d3.range(1,num)
+
+            const coloring = d3.scaleLinear().range([0,1]).domain(d3.extent(values))
+            var defs = svg.append("defs")
+            var linearGradient = defs.append("linearGradient")
+                .attr("id", "linear-gradient1") 
+
+            linearGradient.selectAll("stop").data(values).join("stop")
+                .attr("offset", d=> d/num)
+                .attr("stop-color", d=>palette(coloring(d)) )
+            svg.append("rect")
+                .attr("x", margin)
+                .attr("y", (height-margin)-50)
+                .attr("width", (width-margin)-(margin))
+                .attr("height", 50)
+                .style("fill", "url(#linear-gradient1)")
+
+
+        })
+        .catch(function(error){
+            console.log(error)
+        })
+
+</script>
+</div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "dudaspm/d3plotbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./_sources"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Patrick M. Dudas<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
