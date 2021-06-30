@@ -369,7 +369,7 @@
 </div>
 </div>
 </div>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -581,7 +581,7 @@
 <p>For the most part, this is not very helpful. One way to make this more useful is to use color based on our data, or in other words, the darker the color, the larger the value.</p>
 <p>To implement this, I would HIGHLY suggest visit <a class="reference external" href="https://github.com/d3/d3-scale-chromatic">color-scales</a>. As mentioned in the article, the color scales were created using Cynthia A. Brewer’s <a class="reference external" href="https://colorbrewer2.org/">ColorBrewer</a>. ColorBrewer was designed to help designers find color-blind safe and print and copier safe color palette. ColorBrewer is my (and several other programming languages) “go-to” color palette.</p>
 <p>For this, I will be choosing the Sequential (Single Hue) - Purple color. For these color palettes, they are expecting a value between 0 to 1, where 0 is the far-left of the color palette, the far-right is 1.</p>
-<p><img alt="purple.PNG" src="attachment:purple.PNG" /></p>
+<p><img alt="purple.PNG" src="https://raw.githubusercontent.com/dudaspm/d3plotbook/main/purple.PNG" /></p>
 <p>For now, to get our values between 0 and 1. I will take the largest value in our array (dataset, which is 18) and divide all of our values by this. Meaning, 3 will become 3/18, 5 will be 5/18 and so on.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -650,18 +650,7 @@
 <li><p>the <strong>.range()</strong> is the range of values we want to map to, as in we want all numbers to be within 0 to 1.</p></li>
 </ul>
 <p>Our smallest number (3), will be mapped 0 and our largest number (18) mapped to 1.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">figure</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">video</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;480&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;240&quot;</span> <span class="na">controls</span> <span class="na">muted</span> <span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">source</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://github.com/dudaspm/d3plotbook/blob/main/Styles_Scales_Shapes_video.mp4?raw=true&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">video/mp4</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
-  <span class="p">&lt;</span><span class="nt">figcaption</span><span class="p">&gt;</span>(No Audio) Figure showing how are list [5,3,16,5,6,18] maps to the domain and range [0,1]<span class="p">&lt;/</span><span class="nt">figcaption</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">figure</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
+<div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><figure>
 <video width="480" height="240" controls muted >

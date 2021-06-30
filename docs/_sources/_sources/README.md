@@ -1,3 +1,7 @@
+# Website
+
+https://dudaspm.github.io/d3plotbook
+
 # D3 + Plot + Jupyter
 
 This is the source files for creating a D3.js and Plot (ObservableHQ) graphs in Jupyter Lab and Google Colab. This book is an introduction to both platforms and will cover:

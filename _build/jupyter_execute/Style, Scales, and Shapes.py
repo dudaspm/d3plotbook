@@ -33,7 +33,7 @@ get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
 
 
 # ```javascript
-# const dataset = [3, 5, 5, 6, 15, 18]
+# var dataset = [3, 5, 5, 6, 15, 18]
 # ```
 
 # In[2]:
@@ -76,7 +76,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script ty
 
 # For this, I will be choosing the Sequential (Single Hue) - Purple color. For these color palettes, they are expecting a value between 0 to 1, where 0 is the far-left of the color palette, the far-right is 1.
 
-# ![purple.PNG](attachment:purple.PNG)
+# ![purple.PNG](https://raw.githubusercontent.com/dudaspm/d3plotbook/main/purple.PNG)
 
 # For now, to get our values between 0 and 1. I will take the largest value in our array (dataset, which is 18) and divide all of our values by this. Meaning, 3 will become 3/18, 5 will be 5/18 and so on.
 
