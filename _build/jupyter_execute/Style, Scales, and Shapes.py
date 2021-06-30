@@ -3,8 +3,6 @@
 
 # # Styles, Scales, and Shapes
 
-# Original ObservableHQ link: https://observablehq.com/@dudaspm/learning-d3-js-part-3?collection=@dudaspm/d3-in-observablehq
-
 # ## Styles and Shapes
 
 # *Styling* - The styling is handled through something call CSS (Cascading Style Sheets), but we can specifically handle this within our D3.js code. Here is a list of typical style changes. 
@@ -27,18 +25,11 @@
 # In[1]:
 
 
-from IPython.display import HTML, Javascript, display
+from IPython.display import  HTML
 
-def configure_d3():
-    display(Javascript("""
-    require.config({
-      paths: {
-        d3: "https://d3js.org/d3.v6.min"
-      }
-    })"""))
-
-
-configure_d3()
+def load_d3_in_cell_output():
+  display(HTML("<script src='https://d3js.org/d3.v6.min.js'></script>"))
+get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
 
 
 # ```javascript
@@ -48,7 +39,7 @@ configure_d3()
 # In[2]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18]\n    \n    const svg = d3.select("div#gohere1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n  svg.selectAll("circle")\n    .data(dataset)\n    .join("circle")\n    .attr("cx", (d,i)=> i*30)\n    .attr("cy", (d,i)=> height - (i*20))\n    .attr("r", (d,i)=> d)\n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var dataset = [3, 5, 5, 6, 15, 18]\n    \n    var svg = d3.select("div#gohere1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n  svg.selectAll("circle")\n    .data(dataset)\n    .join("circle")\n    .attr("cx", (d,i)=> i*30)\n    .attr("cy", (d,i)=> height - (i*20))\n    .attr("r", (d,i)=> d)\n</script>')
 
 
 # In the above example, we used .attr(ibute) for the attributes of the given shape. We can use another function called .style() to add the CSS styling directly to the shape.
@@ -58,7 +49,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script ty
 # In[3]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18]\n    \n    const svg = d3.select("div#gohere2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n  svg.selectAll("circle")\n    .data(dataset)\n    .join("circle")\n    .attr("cx", (d,i)=> i*30)\n    .attr("cy", (d,i)=> height - (i*20))\n    .attr("r", (d,i)=> d)\n    .style("fill", "purple")\n    .style("stroke", "black")\n    .style("stroke-width", 3) // reminder, this means 3 pixels\n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var dataset = [3, 5, 5, 6, 15, 18]\n    \n    var svg = d3.select("div#gohere2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n  svg.selectAll("circle")\n    .data(dataset)\n    .join("circle")\n    .attr("cx", (d,i)=> i*30)\n    .attr("cy", (d,i)=> height - (i*20))\n    .attr("r", (d,i)=> d)\n    .style("fill", "purple")\n    .style("stroke", "black")\n    .style("stroke-width", 3) // reminder, this means 3 pixels\n\n</script>')
 
 
 # **Your Turn** - Create the 6 circles with the stroke: blue, stroke-width: 5px, and fill: lightgrey
@@ -66,7 +57,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script ty
 # In[4]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18]\n    \n    const svg = d3.select("div#gohere3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n  svg.selectAll("circle")\n    .data(dataset)\n    .join("circle")\n    .attr("cx", (d,i)=> i*30)\n    .attr("cy", (d,i)=> height - (i*20))\n    .attr("r", (d,i)=> d)\n    .style("fill", "lightgrey")\n    .style("stroke", "blue")\n    .style("stroke-width", 5) // reminder, this means 3 pixels\n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var dataset = [3, 5, 5, 6, 15, 18]\n    \n    var svg = d3.select("div#gohere3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n  svg.selectAll("circle")\n    .data(dataset)\n    .join("circle")\n    .attr("cx", (d,i)=> i*30)\n    .attr("cy", (d,i)=> height - (i*20))\n    .attr("r", (d,i)=> d)\n    .style("fill", "lightgrey")\n    .style("stroke", "blue")\n    .style("stroke-width", 5) // reminder, this means 3 pixels\n</script>')
 
 
 # Again, the cool thing about D3.js is that we can use the data to style as well. Here is the same plot, but the stroke-width will be the value of our data set.
@@ -74,7 +65,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script ty
 # In[5]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18]\n    \n    const svg = d3.select("div#gohere4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", "purple")\n        .style("stroke", "black")\n        .style("stroke-width", (d,i) => i) \n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var dataset = [3, 5, 5, 6, 15, 18]\n    \n    const svg = d3.select("div#gohere4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", "purple")\n        .style("stroke", "black")\n        .style("stroke-width", (d,i) => i) \n</script>')
 
 
 # ### Color Scales
@@ -92,7 +83,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script ty
 # In[6]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere5"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    \n    const svg = d3.select("div#gohere5").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", (d,i) => palette(d/18))\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere5"></div>\n\n<script type="text/javascript">   \n\n    var width = 300\n    var height = 300\n    var dataset = [3, 5, 5, 6, 15, 18]\n    var palette =  d3.interpolatePurples\n    \n    var svg = d3.select("div#gohere5").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", (d,i) => palette(d/18))\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n\n</script>')
 
 
 # Cool! We have some color! Though, we want to setup a way for our data to fit the 0 to 1 range withOUT needing us to manaully adding the largest value. There is a way to do this using [scaling](https://github.com/d3/d3-scale). Scaling allows use to create a range of values based on our data set. There are multiple types of scaling.For continuous data, or data with numeric values (Linear, Power, Log, Identity, Time, Radial). There are types of scaling, but for now we will focus on these.
@@ -105,12 +96,16 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere5"></div>\n\n<script ty
 # 
 # Our smallest number (3), will be mapped 0 and our largest number (18) mapped to 1.
 
-# <img src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/scaleLinear.PNG" alt="between 0 and 1" width="300"/>
-
 # In[7]:
 
 
-get_ipython().run_cell_magic('javascript', '', " \nrequire(['d3'], function (d3) {\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const between0and1 = d3.scaleLinear().range([0,1]).domain([3,18])\n    \n    element.text(between0and1(18))\n});\n")
+get_ipython().run_cell_magic('html', '', '<figure>\n<video width="480" height="240" controls muted >\n  <source src="https://github.com/dudaspm/d3plotbook/blob/main/Styles_Scales_Shapes_video.mp4?raw=true" type=video/mp4>\n</video>\n  <figcaption>(No Audio) Figure showing how are list [5,3,16,5,6,18] maps to the domain and range [0,1]</figcaption>\n</figure>')
+
+
+# In[8]:
+
+
+get_ipython().run_cell_magic('html', '', '<p id="printout1"></p>\n<script>\nvar dataset = [5, 3, 16, 5, 6, 18]\nvar between0and1 = d3.scaleLinear().range([0,1]).domain([3,18])\ndocument.getElementById("printout1").innerHTML = between0and1(18)\n</script>')
 
 
 # Again, though, we are still manually putting these values into our boundries. That's why there are built in functions to help AUTOMAGICALLY find the lowest and highest values in an array. 
@@ -118,28 +113,28 @@ get_ipython().run_cell_magic('javascript', '', " \nrequire(['d3'], function (d3)
 # * **d3.min()** - finds the min value in the array
 # * **d3.extent()** - finds both the min and max values in an array
 
-# In[8]:
-
-
-get_ipython().run_cell_magic('javascript', '', " \nrequire(['d3'], function (d3) {\n    const dataset = [3, 5, 5, 6, 15, 18]\n    \n    element.text(d3.min(dataset))\n});")
-
-
 # In[9]:
 
 
-get_ipython().run_cell_magic('javascript', '', " \nrequire(['d3'], function (d3) {\n    const dataset = [3, 5, 5, 6, 15, 18]\n    \n    element.text(d3.max(dataset))\n});")
+get_ipython().run_cell_magic('html', '', '<p id="printout2"></p>\n<script>\nvar dataset = [5, 3, 16, 5, 6, 18]\ndocument.getElementById("printout2").innerHTML = d3.min(dataset)\n</script>')
 
 
 # In[10]:
 
 
-get_ipython().run_cell_magic('javascript', '', " \nrequire(['d3'], function (d3) {\n    const dataset = [3, 5, 5, 6, 15, 18]\n    \n    element.text(d3.extent(dataset))\n});")
+get_ipython().run_cell_magic('html', '', '<p id="printout3"></p>\n<script>\nvar dataset = [5, 3, 16, 5, 6, 18]\ndocument.getElementById("printout3").innerHTML = d3.max(dataset)\n</script>')
 
 
 # In[11]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere6"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18, 30, 40]\n    const palette =  d3.interpolateInferno\n    const color = d3.scaleLinear().range([0,1]).domain(d3.extent(dataset))\n    \n    const svg = d3.select("div#gohere6").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", "lightgrey" )\n        .style("stroke", (d,i) => palette(color(d)) )\n        .style("stroke-width", 5) \n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout4"></p>\n<script>\nvar dataset = [5, 3, 16, 5, 6, 18]\ndocument.getElementById("printout4").innerHTML = d3.extent(dataset)\n</script>')
+
+
+# In[12]:
+
+
+get_ipython().run_cell_magic('html', '', '<div id="gohere6"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolateInferno\n    var color = d3.scaleLinear().range([0,1]).domain(d3.extent(dataset))\n    \n    var svg = d3.select("div#gohere6").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", "lightgrey" )\n        .style("stroke", (d,i) => palette(color(d)) )\n        .style("stroke-width", 5) \n</script>')
 
 
 # <p>So, when to use d3.extent or d3.min/d3.max? This is a good example of this case. Right now, </p>
@@ -157,38 +152,38 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere6"></div>\n\n<script ty
 # const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
 # ```
 
-# In[12]:
+# In[13]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere7"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18, 30, 40]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n    \n    const svg = d3.select("div#gohere7").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n\n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere7"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n    \n    var svg = d3.select("div#gohere7").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n \n    svg.selectAll("circle")\n        .data(dataset)\n        .join("circle")\n        .attr("cx", (d,i)=> i*30)\n        .attr("cy", (d,i)=> height - (i*20))\n        .attr("r", (d,i)=> d)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n\n</script>')
 
 
 # ## Shapes
 
 # ### Rectangles
 
-# In[13]:
+# In[14]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere8"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n    \n    const svg = d3.select("div#gohere8").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n \n    svg.selectAll("rect")\n    .data(dataset)\n    .join("rect")\n    .attr("x", (d,i)=> d*5)\n    .attr("y", (d,i)=> height - (i*20))\n    .attr("width", 20)\n    .attr("height", 20)\n    .style("fill", (d,i) => palette(color(d)) )\n    .style("stroke", "black")\n    .style("stroke-width", 2) \n    .style("stroke-width", 2) \n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere8"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n    \n    var svg = d3.select("div#gohere8").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n \n    svg.selectAll("rect")\n    .data(dataset)\n    .join("rect")\n    .attr("x", (d,i)=> d*5)\n    .attr("y", (d,i)=> height - (i*20))\n    .attr("width", 20)\n    .attr("height", 20)\n    .style("fill", (d,i) => palette(color(d)) )\n    .style("stroke", "black")\n    .style("stroke-width", 2) \n    .style("stroke-width", 2) \n</script>')
 
 
 # For rectangles, the x,y is the origin of the rectangle (again in the top-lefthand corner). Right now, we are missing a rectangle, well, not missing it, it just off the canvas. For data point 3, index 0, the x position is 15, and the y position is the height. Meaning, we need to correct this. Also, we are not using the space very well. This was true with our circles, but let's see if we can fix this issue here as well. The best way to do this is to create margins. For now, let's just set a margin of 30. 30 on the top, bottom, left, and right. We will do this using the scaleLinear function for both the x and y axis.
 
-# In[14]:
+# In[15]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere9"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const margin = 30 // Add my margin\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    const svg = d3.select("div#gohere9").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    const y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    svg.selectAll("rect")\n        .data(dataset)\n        .join("rect")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .attr("width", 20)\n        .attr("height", 20)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere9"></div>\n\n<script type="text/javascript">   \n\n    var width = 300\n    var height = 300\n    var margin = 30 // Add my margin\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    var svg = d3.select("div#gohere9").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    svg.selectAll("rect")\n        .data(dataset)\n        .join("rect")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .attr("width", 20)\n        .attr("height", 20)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n\n</script>')
 
 
 # ### Text
 
 # Next, we add some text next to our boxes. For the most part, we will be using the same code as our rectangles. Let's take a look.
 
-# In[15]:
+# In[16]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere10"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const margin = 30 // Add my margin\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    const svg = d3.select("div#gohere10").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    const y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    svg.selectAll("rect")\n        .data(dataset)\n        .join("rect")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .attr("width", 20)\n        .attr("height", 20)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n    \n    // adding in the text \n    svg.selectAll("text")\n        .data(dataset)\n        .join("text")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .text((d,i) => "x: "+d+" y: "+i)\n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere10"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var margin = 30 // Add my margin\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    var svg = d3.select("div#gohere10").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    svg.selectAll("rect")\n        .data(dataset)\n        .join("rect")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .attr("width", 20)\n        .attr("height", 20)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n    \n    // adding in the text \n    svg.selectAll("text")\n        .data(dataset)\n        .join("text")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .text((d,i) => "x: "+d+" y: "+i)\n</script>')
 
 
 # Adding in the text, the only additional piece we need to add is what the .text() will be. In this case, I am again using the data to add specific data related text to the screen. If we take a particular look at this function, we can see how we used both text and data together.
@@ -199,10 +194,10 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere10"></div>\n\n<script t
 
 # The last thing that needs to be adjusted is the fact that both the rectangle and the text occupy the same x,y coordinate, which means they overlap a bit. Also, the text for our last rectangle is off the canvas. So, let's adjust both of these.
 
-# In[16]:
+# In[17]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere11"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const margin = 30 // Add my margin\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    const svg = d3.select("div#gohere11").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    const y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    svg.selectAll("rect")\n        .data(dataset)\n        .join("rect")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .attr("width", 20)\n        .attr("height", 20)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n    \n    // adding in the text \n    svg.selectAll("text")\n        .data(dataset)\n        .join("text")\n        .attr("x", (d,i)=> x(d))\n        // moving our text up a bit (subtracting 5 pixels)\n        .attr("y", (d,i)=> y(i)-5)\n        .text((d,i) => "x: "+d+" y: "+i)\n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere11"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var margin = 30 // Add my margin\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    var svg = d3.select("div#gohere11").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    svg.selectAll("rect")\n        .data(dataset)\n        .join("rect")\n        .attr("x", (d,i)=> x(d))\n        .attr("y", (d,i)=> y(i))\n        .attr("width", 20)\n        .attr("height", 20)\n        .style("fill", (d,i) => palette(color(d)) )\n        .style("stroke", "black")\n        .style("stroke-width", 2) \n    \n    // adding in the text \n    svg.selectAll("text")\n        .data(dataset)\n        .join("text")\n        .attr("x", (d,i)=> x(d))\n        // moving our text up a bit (subtracting 5 pixels)\n        .attr("y", (d,i)=> y(i)-5)\n        .text((d,i) => "x: "+d+" y: "+i)\n</script>')
 
 
 # ### Lines
@@ -232,18 +227,18 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere11"></div>\n\n<script t
 # </tr>
 # </table>
 
-# In[17]:
+# In[18]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere12"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const margin = 30 // Add my margin\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    const svg = d3.select("div#gohere12").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    const y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    // update this to select the lines, then join (or add) lines.\n    svg.selectAll("line")\n        .data(dataset)\n        .join("line")\n        // lines require x1,y1 (where the line starts) and x2,y2 (where the lines end)\n        .attr("x1", (d,i)=> x(d))\n        .attr("y1", (d,i)=> y(i))\n        .attr("x2", (d,i)=> x(d)+10)\n        .attr("y2", (d,i)=> y(i)+10)\n        // to change the color of the line we need to update the stroke, not the fill. \n        .style("stroke", (d,i) => palette(color(d)) )\n        .style("stroke-width", 10) \n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere12"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var margin = 30 // Add my margin\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    var svg = d3.select("div#gohere12").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    // update this to select the lines, then join (or add) lines.\n    svg.selectAll("line")\n        .data(dataset)\n        .join("line")\n        // lines require x1,y1 (where the line starts) and x2,y2 (where the lines end)\n        .attr("x1", (d,i)=> x(d))\n        .attr("y1", (d,i)=> y(i))\n        .attr("x2", (d,i)=> x(d)+10)\n        .attr("y2", (d,i)=> y(i)+10)\n        // to change the color of the line we need to update the stroke, not the fill. \n        .style("stroke", (d,i) => palette(color(d)) )\n        .style("stroke-width", 10) \n\n</script>')
 
 
 # To create a line chart from these lines would require several changes. Here is an example of how to do it, but there is a MUCH simpler way using paths, which we will talk about in a second.
 
-# In[18]:
+# In[19]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere13"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const margin = 30 // Add my margin\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    const svg = d3.select("div#gohere13").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    const y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    // update this to select the lines, then join (or add) lines.\n    svg.selectAll("line")\n        .data(dataset.slice(0, -1))\n        .join("line")\n        .attr("x1", (d,i)=> x(d))\n        .attr("y1", (d,i)=> y(i))\n        // we then need to end our line with the next data point.\n        // that\'s why we use (i+1) and why we cutoff the last position in our array\n        .attr("x2", (d,i)=> x(dataset[i+1]))\n        .attr("y2", (d,i)=> y(i+1))\n        .style("stroke", "black" ) // changing this back, as not all the data points (and colors) will be represented\n        .style("stroke-width", 10) \n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere13"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var margin = 30 // Add my margin\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    var svg = d3.select("div#gohere13").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    // update this to select the lines, then join (or add) lines.\n    svg.selectAll("line")\n        .data(dataset.slice(0, -1))\n        .join("line")\n        .attr("x1", (d,i)=> x(d))\n        .attr("y1", (d,i)=> y(i))\n        // we then need to end our line with the next data point.\n        // that\'s why we use (i+1) and why we cutoff the last position in our array\n        .attr("x2", (d,i)=> x(dataset[i+1]))\n        .attr("y2", (d,i)=> y(i+1))\n        .style("stroke", "black" ) // changing this back, as not all the data points (and colors) will be represented\n        .style("stroke-width", 10) \n</script>')
 
 
 # As you can see, this is not the most elegant way to handle creating a line.
@@ -252,10 +247,10 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere13"></div>\n\n<script t
 
 # Finally, we have paths. Up to this point, we have been focusing on the idea "for each data point, we create a shape or object." Paths require multiple data points to create the shape/object. We can use a function to create our line. We can either do this in a new (separate) cell or in with the code itself. Let's build it in our design. 
 
-# In[19]:
+# In[20]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere14"></div>\n\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    const width = 300\n    const height = 300\n    const margin = 30 // Add my margin\n    const dataset = [3, 5, 5, 6, 15, 18]\n    const palette =  d3.interpolatePurples\n    const color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    const svg = d3.select("div#gohere14").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    const y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    // this is our function to create the line, where the x is based on the d(ata) and the y on the i(ndex)\n    const line = d3.line()\n        .x((d,i)=> x(d)) \n        .y((d,i)=> y(i)) \n\n    svg.selectAll("path")\n        .data([dataset])\n        .join("path")\n        .attr("d", line)\n        .style("stroke", "black" )\n        .style("stroke-width", 10) \n        .style("fill", "none") // SPECIAL NOTE HERE: we set the fill to "none" because a path will have a fill color\n});\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere14"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 300\n    var margin = 30 // Add my margin\n    var dataset = [5, 3, 16, 5, 6, 18]\n    var palette =  d3.interpolatePurples\n    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])\n  \n    var svg = d3.select("div#gohere14").append("svg")\n        .attr("width", width)\n        .attr("height", height)    \n    \n    // Use the margin to create an x domain and range\n    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) \n\n    // Use the margin to create an y domain and range\n    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   \n\n    // this is our function to create the line, where the x is based on the d(ata) and the y on the i(ndex)\n    var line = d3.line()\n        .x((d,i)=> x(d)) \n        .y((d,i)=> y(i)) \n\n    svg.selectAll("path")\n        .data([dataset])\n        .join("path")\n        .attr("d", line)\n        .style("stroke", "black" )\n        .style("stroke-width", 10) \n        .style("fill", "none") // SPECIAL NOTE HERE: we set the fill to "none" because a path will have a fill color\n\n</script>')
 
 
 # In[ ]:

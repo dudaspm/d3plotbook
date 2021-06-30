@@ -100,7 +100,7 @@ get_ipython().run_cell_magic('html', '', '<p id="printout6"></p>\n<script>\nvar 
 
 
 from IPython.core.display import display, HTML
-drawingCircles = [3, 5, 5, 6, 15, 18]
+drawingCircles = [3, 5, 5, 6, 15, 18] 
 
 table ="<table style='width:200px;'>"
 table+="<tr><td>index</td><td>element</td></tr>"
