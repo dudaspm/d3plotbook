@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Accessing Data &#8212; D3 + Plot + Jupyter</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+    <link rel="stylesheet" type="text/css" href="_static/vendor/fontawesome/5.13.0/css/all.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/copybutton_funcs.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/documentation_options.js"></script>
+    <script src="_static/jquery-3.5.1.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/searchtools.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-thebe.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/underscore-1.12.0.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Scaling, Legends, and Color" href="Scaling%2C%20Legends%2C%20and%20Color.html" />
+    <link rel="prev" title="Styles, Scales, and Shapes" href="Style%2C%20Scales%2C%20and%20Shapes.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">D3 + Plot + Jupyter</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   D3 + Plot in JupyterLab Notebooks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting Starting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notebook%20Introduction.html">
+   Notebook Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Getting%20Started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Troubleshooting%20D3.js%20Issues.html">
+   Troubleshooting D3.js Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  The Basics
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="The%20Basics%20-%20Intro.html">
+   The Basics - Intro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Now%20with%20data%21.html">
+   Now with data!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Style%2C%20Scales%2C%20and%20Shapes.html">
+   Styles, Scales, and Shapes
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Accessing Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Scaling%2C%20Legends%2C%20and%20Color.html">
+   Scaling, Legends, and Color
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Transitions.html">
+   Transitions
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Specific Designs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Specific%20Designs%20-%20Intro.html">
+   Specific Designs - Intro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Connected%20Scatterplot.html">
+   Connected Scatterplot
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Bar%20Charts.html">
+   Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Network%20Graphs.html">
+   Network Graph
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Making%20a%20Map.html">
+   Making a Map
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Accessing Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/main/Accessing Data.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/main?urlpath=lab/tree/Accessing Data.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/main/Accessing Data.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d3-fetch">
+   d3-fetch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-pandas-d3-fetch">
+   Python (Pandas) + d3-fetch
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pros-cons-of-both">
+     Pros/Cons of Both
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start-d3-jsfrom-ipython-display-import-html">
+   Start D3.jsfrom IPython.display import  HTML
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgement-for-data">
+   Acknowledgement for Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#d3-fetch-implementation">
+   d3-fetch Implementation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-pandas-d3-fetch-implementation">
+   Python + Pandas + d3-fetch Implementation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#using-python-pandas">
+     Using Python + Pandas
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="accessing-data">
+<h1>Accessing Data<a class="headerlink" href="#accessing-data" title="Permalink to this headline">¶</a></h1>
+<p>In this notebook, we discuss how to access datasets within D3.js. There are two ways to accomplish this in our Jupyter Lab environment.</p>
+<div class="section" id="d3-fetch">
+<h2>d3-fetch<a class="headerlink" href="#d3-fetch" title="Permalink to this headline">¶</a></h2>
+<p>The most straightforward way is to use <a class="reference external" href="https://github.com/d3/d3-fetch">d3-fetch</a>.</p>
+<p><strong>JavaScript</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;/path/to/file.csv&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="python-pandas-d3-fetch">
+<h2>Python (Pandas) + d3-fetch<a class="headerlink" href="#python-pandas-d3-fetch" title="Permalink to this headline">¶</a></h2>
+<p>The second way include d3-fetch, but processing the data first in python, saving the file, and then using d3.fetch. Typically, I will use a library called Pandas to do this, as it similar features to d3.js.</p>
+<p><strong>Python</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;/path/to/file.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;newFile.csv&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>JavaScript</strong></p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;/path/to/newFile.csv&quot;</span><span class="p">).</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span> <span class="p">})</span>
+</pre></div>
+</div>
+<div class="section" id="pros-cons-of-both">
+<h3>Pros/Cons of Both<a class="headerlink" href="#pros-cons-of-both" title="Permalink to this headline">¶</a></h3>
+<p>There is little difference between the two, obviously you are adding another step with Python, but you get the added benefit of being able to use all of Python’s tools before working with the file. Not to say D3.js does not have these similar capabilities. If anything, I (my preference) think D3.js are a bit better and easier to use, but this not the case for everyone. Let’s showcase both.</p>
+</div>
+</div>
+<div class="section" id="start-d3-jsfrom-ipython-display-import-html">
+<h2>Start D3.jsfrom IPython.display import  HTML<a class="headerlink" href="#start-d3-jsfrom-ipython-display-import-html" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
+
+<span class="k">def</span> <span class="nf">load_d3_in_cell_output</span><span class="p">():</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;script src=&#39;https://d3js.org/d3.v6.min.js&#39;&gt;&lt;/script&gt;&quot;</span><span class="p">))</span>
+<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">load_d3_in_cell_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="acknowledgement-for-data">
+<h2>Acknowledgement for Data<a class="headerlink" href="#acknowledgement-for-data" title="Permalink to this headline">¶</a></h2>
+<p><cite>Cite as: Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeal, Kristy Thomas, Xungang Yin, Steven Anthony, Ron Ray, Russell S. Vose, Byron E.Gleason, and Tamara G. Houston (2012): Global Historical Climatology Network - Daily (GHCN-Daily), Version 3. CITY:US420020. NOAA National Climatic Data Center. doi:10.7289/V5D21VHZ 02/22/2021.</p>
+<p>Publications citing this dataset should also cite the following article: Matthew J. Menne, Imke Durre, Russell S. Vose, Byron E. Gleason, and Tamara G. Houston, 2012: An Overview of the Global Historical Climatology Network-Daily Database. J. Atmos. Oceanic Technol., 29, 897-910. doi:10.1175/JTECH-D-11-00103.1.</p>
+<p>Use liability: NOAA and NCEI cannot provide any warranty as to the accuracy, reliability, or completeness of furnished data. Users assume responsibility to determine the usability of these data. The user is responsible for the results of any application of this data for other than its intended purpose.</cite></p>
+<p>Links:
+<a class="reference external" href="https://data.noaa.gov/onestop/">https://data.noaa.gov/onestop/</a></p>
+<p><a class="reference external" href="https://www.ncdc.noaa.gov/cdo-web/search">https://www.ncdc.noaa.gov/cdo-web/search</a></p>
+</div>
+<div class="section" id="d3-fetch-implementation">
+<h2>d3-fetch Implementation<a class="headerlink" href="#d3-fetch-implementation" title="Permalink to this headline">¶</a></h2>
+<p>The data we will be using for this exercise is acknowledged above, but the basic idea is this is a weather data for the State College, PA area (near Penn State University).</p>
+<p>The data preview is:</p>
+<ul class="simple">
+<li><p>DATE - date in YYYY-MM-DD format</p></li>
+<li><p>DAY - the day (_D format)</p></li>
+<li><p>MONTH - the month (_M format)</p></li>
+<li><p>YEAR - the year (YYYY format)</p></li>
+<li><p>PRCP - the amount of precipitation in inches</p></li>
+<li><p>SNOW - the amount of snow in inches</p></li>
+<li><p>TMAX - the max temperature in F°</p></li>
+<li><p>TMIN - the min temperature in F°</p></li>
+</ul>
+<p>Here’s a print out of the first row of data:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;print1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> 
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
+    <span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="print1"></p>
+<script>
+    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")
+    .then((data) => 
+        document.getElementById("print1").innerHTML = JSON.stringify(data[0])    
+    )
+</script>
+</div></div>
+</div>
+<p>One thing you can add to this (💥💥AND I STRONGLY RECOMMEND DOING THIS💥💥) is adding</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Why? because Jupyter does a not so great job of showcasing errors. As much we try and teach ourselves to be perfect coders 🙄. We all make mistakes and too be honest, as much as I love D3.js. One small thing can cause problems. If you have not looked at the troubleshooting section of the notebook, please check it out. It will save you hours of your life in small errors.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;print2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> 
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
+    <span class="p">)</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="print2"></p>
+<script>
+    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")
+    .then((data) => 
+        document.getElementById("print2").innerHTML = JSON.stringify(data[0])    
+    )
+    .catch((error) => console.log(error) )
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="python-pandas-d3-fetch-implementation">
+<h2>Python + Pandas + d3-fetch Implementation<a class="headerlink" href="#python-pandas-d3-fetch-implementation" title="Permalink to this headline">¶</a></h2>
+<p>Now this implementation adds an extra step but again, if you want to do more in Python and make the data available to D3.js afterwards. This is where you want to be!</p>
+<p>Let’s do the same steps as above, but this time we will add Pandas.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For those using this notebook in Google Colabs, Pandas is already installed.
+But, for those running this locally or on another system. You may need to install pandas first.
+You can actually do this in the notebook. Create a new cell (after this one) and run the following:</p>
+<p><em>!pip install pandas</em></p>
+<p>Here, I’ll help with this. The next cell will have this, but it will commented out. Just remove the #.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="ch">#!pip install pandas</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
+</div>
+<p>We need to break this up into two steps.</p>
+<div class="section" id="using-python-pandas">
+<h3>Using Python + Pandas<a class="headerlink" href="#using-python-pandas" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv&quot;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;weather.csv&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;print3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;./weather.csv&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> 
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
+    <span class="p">)</span>
+    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="print3"></p>
+<script>
+    d3.csv("./weather.csv")
+    .then((data) => 
+        document.getElementById("print3").innerHTML = JSON.stringify(data[0])    
+    )
+    .catch((error) => console.log(error) )
+</script>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "dudaspm/d3plotbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Style%2C%20Scales%2C%20and%20Shapes.html" title="previous page">Styles, Scales, and Shapes</a>
+    <a class='right-next' id="next-link" href="Scaling%2C%20Legends%2C%20and%20Color.html" title="next page">Scaling, Legends, and Color</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Patrick M. Dudas<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

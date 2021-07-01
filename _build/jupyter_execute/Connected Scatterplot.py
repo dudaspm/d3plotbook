@@ -3,9 +3,13 @@
 
 # # Connected Scatterplot
 
-# Original ObservableHQ notebook: https://observablehq.com/@dudaspm/learning-d3-js-part-4?collection=@dudaspm/d3-in-observablehq
-
 # ### Our Data Set
+
+# In[ ]:
+
+
+
+
 
 # In[1]:
 
