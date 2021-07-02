@@ -24,6 +24,9 @@ url: "https://dudaspm.github.io/" #@@@ CHANGE THIS - 6 @@@#
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
+sphinx:
+  config:
+    bibtex_reference_style: author_year
 # Main page settings
 # Optional: you can replace with <https://github.com/my-first-jupyter-book/my-book-site> your repo URL
 footer_text               : View source repository at <a href="https://github.com/dudaspm/d3plotbook"></a> #@@@ CHANGE THIS - 7 @@@#

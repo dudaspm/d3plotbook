@@ -89,7 +89,7 @@ get_ipython().run_cell_magic('html', '', '<p id="print1"></p>\n<script>\n    d3.
 # In[3]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")\n    .then((data) => \n        document.getElementById("print2").innerHTML = JSON.stringify(data[0])    \n    )\n    .catch((error) => console.log(error) )\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv")\n    .then((data) => \n        document.getElementById("print2").innerHTML = JSON.stringify(data[0])    \n    )\n    .catch((error) => console.log(error) )\n</script>')
 
 
 # ## Python + Pandas + d3-fetch Implementation
@@ -115,23 +115,60 @@ get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.
 #!pip install pandas
 
 
-# We need to break this up into two steps. 
+# We need to break this up into three steps. This will allow Jupyter Lab to keep this variable within the notebook and use it internally (instead of writing to file). 
+# 
+# Also, and most importantly, this works in Google Colab. 
 # 
 # ### Using Python + Pandas
+
+# Suprisingly, this is much harder than it needs to be. Specifically because I am trying to design this for Jupyter Lab and (the culprit 😈) Google Colab. Google Colab is a fantastic implementation of Jupyter Lab but it has to be locked down a bit more because well, people could do some really bad things if they didn't. So, after months (and I mean months) of searching and trying things, this is my best implementation. 
+# 
+# Side note, if by chance you figure out a better solution, please let me know! It would make my day 😄
+# 
+# #### Starting Pandas and Getting the File
+# 
+# The first step is enabling Pandas in Jupyter Lab and in Python we use import statements for this. Think about imports as extra libraries built using Python to increase what they can do. In this case, [Pandas](https://pandas.pydata.org/) is a great, as they specify, "a fast, powerful, flexible and easy to use open source data analysis and manipulation tool {cite}`reback2020pandas,mckinney-proc-scipy-2010`."
+
+# ```{note}
+# When using an external library, like Pandas, we can rename the library (as in this case, pandas to pd). This is a common way to see Pandas being used. This means when I want to use something from this library, I will use pd instead of pandas. 
+# ```
 
 # In[5]:
 
 
 import pandas as pd
-data=pd.read_csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")
-data.to_csv('weather.csv', index = False, header=True)
+data=pd.read_csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv")
 
+
+# Obviously, because this is csv, we use 
+# ```python
+# pd.read_csv
+# ```
+# Here is a listing of all of Pandas I/Os (input/outputs): https://pandas.pydata.org/docs/reference/io.html
 
 # In[6]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="print3"></p>\n<script>\n    d3.csv("./weather.csv")\n    .then((data) => \n        document.getElementById("print3").innerHTML = JSON.stringify(data[0])    \n    )\n    .catch((error) => console.log(error) )\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="print3"></p>\n<script>\nvar receiver = new BroadcastChannel(\'channel\');\nreceiver.onmessage = (msg) => {\n    var data = d3.csvParse(msg.data.replaceAll(";;;","\\n"))\n    document.getElementById("print3").innerHTML = JSON.stringify(data[0])    \n};\n</script>')
 
+
+# In[7]:
+
+
+from IPython.display import display, HTML
+d = data.head().to_csv(index=False,line_terminator='\n').replace('\n',';;;')[:-3]
+js = """
+<script>
+var sender = new BroadcastChannel('channel');
+var message = '{}'
+senderChannel.postMessage(message);
+</script>""".format(d)
+
+
+display(HTML(js))
+
+
+# 
 
 # In[ ]:
 

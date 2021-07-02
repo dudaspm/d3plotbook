@@ -6,9 +6,3 @@ Please note, this was designed to work in a **JupyterLab** environment.
 
 This project started on 5/18/2021, so it is still in development. Feel free to provide suggestions. 
 
-```{bibliography}
-```
-
-```python
-
-```

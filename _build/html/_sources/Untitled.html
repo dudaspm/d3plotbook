@@ -129,6 +129,11 @@
    Getting Started
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Troubleshooting%20D3.js%20Issues.html">
+   Troubleshooting D3.js Issues
+  </a>
+ </li>
 </ul>
 <p class="caption">
  <span class="caption-text">
@@ -136,6 +141,11 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../The%20Basics%20-%20Intro.html">
+   The Basics - Intro
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Now%20with%20data%21.html">
    Now with data!
@@ -168,6 +178,11 @@
  </span>
 </p>
 <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../Specific%20Designs%20-%20Intro.html">
+   Specific Designs - Intro
+  </a>
+ </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../Connected%20Scatterplot.html">
    Connected Scatterplot
@@ -348,31 +363,6 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Calling Ogre to perform shapefile to geoJSON conversion...
-</pre></div>
-</div>
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
-<span class="o">&lt;</span><span class="n">ipython</span><span class="o">-</span><span class="nb">input</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">0857</span><span class="n">d27cfbcf</span><span class="o">&gt;</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;2018_us_county_500k.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-<span class="ne">---&gt; </span><span class="mi">16</span>     <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">()))</span>
-<span class="g g-Whitespace">     </span><span class="mi">17</span> <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-
-<span class="nn">c:\users\dudas\anaconda3\envs\wintest\lib\json\__init__.py</span> in <span class="ni">dumps</span><span class="nt">(obj, skipkeys, ensure_ascii, check_circular, allow_nan, cls, indent, separators, default, sort_keys, **kw)</span>
-<span class="g g-Whitespace">    </span><span class="mi">229</span>         <span class="bp">cls</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">indent</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">separators</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span>
-<span class="g g-Whitespace">    </span><span class="mi">230</span>         <span class="n">default</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">sort_keys</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">kw</span><span class="p">):</span>
-<span class="ne">--&gt; </span><span class="mi">231</span>         <span class="k">return</span> <span class="n">_default_encoder</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">232</span>     <span class="k">if</span> <span class="bp">cls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<span class="g g-Whitespace">    </span><span class="mi">233</span>         <span class="bp">cls</span> <span class="o">=</span> <span class="n">JSONEncoder</span>
-
-<span class="nn">c:\users\dudas\anaconda3\envs\wintest\lib\json\encoder.py</span> in <span class="ni">encode</span><span class="nt">(self, o)</span>
-<span class="g g-Whitespace">    </span><span class="mi">197</span>         <span class="c1"># exceptions aren&#39;t as detailed.  The list call should be roughly</span>
-<span class="g g-Whitespace">    </span><span class="mi">198</span>         <span class="c1"># equivalent to the PySequence_Fast that &#39;&#39;.join() would do.</span>
-<span class="ne">--&gt; </span><span class="mi">199</span>         <span class="n">chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterencode</span><span class="p">(</span><span class="n">o</span><span class="p">,</span> <span class="n">_one_shot</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="g g-Whitespace">    </span><span class="mi">200</span>         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">chunks</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-<span class="g g-Whitespace">    </span><span class="mi">201</span>             <span class="n">chunks</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
-
-<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

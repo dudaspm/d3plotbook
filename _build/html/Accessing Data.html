@@ -354,6 +354,13 @@
     <a class="reference internal nav-link" href="#using-python-pandas">
      Using Python + Pandas
     </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#starting-pandas-and-getting-the-file">
+       Starting Pandas and Getting the File
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -468,7 +475,7 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;print2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv&quot;</span><span class="p">)</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> 
         <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
     <span class="p">)</span>
@@ -480,7 +487,7 @@
 <div class="cell_output docutils container">
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="print2"></p>
 <script>
-    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")
+    d3.csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv")
     .then((data) => 
         document.getElementById("print2").innerHTML = JSON.stringify(data[0])    
     )
@@ -510,30 +517,44 @@ You can actually do this in the notebook. Create a new cell (after this one) and
 <div class="cell_output docutils container">
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
 </div>
-<p>We need to break this up into two steps.</p>
+<p>We need to break this up into three steps. This will allow Jupyter Lab to keep this variable within the notebook and use it internally (instead of writing to file).</p>
+<p>Also, and most importantly, this works in Google Colab.</p>
 <div class="section" id="using-python-pandas">
 <h3>Using Python + Pandas<a class="headerlink" href="#using-python-pandas" title="Permalink to this headline">¶</a></h3>
+<p>Suprisingly, this is much harder than it needs to be. Specifically because I am trying to design this for Jupyter Lab and (the culprit 😈) Google Colab. Google Colab is a fantastic implementation of Jupyter Lab but it has to be locked down a bit more because well, people could do some really bad things if they didn’t. So, after months (and I mean months) of searching and trying things, this is my best implementation.</p>
+<p>Side note, if by chance you figure out a better solution, please let me know! It would make my day 😄</p>
+<div class="section" id="starting-pandas-and-getting-the-file">
+<h4>Starting Pandas and Getting the File<a class="headerlink" href="#starting-pandas-and-getting-the-file" title="Permalink to this headline">¶</a></h4>
+<p>The first step is enabling Pandas in Jupyter Lab and in Python we use import statements for this. Think about imports as extra libraries built using Python to increase what they can do. In this case, <a class="reference external" href="https://pandas.pydata.org/">Pandas</a> is a great, as they specify, “a fast, powerful, flexible and easy to use open source data analysis and manipulation tool <span id="id1">[<a class="reference internal" href="Notebook%20Introduction.html#id4">pandas development team, 2020</a>, <a class="reference internal" href="Notebook%20Introduction.html#id5">Wes McKinney, 2010</a>]</span>.”</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using an external library, like Pandas, we can rename the library (as in this case, pandas to pd). This is a common way to see Pandas being used. This means when I want to use something from this library, I will use pd instead of pandas.</p>
+</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv&quot;</span><span class="p">)</span>
-<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;weather.csv&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
 </div>
+<p>Obviously, because this is csv, we use</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span>
+</pre></div>
+</div>
+<p>Here is a listing of all of Pandas I/Os (input/outputs): <a class="reference external" href="https://pandas.pydata.org/docs/reference/io.html">https://pandas.pydata.org/docs/reference/io.html</a></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;print3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;./weather.csv&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> 
-        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
-    <span class="p">)</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
+<span class="kd">var</span> <span class="nx">receiver</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BroadcastChannel</span><span class="p">(</span><span class="s1">&#39;channel&#39;</span><span class="p">);</span>
+<span class="nx">receiver</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">csvParse</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s2">&quot;;;;&quot;</span><span class="p">,</span><span class="s2">&quot;\n&quot;</span><span class="p">))</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
+<span class="p">};</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
@@ -541,13 +562,38 @@ You can actually do this in the notebook. Create a new cell (after this one) and
 <div class="cell_output docutils container">
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="print3"></p>
 <script>
-    d3.csv("./weather.csv")
-    .then((data) => 
-        document.getElementById("print3").innerHTML = JSON.stringify(data[0])    
-    )
-    .catch((error) => console.log(error) )
+var receiver = new BroadcastChannel('channel');
+receiver.onmessage = (msg) => {
+    var data = d3.csvParse(msg.data.replaceAll(";;;","\n"))
+    document.getElementById("print3").innerHTML = JSON.stringify(data[0])    
+};
 </script>
 </div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">line_terminator</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="s1">&#39;;;;&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">js</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">&lt;script&gt;</span>
+<span class="s2">var sender = new BroadcastChannel(&#39;channel&#39;);</span>
+<span class="s2">var message = &#39;</span><span class="si">{}</span><span class="s2">&#39;</span>
+<span class="s2">senderChannel.postMessage(message);</span>
+<span class="s2">&lt;/script&gt;&quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">js</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html">
+<script>
+var sender = new BroadcastChannel('channel');
+var message = 'DATE,DAY,MONTH,YEAR,PRCP,SNOW,TMAX,TMIN,WT_FOG,WT_THUNDER,WT_SLEET,WT_HAIL,WT_GLAZE,WT_HIGHWINDS;;;1/1/2000,1,1,2000,0.0,0.0,44.0,23,0.0,0.0,0.0,0.0,0.0,0.0;;;1/2/2000,2,1,2000,0.0,0.0,52.0,23,0.0,0.0,0.0,0.0,0.0,0.0;;;1/3/2000,3,1,2000,0.01,0.0,60.0,35,0.0,0.0,0.0,0.0,0.0,0.0;;;1/4/2000,4,1,2000,0.12,0.0,62.0,54,0.0,0.0,0.0,0.0,0.0,0.0;;;1/5/2000,5,1,2000,0.04,0.0,60.0,30,0.0,0.0,0.0,0.0,0.0,0.0'
+senderChannel.postMessage(message);
+</script></div></div>
+</div>
 </div>
 </div>
 </div>
