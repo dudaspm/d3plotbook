@@ -79,6 +79,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Making a Map" href="Making%20a%20Map.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -177,7 +178,7 @@
   Specific Designs
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="Specific%20Designs%20-%20Intro.html">
    Specific Designs - Intro
@@ -201,6 +202,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="Making%20a%20Map.html">
    Making a Map
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   D3.js + Three.js → Aero Adobe
   </a>
  </li>
 </ul>
@@ -364,31 +370,29 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;preview&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;preview1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">11</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="mf">0</span><span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">points</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">100</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)(</span><span class="nx">d</span><span class="p">)</span><span class="o">*</span><span class="mf">10</span><span class="p">))</span>
-    <span class="kd">var</span> <span class="nx">rolledData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">points</span><span class="p">,</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)(</span><span class="nx">d</span><span class="p">))</span>
+    <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d</span><span class="o">*</span><span class="mf">10</span><span class="p">))</span>
+    <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;preview1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">data</span>
     
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">rolledData</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
-    <span class="p">}</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;preview&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">data</span> 
+    
+    
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="preview"></p>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="preview1"></p>
 <script>
-    var data = d3.range(11).map(d=>0)
-    var points = d3.range(100).map(d=> Math.round(d3.randomNormal(.5, .1)(d)*10))
-    var rolledData = d3.rollup(points,v => v.length, d => d)
+    var data = d3.range(10).map(d=> d3.randomNormal(.5, .1)(d))
+    data = data.map(d=> Math.round(d*10))
+    data = data.sort((a, b) => a - b)
+    document.getElementById("preview1").innerHTML = data
 
-    for (let [key, value] of rolledData) {
-        data[key] = value
-    }
-    document.getElementById("preview").innerHTML = data 
+
+
 </script>
 </div></div>
 </div>
@@ -397,13 +401,14 @@
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;preview2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">10</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)(</span><span class="nx">d</span><span class="p">))</span>
-    <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d</span><span class="o">*</span><span class="mf">10</span><span class="p">))</span>
-    <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;preview2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">data</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">11</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="mf">0</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">points</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">100</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="mf">.5</span><span class="p">,</span> <span class="mf">.1</span><span class="p">)(</span><span class="nx">d</span><span class="p">)</span><span class="o">*</span><span class="mf">10</span><span class="p">))</span>
+    <span class="kd">var</span> <span class="nx">rolledData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">points</span><span class="p">,</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
     
-    
-    
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">rolledData</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+    <span class="p">}</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;preview2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">data</span> 
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
@@ -411,17 +416,18 @@
 <div class="cell_output docutils container">
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="preview2"></p>
 <script>
-    var data = d3.range(10).map(d=> d3.randomNormal(.5, .1)(d))
-    data = data.map(d=> Math.round(d*10))
-    data = data.sort((a, b) => a - b)
-    document.getElementById("preview2").innerHTML = data
+    var data = d3.range(11).map(d=>0)
+    var points = d3.range(100).map(d=> Math.round(d3.randomNormal(.5, .1)(d)*10))
+    var rolledData = d3.rollup(points,v => v.length, d => d)
 
-
-
+    for (let [key, value] of rolledData) {
+        data[key] = value
+    }
+    document.getElementById("preview2").innerHTML = data 
 </script>
 </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;oneD1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -444,10 +450,10 @@
     <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
     <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">10</span><span class="p">])</span>
 
-    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisTop</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
 
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
@@ -499,10 +505,10 @@
     var palette = d3.interpolateReds
     var color = d3.scaleLinear().range([0,1]).domain([0,10])
 
-    var xAxis = d3.axisBottom().scale(x)
+    var xAxis = d3.axisTop().scale(x)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + (height-margin) + ")")
+        .attr("transform", "translate(0," + (height) + ")")
         .call(xAxis) 
 
     svg.append("text")
@@ -532,7 +538,7 @@
 </script>
 </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;oneD2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -555,10 +561,10 @@
     <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
     <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">10</span><span class="p">])</span>
 
-    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisTop</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
 
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
@@ -610,10 +616,10 @@
     var palette = d3.interpolateReds
     var color = d3.scaleLinear().range([0,1]).domain([0,10])
 
-    var xAxis = d3.axisBottom().scale(x)
+    var xAxis = d3.axisTop().scale(x)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + (height-margin) + ")")
+        .attr("transform", "translate(0," + (height) + ")")
         .call(xAxis) 
 
     svg.append("text")
@@ -643,7 +649,7 @@
 </script>
 </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;twoD1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -667,15 +673,15 @@
     <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
     <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">10</span><span class="p">])</span>
 
-    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisTop</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
-    <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisRight</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="nx">margin</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="mf">0</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">)</span>
 
     <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
@@ -728,15 +734,15 @@
     var palette = d3.interpolateReds
     var color = d3.scaleLinear().range([0,1]).domain([0,10])
 
-    var xAxis = d3.axisBottom().scale(x)
+    var xAxis = d3.axisTop().scale(x)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + (height-margin) + ")")
+        .attr("transform", "translate(0," + (height) + ")")
         .call(xAxis) 
-    var yAxis = d3.axisLeft().scale(y)
+    var yAxis = d3.axisRight().scale(y)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(" + margin + ",0)")
+        .attr("transform", "translate(" + 0 + ",0)")
         .call(yAxis)
 
     svg.selectAll("rect").data(data)
@@ -766,7 +772,7 @@
 </script>
 </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;twoD2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -790,15 +796,15 @@
     <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
     <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">10</span><span class="p">])</span>
 
-    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisTop</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
-    <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisRight</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="nx">margin</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="mf">0</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">)</span>
 
     <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
@@ -851,15 +857,15 @@
     var palette = d3.interpolateReds
     var color = d3.scaleLinear().range([0,1]).domain([0,10])
 
-    var xAxis = d3.axisBottom().scale(x)
+    var xAxis = d3.axisTop().scale(x)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + (height-margin) + ")")
+        .attr("transform", "translate(0," + (height) + ")")
         .call(xAxis) 
-    var yAxis = d3.axisLeft().scale(y)
+    var yAxis = d3.axisRight().scale(y)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(" + margin + ",0)")
+        .attr("transform", "translate(" + 0 + ",0)")
         .call(yAxis)
 
     svg.selectAll("rect").data(data)
@@ -889,7 +895,7 @@
 </script>
 </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;twoD3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -913,15 +919,15 @@
     <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
     <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">10</span><span class="p">])</span>
 
-    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisTop</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
-    <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisRight</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
     <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="nx">margin</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="mf">0</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">)</span>
 
     <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dx</span><span class="p">)</span> <span class="p">{</span>
@@ -980,15 +986,15 @@
     var palette = d3.interpolateReds
     var color = d3.scaleLinear().range([0,1]).domain([0,10])
 
-    var xAxis = d3.axisBottom().scale(x)
+    var xAxis = d3.axisTop().scale(x)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(0," + (height-margin) + ")")
+        .attr("transform", "translate(0," + (height) + ")")
         .call(xAxis) 
-    var yAxis = d3.axisLeft().scale(y)
+    var yAxis = d3.axisRight().scale(y)
     svg.append("g")
         .attr("class", "axis")
-        .attr("transform", "translate(" + margin + ",0)")
+        .attr("transform", "translate(" + 0 + ",0)")
         .call(yAxis)
 
     d3.range(0,squares).forEach(function(dx) {
@@ -1024,192 +1030,428 @@
 </script>
 </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;data&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-    <span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">THREE</span> <span class="k">from</span> <span class="s1">&#39;https://threejs.org/build/three.module.js&#39;</span><span class="p">;</span>
-    <span class="k">import</span> <span class="p">{</span> <span class="nx">OrbitControls</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;https://threejs.org/examples/jsm/controls/OrbitControls.js&#39;</span><span class="p">;</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/2c78fe8deab29c0ac2c9d9c4ab9cdc25/raw/dc8ba78fa08e26e908ff6b5a01b265e278f57539/toyData.simulations.csv&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
-        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="nx">data</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span>
-        <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span><span class="o">+</span><span class="nx">d</span><span class="p">)</span>
-        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>   
-        <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">700</span>
-        <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">700</span>
-        
-        <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
-        <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">data</span><span class="p">)).</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">])</span>
-        <span class="kd">var</span> <span class="nx">squares</span> <span class="o">=</span> <span class="mf">10</span>
-        <span class="kd">let</span> <span class="nx">renderer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">WebGLRenderer</span><span class="p">({</span><span class="nx">antialias</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
-        <span class="nx">renderer</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
-        <span class="nx">renderer</span><span class="p">.</span><span class="nx">setPixelRatio</span><span class="p">(</span><span class="nx">devicePixelRatio</span><span class="p">);</span>
-        <span class="kd">var</span> <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Scene</span><span class="p">();</span>
-        <span class="kd">var</span> <span class="nx">camera</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">PerspectiveCamera</span><span class="p">(</span>
-            <span class="mf">45</span><span class="p">,</span> <span class="c1">// Field of view</span>
-            <span class="nx">height</span> <span class="o">/</span> <span class="nx">width</span><span class="p">,</span> <span class="c1">// Aspect ratio</span>
-            <span class="mf">0.1</span><span class="p">,</span> <span class="c1">// Near</span>
-            <span class="mf">10000</span> <span class="c1">// Far</span>
-        <span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">camera</span><span class="p">)</span>
-  <span class="kd">var</span> <span class="nx">controls</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OrbitControls</span><span class="p">(</span><span class="nx">camera</span><span class="p">,</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span><span class="p">);</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;sd&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;sd&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;20&quot;</span> <span class="na">oninput</span><span class="o">=</span><span class="s">&quot;updateSigma(this.value)&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;sd&quot;</span><span class="p">&gt;</span>Sigma σ - Standard Deviation<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;sd&quot;</span><span class="p">&gt;</span>10<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 
-  <span class="nx">controls</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">));</span>
-    <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-  <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-  <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mf">2000</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">cubes</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Object3D</span><span class="p">();</span>
-  <span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">cubes</span> <span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-  <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-  <span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-  <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dx</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dy</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dz</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//console.log(x(dx), y(dy),z(dz), width/(squares-1));</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">.5</span><span class="p">)</span> <span class="p">{</span>
-          <span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="p">(</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
-          <span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">BoxGeometry</span><span class="p">(</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">);</span>
-          <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">.5</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])),</span> <span class="nx">transparent</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="mf">.3</span><span class="p">});</span>
-          <span class="p">}</span>
-          <span class="k">else</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])),</span> <span class="nx">transparent</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="mf">.1</span><span class="p">});</span>
-          <span class="p">}</span>
-          <span class="kd">var</span> <span class="nx">cube</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span><span class="nx">geometry</span><span class="p">,</span> <span class="nx">material</span><span class="p">);</span>
-          <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">(</span><span class="nx">dx</span><span class="p">);</span>
-          <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">(</span><span class="nx">dy</span><span class="p">);</span>
-          <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">(</span><span class="nx">dz</span><span class="p">);</span>
-          <span class="nx">cubes</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">cube</span><span class="p">);</span>
-          
-        <span class="p">}</span>
-        <span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
-      <span class="p">})</span>
-    <span class="p">})</span>
-  <span class="p">})</span>
-  
- 
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">);</span>
-      <span class="k">return</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span> <span class="p">)</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mean&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;mean&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;20&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;70&quot;</span> <span class="na">oninput</span><span class="o">=</span><span class="s">&quot;updateMu(this.value)&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;mean&quot;</span><span class="p">&gt;</span>mu σ - Mean<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span> 
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mean&quot;</span><span class="p">&gt;</span>50<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;twoD3Sums&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">squares</span> <span class="o">=</span> <span class="mf">10</span>
+    <span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="p">(</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">sigma</span> <span class="o">=</span> <span class="mf">10</span>
+    <span class="kd">var</span> <span class="nx">mu</span> <span class="o">=</span> <span class="p">(</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="p">)</span><span class="o">/</span><span class="mf">2</span>
+    <span class="kd">var</span> <span class="nx">points</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">1000</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="nx">mu</span><span class="p">,</span> <span class="nx">sigma</span><span class="p">)(</span><span class="nx">d</span><span class="p">))</span>
+    <span class="nx">points</span> <span class="o">=</span> <span class="nx">points</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="mf">0</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">rolledData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">points</span><span class="p">,</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">rolledData</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
     <span class="p">}</span>
-  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="nx">renderer</span><span class="p">.</span><span class="nx">dispose</span><span class="p">();</span>
-  <span class="p">}</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">20</span> 
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#twoD3Sums&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>            
+
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span> <span class="nx">width</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">])</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span> <span class="nx">height</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">])</span>
+    
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">10</span><span class="p">])</span>
+
+    <span class="kd">var</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisTop</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
+    <span class="kd">var</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisRight</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="mf">0</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">)</span>
+
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dy</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dx</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">i</span> <span class="o">=</span> <span class="p">(</span><span class="nx">dy</span><span class="o">*</span><span class="mf">10</span><span class="p">)</span> <span class="o">+</span> <span class="nx">dx</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="nx">x</span><span class="p">(</span><span class="nx">dx</span><span class="p">)</span> <span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="nx">y</span><span class="p">(</span><span class="nx">dy</span><span class="p">)</span> <span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span><span class="nx">size</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">size</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span><span class="s2">&quot;white&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">)</span>
+
+        <span class="p">})</span>
     <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
+        
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span> 
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span> 
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        
+
+    <span class="kd">function</span> <span class="nx">updateSigma</span><span class="p">(</span><span class="nx">s</span><span class="p">){</span>
+        <span class="nx">sigma</span> <span class="o">=</span> <span class="o">+</span><span class="nx">s</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;p#sd&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">sigma</span><span class="p">)</span>
+        <span class="nx">updateGraph</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">function</span> <span class="nx">updateMu</span><span class="p">(</span><span class="nx">m</span><span class="p">){</span>
+        <span class="nx">mu</span> <span class="o">=</span> <span class="o">+</span><span class="nx">m</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;p#mean&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">mu</span><span class="p">)</span>
+        <span class="nx">updateGraph</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">function</span> <span class="nx">updateGraph</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sigma</span><span class="p">,</span><span class="nx">mu</span><span class="p">)</span>
+        <span class="nx">points</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">1000</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="nx">mu</span><span class="p">,</span> <span class="nx">sigma</span><span class="p">)(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="nx">points</span> <span class="o">=</span> <span class="nx">points</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="mf">0</span><span class="p">)</span>
+        <span class="nx">rolledData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">points</span><span class="p">,</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">rolledData</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+        <span class="p">}</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span><span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">i</span><span class="p">]))</span> <span class="p">)</span>
+    <span class="p">}</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="data"></p>
-<div id="output"></div>
-<script type="module">
-    import * as THREE from 'https://threejs.org/build/three.module.js';
-    import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
-    d3.text("https://gist.githubusercontent.com/dudaspm/2c78fe8deab29c0ac2c9d9c4ab9cdc25/raw/dc8ba78fa08e26e908ff6b5a01b265e278f57539/toyData.simulations.csv")
-    .then((input) => {
-        console.log(input)
-        var data = []
-        data = input.split("\n")
-        data.map((d,i)=>+d)
-        document.getElementById("data").innerHTML = JSON.stringify(data[0])   
-        var height = 700
-        var width = 700
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><input type="range" id="sd" name="sd" min="0" max="20" oninput="updateSigma(this.value)">
+<label for="sd">Sigma σ - Standard Deviation</label>
+<p id="sd">10</p>
 
-        var palette = d3.interpolateReds
-        var color = d3.scaleLinear().domain(d3.extent(data)).range([0,1])
-        var squares = 10
-        let renderer = new THREE.WebGLRenderer({antialias: true});
-        renderer.setSize(width, height);
-        renderer.setPixelRatio(devicePixelRatio);
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(
-            45, // Field of view
-            height / width, // Aspect ratio
-            0.1, // Near
-            10000 // Far
-        );
-        console.log(camera)
-  var controls = new OrbitControls(camera, renderer.domElement);
+<input type="range" id="mean" name="mean" min="20" max="70" oninput="updateMu(this.value)">
+<label for="mean">mu σ - Mean</label> 
+<p id="mean">50</p>
 
-  controls.addEventListener("change", () => renderer.render(scene, camera));
-    camera.position.x = 0;
-  camera.position.y = 0;
-  camera.position.z = 2000;
-  var cubes = new THREE.Object3D();
-  scene.add( cubes );
-  var x = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
-  var y = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
-  var z = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
-  var counter = 0;
-  d3.range(0,squares).forEach(function(dx) {
-    d3.range(0,squares).forEach(function(dy) {
-      d3.range(0,squares).forEach(function(dz) {
-        //console.log(x(dx), y(dy),z(dz), width/(squares-1));
-        if (data[counter]>.5) {
-          var size = width/(squares-1)
-          var geometry = new THREE.BoxGeometry(size,size,size);
-          if (data[counter]>.5) {
-            var material = new THREE.MeshBasicMaterial({color: palette(color(data[counter])), transparent : false, opacity:.3});
-          }
-          else {
-            var material = new THREE.MeshBasicMaterial({color: palette(color(data[counter])), transparent : true, opacity:.1});
-          }
-          var cube = new THREE.Mesh(geometry, material);
-          cube.position.x = x(dx);
-          cube.position.y = y(dy);
-          cube.position.z = z(dz);
-          cubes.add(cube);
+<div id="twoD3Sums"></div>
+<script>
+    var squares = 10
+    var size = width/(squares-1)
+    var sigma = 10
+    var mu = (squares*squares)/2
+    var points = d3.range(1000).map(d=> d3.randomNormal(mu, sigma)(d))
+    points = points.map(d=> Math.round(d))
+    var data = d3.range(squares*squares).map(d=>0)
+    var rolledData = d3.rollup(points,v => v.length, d => d)
 
-        }
-        counter++;
-      })
-    })
-  })
-
-
-  try {
-    while (true) {
-      renderer.render(scene, camera);
-      return document.getElementById("output").appendChild( renderer.domElement )
+    for (let [key, value] of rolledData) {
+        data[key] = value
     }
-  } finally {
-    renderer.dispose();
-  }
+    var width = 400
+    var height = 400
+    var margin = 20 
+    var svg = d3.select("div#twoD3Sums").append("svg")
+        .attr("width", width)
+        .attr("height", height)            
+
+    var x = d3.scaleLinear().range([0, width]).domain([0,squares])
+    var y = d3.scaleLinear().range([0, height]).domain([0,squares])
+
+    var palette = d3.interpolateReds
+    var color = d3.scaleLinear().range([0,1]).domain([0,10])
+
+    var xAxis = d3.axisTop().scale(x)
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(0," + (height) + ")")
+        .call(xAxis) 
+    var yAxis = d3.axisRight().scale(y)
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + 0 + ",0)")
+        .call(yAxis)
+
+    d3.range(0,squares).forEach(function(dy) {
+        d3.range(0,squares).forEach(function(dx) {
+            i = (dy*10) + dx
+            svg.append("rect")
+                .attr("x", x(dx) )
+                .attr("y", y(dy) )
+                .attr("width",size)
+                .attr("height", size)
+                .style("stroke-width", 2) 
+                .style("stroke","white")
+                .style("fill", palette(color(data[i])) )
+
+        })
     })
-    .catch((error) => console.log(error) )
+
+    svg.append("line")
+        .attr("x1", 0)
+        .attr("y1", height/2)
+        .attr("x2", width)
+        .attr("y2", height/2)
+        .style("stroke-width", 5) 
+        .style("stroke","black")
+
+    svg.append("line")
+        .attr("x1", width/2)
+        .attr("y1", 0)
+        .attr("x2", width/2)
+        .attr("y2", height)
+        .style("stroke-width", 5) 
+        .style("stroke","black")
+
+
+    function updateSigma(s){
+        sigma = +s
+        d3.select("p#sd").text(sigma)
+        updateGraph()
+    }
+
+    function updateMu(m){
+        mu = +m
+        d3.select("p#mean").text(mu)
+        updateGraph()
+    }
+
+    function updateGraph() {
+        console.log(sigma,mu)
+        points = d3.range(1000).map(d=> d3.randomNormal(mu, sigma)(d))
+        points = points.map(d=> Math.round(d))
+        data = d3.range(squares*squares).map(d=>0)
+        rolledData = d3.rollup(points,v => v.length, d => d)
+
+        for (let [key, value] of rolledData) {
+            data[key] = value
+        }
+            svg.selectAll("rect").data(data)
+                .style("fill", (d,i)=>palette(color(data[i])) )
+    }
 </script>
 </div></div>
 </div>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;output2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;three1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
     <span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">THREE</span> <span class="k">from</span> <span class="s1">&#39;https://threejs.org/build/three.module.js&#39;</span><span class="p">;</span>
     <span class="k">import</span> <span class="p">{</span> <span class="nx">OrbitControls</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;https://threejs.org/examples/jsm/controls/OrbitControls.js&#39;</span><span class="p">;</span>
+
+    <span class="kd">var</span> <span class="nx">squares</span> <span class="o">=</span> <span class="mf">10</span>
+    <span class="kd">var</span> <span class="nx">sigma</span> <span class="o">=</span> <span class="mf">100</span>
+    <span class="kd">var</span> <span class="nx">mu</span> <span class="o">=</span> <span class="p">(</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="p">)</span><span class="o">/</span><span class="mf">2</span>
+    <span class="kd">var</span> <span class="nx">points</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">10000</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="nx">mu</span><span class="p">,</span> <span class="nx">sigma</span><span class="p">)(</span><span class="nx">d</span><span class="p">))</span>
+    <span class="nx">points</span> <span class="o">=</span> <span class="nx">points</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+    <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="mf">0</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">rolledData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">points</span><span class="p">,</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">rolledData</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+    <span class="p">}</span>
+    
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">400</span>
+
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">data</span><span class="p">)).</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">])</span>
+
+    <span class="kd">let</span> <span class="nx">renderer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">WebGLRenderer</span><span class="p">({</span><span class="nx">antialias</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
+    <span class="nx">renderer</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
+    <span class="nx">renderer</span><span class="p">.</span><span class="nx">setPixelRatio</span><span class="p">(</span><span class="nx">devicePixelRatio</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">scene</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Scene</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">camera</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">PerspectiveCamera</span><span class="p">(</span>
+        <span class="mf">45</span><span class="p">,</span> <span class="c1">// Field of view</span>
+        <span class="nx">height</span> <span class="o">/</span> <span class="nx">width</span><span class="p">,</span> <span class="c1">// Aspect ratio</span>
+        <span class="mf">0.1</span><span class="p">,</span> <span class="c1">// Near</span>
+        <span class="mf">3000</span> <span class="c1">// Far</span>
+    <span class="p">);</span>
+
+    <span class="kd">var</span> <span class="nx">controls</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OrbitControls</span><span class="p">(</span><span class="nx">camera</span><span class="p">,</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span><span class="p">)</span>
+
+    <span class="nx">controls</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">))</span>
+    <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+    <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+    <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mf">1000</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">cubes</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Object3D</span><span class="p">();</span>
+    <span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">cubes</span> <span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+    <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+    <span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dx</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dy</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dz</span><span class="p">)</span> <span class="p">{</span>
+                <span class="c1">//console.log(data[counter])</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">10</span><span class="p">)</span> <span class="p">{</span>
+                    <span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="p">(</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
+                    <span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">BoxGeometry</span><span class="p">(</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">);</span>
+                    <span class="kd">var</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])),</span> <span class="nx">transparent</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])})</span>
+                    <span class="kd">var</span> <span class="nx">cube</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span><span class="nx">geometry</span><span class="p">,</span> <span class="nx">material</span><span class="p">);</span>
+                    <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">(</span><span class="nx">dx</span><span class="p">);</span>
+                    <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">(</span><span class="nx">dy</span><span class="p">);</span>
+                    <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">(</span><span class="nx">dz</span><span class="p">);</span>
+                    <span class="nx">cubes</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">cube</span><span class="p">);</span>
+
+                <span class="p">}</span>
+            <span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+            <span class="p">})</span>
+        <span class="p">})</span>
+    <span class="p">})</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;three1&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span> <span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">render</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="nx">requestAnimationFrame</span><span class="p">(</span> <span class="nx">render</span> <span class="p">);</span>
+
+
+
+        <span class="c1">// Render the scene</span>
+    <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">);</span>
+    <span class="p">};</span>
+
+<span class="nx">render</span><span class="p">();</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="three1"></div>
+<script type="module">
+    import * as THREE from 'https://threejs.org/build/three.module.js';
+    import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
+
+    var squares = 10
+    var sigma = 100
+    var mu = (squares*squares*squares)/2
+    var points = d3.range(10000).map(d=> d3.randomNormal(mu, sigma)(d))
+    points = points.map(d=> Math.round(d))
+    var data = d3.range(squares*squares*squares).map(d=>0)
+    var rolledData = d3.rollup(points,v => v.length, d => d)
+    for (let [key, value] of rolledData) {
+        data[key] = value
+    }
+
+    var height = 400
+    var width = 400
+
+    var palette = d3.interpolateReds
+    var color = d3.scaleLinear().domain(d3.extent(data)).range([0,1])
+
+    let renderer = new THREE.WebGLRenderer({antialias: true});
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(devicePixelRatio);
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(
+        45, // Field of view
+        height / width, // Aspect ratio
+        0.1, // Near
+        3000 // Far
+    );
+
+    var controls = new OrbitControls(camera, renderer.domElement)
+
+    controls.addEventListener("change", () => renderer.render(scene, camera))
+    camera.position.x = 0;
+    camera.position.y = 0;
+    camera.position.z = 1000;
+    var cubes = new THREE.Object3D();
+    scene.add( cubes );
+    var x = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
+    var y = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
+    var z = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
+    var counter = 0;
+    console.log(data)
+
+    d3.range(0,squares).forEach(function(dx) {
+        d3.range(0,squares).forEach(function(dy) {
+            d3.range(0,squares).forEach(function(dz) {
+                //console.log(data[counter])
+                if (data[counter]>10) {
+                    var size = width/(squares-1)
+                    var geometry = new THREE.BoxGeometry(size,size,size);
+                    var material = new THREE.MeshBasicMaterial({color: palette(color(data[counter])), transparent : true, opacity:color(data[counter])})
+                    var cube = new THREE.Mesh(geometry, material);
+                    cube.position.x = x(dx);
+                    cube.position.y = y(dy);
+                    cube.position.z = z(dz);
+                    cubes.add(cube);
+
+                }
+            counter++;
+            })
+        })
+    })
+    document.getElementById("three1").appendChild( renderer.domElement )
+    var render = function () {
+        requestAnimationFrame( render );
+
+
+
+        // Render the scene
+    renderer.render(scene, camera);
+    };
+
+render();
+
+</script>
+</div></div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;exportButton&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Export GLTF&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;sd2&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;sd2&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;20&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;200&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;50&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;sd2&quot;</span><span class="p">&gt;</span>Sigma σ - Standard Deviation<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;sd2&quot;</span><span class="p">&gt;</span>50<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mean2&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;mean2&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;200&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;700&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;500&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;mean2&quot;</span><span class="p">&gt;</span>mu σ - Mean<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span> 
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;mean2&quot;</span><span class="p">&gt;</span>500<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;threeDOutput&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
+    
+    <span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">THREE</span> <span class="k">from</span> <span class="s1">&#39;https://threejs.org/build/three.module.js&#39;</span><span class="p">;</span>
+    <span class="k">import</span> <span class="p">{</span> <span class="nx">OrbitControls</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;https://threejs.org/examples/jsm/controls/OrbitControls.js&#39;</span><span class="p">;</span>
     <span class="k">import</span> <span class="p">{</span> <span class="nx">GLTFExporter</span> <span class="p">}</span> <span class="k">from</span> <span class="s1">&#39;https://threejs.org/examples/jsm/exporters/GLTFExporter.js&#39;</span><span class="p">;</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/2c78fe8deab29c0ac2c9d9c4ab9cdc25/raw/dc8ba78fa08e26e908ff6b5a01b265e278f57539/toyData.simulations.csv&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">input</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">input</span><span class="p">)</span>
-        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="nx">data</span> <span class="o">=</span> <span class="nx">input</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s2">&quot;\n&quot;</span><span class="p">)</span>
-        <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span><span class="o">+</span><span class="nx">d</span><span class="p">)</span>
-        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;data&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>   
-        <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">700</span>
-        <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">700</span>
-        
+    <span class="kd">var</span> <span class="nx">cubes</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Object3D</span><span class="p">();</span>
+    <span class="kd">var</span> <span class="nx">sigma</span> <span class="o">=</span> <span class="mf">50</span>
+    <span class="kd">var</span> <span class="nx">mu</span> <span class="o">=</span> <span class="p">(</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="p">)</span><span class="o">/</span><span class="mf">2</span>
+    <span class="kd">function</span> <span class="nx">createGraph</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">squares</span> <span class="o">=</span> <span class="mf">10</span>
+
+        <span class="kd">var</span> <span class="nx">points</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">1000</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">randomNormal</span><span class="p">(</span><span class="nx">mu</span><span class="p">,</span> <span class="nx">sigma</span><span class="p">)(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="nx">points</span> <span class="o">=</span> <span class="nx">points</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="o">*</span><span class="nx">squares</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="mf">0</span><span class="p">)</span>
+        <span class="kd">var</span> <span class="nx">rolledData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">points</span><span class="p">,</span><span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">v</span><span class="p">.</span><span class="nx">length</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">rolledData</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">data</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span>
+        <span class="p">}</span>
+
+        <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+        <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">400</span>
+
         <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateReds</span>
         <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">data</span><span class="p">)).</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">])</span>
-        <span class="kd">var</span> <span class="nx">squares</span> <span class="o">=</span> <span class="mf">10</span>
+
         <span class="kd">let</span> <span class="nx">renderer</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">WebGLRenderer</span><span class="p">({</span><span class="nx">antialias</span><span class="o">:</span> <span class="kc">true</span><span class="p">});</span>
         <span class="nx">renderer</span><span class="p">.</span><span class="nx">setSize</span><span class="p">(</span><span class="nx">width</span><span class="p">,</span> <span class="nx">height</span><span class="p">);</span>
         <span class="nx">renderer</span><span class="p">.</span><span class="nx">setPixelRatio</span><span class="p">(</span><span class="nx">devicePixelRatio</span><span class="p">);</span>
@@ -1218,124 +1460,139 @@
             <span class="mf">45</span><span class="p">,</span> <span class="c1">// Field of view</span>
             <span class="nx">height</span> <span class="o">/</span> <span class="nx">width</span><span class="p">,</span> <span class="c1">// Aspect ratio</span>
             <span class="mf">0.1</span><span class="p">,</span> <span class="c1">// Near</span>
-            <span class="mf">10000</span> <span class="c1">// Far</span>
+            <span class="mf">3000</span> <span class="c1">// Far</span>
         <span class="p">);</span>
-        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">camera</span><span class="p">)</span>
-  <span class="kd">var</span> <span class="nx">controls</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OrbitControls</span><span class="p">(</span><span class="nx">camera</span><span class="p">,</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span><span class="p">);</span>
 
-  <span class="nx">controls</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">));</span>
-    <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-  <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-  <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mf">2000</span><span class="p">;</span>
-  <span class="kd">var</span> <span class="nx">cubes</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Object3D</span><span class="p">();</span>
-  <span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">cubes</span> <span class="p">);</span>
-  <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-  <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-  <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-  <span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-  <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dx</span><span class="p">)</span> <span class="p">{</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dy</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dz</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">//console.log(x(dx), y(dy),z(dz), width/(squares-1));</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">.5</span><span class="p">)</span> <span class="p">{</span>
-          <span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="p">(</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
-          <span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">BoxGeometry</span><span class="p">(</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">);</span>
-          <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">]</span><span class="o">&gt;</span><span class="mf">.5</span><span class="p">)</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])),</span> <span class="nx">transparent</span> <span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="mf">.3</span><span class="p">});</span>
-          <span class="p">}</span>
-          <span class="k">else</span> <span class="p">{</span>
-            <span class="kd">var</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])),</span> <span class="nx">transparent</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="mf">.1</span><span class="p">});</span>
-          <span class="p">}</span>
-          <span class="kd">var</span> <span class="nx">cube</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span><span class="nx">geometry</span><span class="p">,</span> <span class="nx">material</span><span class="p">);</span>
-          <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">(</span><span class="nx">dx</span><span class="p">);</span>
-          <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">(</span><span class="nx">dy</span><span class="p">);</span>
-          <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">(</span><span class="nx">dz</span><span class="p">);</span>
-          <span class="nx">cubes</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">cube</span><span class="p">);</span>
-          
-        <span class="p">}</span>
-        <span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
-      <span class="p">})</span>
-    <span class="p">})</span>
-  <span class="p">})</span>
-        <span class="kd">function</span> <span class="nx">exportGLTF</span><span class="p">(</span> <span class="nx">input</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">controls</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OrbitControls</span><span class="p">(</span><span class="nx">camera</span><span class="p">,</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span><span class="p">)</span>
 
-            <span class="kd">const</span> <span class="nx">gltfExporter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GLTFExporter</span><span class="p">();</span>
+        <span class="nx">controls</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;change&quot;</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">))</span>
+        <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+        <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+        <span class="nx">camera</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="mf">1000</span><span class="p">;</span>
+        <span class="nx">cubes</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Object3D</span><span class="p">();</span>
+        <span class="nx">scene</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span> <span class="nx">cubes</span> <span class="p">);</span>
+        <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+        <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+        <span class="kd">var</span> <span class="nx">z</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="o">-</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">,</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
+        <span class="kd">var</span> <span class="nx">counter</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
 
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dx</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dy</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span><span class="nx">squares</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">dz</span><span class="p">)</span> <span class="p">{</span>
 
-            <span class="nx">gltfExporter</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span> <span class="nx">input</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">result</span> <span class="p">)</span> <span class="p">{</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">result</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">]</span><span class="o">&gt;=</span><span class="mf">1</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="kd">var</span> <span class="nx">size</span> <span class="o">=</span> <span class="nx">width</span><span class="o">/</span><span class="p">(</span><span class="nx">squares</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span>
+                        <span class="kd">var</span> <span class="nx">geometry</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">BoxGeometry</span><span class="p">(</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">,</span><span class="nx">size</span><span class="p">);</span>
+                        <span class="kd">var</span> <span class="nx">material</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">MeshBasicMaterial</span><span class="p">({</span><span class="nx">color</span><span class="o">:</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])),</span> <span class="nx">transparent</span> <span class="o">:</span> <span class="kc">true</span><span class="p">,</span> <span class="nx">opacity</span><span class="o">:</span><span class="nx">color</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="nx">counter</span><span class="p">])})</span>
+                        <span class="kd">var</span> <span class="nx">cube</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">THREE</span><span class="p">.</span><span class="nx">Mesh</span><span class="p">(</span><span class="nx">geometry</span><span class="p">,</span> <span class="nx">material</span><span class="p">);</span>
+                        <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">x</span> <span class="o">=</span> <span class="nx">x</span><span class="p">(</span><span class="nx">dx</span><span class="p">);</span>
+                        <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">y</span> <span class="o">=</span> <span class="nx">y</span><span class="p">(</span><span class="nx">dy</span><span class="p">);</span>
+                        <span class="nx">cube</span><span class="p">.</span><span class="nx">position</span><span class="p">.</span><span class="nx">z</span> <span class="o">=</span> <span class="nx">z</span><span class="p">(</span><span class="nx">dz</span><span class="p">);</span>
+                        <span class="nx">cubes</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">cube</span><span class="p">);</span>
 
-                <span class="k">if</span> <span class="p">(</span> <span class="nx">result</span> <span class="k">instanceof</span> <span class="nx">ArrayBuffer</span> <span class="p">)</span> <span class="p">{</span>
-
-                    <span class="nx">saveArrayBuffer</span><span class="p">(</span> <span class="nx">result</span><span class="p">,</span> <span class="s1">&#39;scene.glb&#39;</span> <span class="p">);</span>
-
-                <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-
-                    <span class="kd">const</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span> <span class="nx">result</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mf">2</span> <span class="p">);</span>
-                    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span> <span class="nx">output</span> <span class="p">);</span>
-                    <span class="nx">saveString</span><span class="p">(</span> <span class="nx">output</span><span class="p">,</span> <span class="s1">&#39;scene.gltf&#39;</span> <span class="p">);</span>
-
-                <span class="p">}</span>
-
-            <span class="p">}</span> <span class="p">);</span>
-
-        <span class="p">}</span>
-        <span class="kd">function</span> <span class="nx">saveArrayBuffer</span><span class="p">(</span> <span class="nx">buffer</span><span class="p">,</span> <span class="nx">filename</span> <span class="p">)</span> <span class="p">{</span>
-
-            <span class="nx">save</span><span class="p">(</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span> <span class="p">[</span> <span class="nx">buffer</span> <span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;application/octet-stream&#39;</span> <span class="p">}</span> <span class="p">),</span> <span class="nx">filename</span> <span class="p">);</span>
-
-        <span class="p">}</span>
-			<span class="kd">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span> <span class="s1">&#39;a&#39;</span> <span class="p">);</span>
-			<span class="nx">link</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
-			<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">link</span> <span class="p">);</span>
-			<span class="kd">function</span> <span class="nx">save</span><span class="p">(</span> <span class="nx">blob</span><span class="p">,</span> <span class="nx">filename</span> <span class="p">)</span> <span class="p">{</span>
-
-				<span class="nx">link</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span> <span class="nx">blob</span> <span class="p">);</span>
-				<span class="nx">link</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">filename</span><span class="p">;</span>
-				<span class="nx">link</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
-
-				<span class="c1">// URL.revokeObjectURL( url ); breaks Firefox...</span>
-
-			<span class="p">}</span>
-			<span class="kd">function</span> <span class="nx">saveString</span><span class="p">(</span> <span class="nx">text</span><span class="p">,</span> <span class="nx">filename</span> <span class="p">)</span> <span class="p">{</span>
-
-				<span class="nx">save</span><span class="p">(</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span> <span class="p">[</span> <span class="nx">text</span> <span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span> <span class="p">}</span> <span class="p">),</span> <span class="nx">filename</span> <span class="p">);</span>
-
-			<span class="p">}</span>
-        <span class="nx">exportGLTF</span><span class="p">(</span> <span class="nx">cubes</span> <span class="p">)</span>
-  <span class="k">try</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="p">{</span>
-      <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">);</span>
-      <span class="k">return</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;output&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span> <span class="p">)</span>
+                    <span class="p">}</span>
+                <span class="nx">counter</span><span class="o">++</span><span class="p">;</span>
+                <span class="p">})</span>
+            <span class="p">})</span>
+        <span class="p">})</span>
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;threeDOutput&quot;</span><span class="p">).</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">renderer</span><span class="p">.</span><span class="nx">domElement</span> <span class="p">)</span>
+        
+        <span class="kd">var</span> <span class="nx">render</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="nx">requestAnimationFrame</span><span class="p">(</span> <span class="nx">render</span> <span class="p">);</span>
+            <span class="nx">renderer</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">scene</span><span class="p">,</span> <span class="nx">camera</span><span class="p">);</span>
+        <span class="p">};</span>
+        
+        <span class="nx">render</span><span class="p">();</span>
     <span class="p">}</span>
-  <span class="p">}</span> <span class="k">finally</span> <span class="p">{</span>
-    <span class="nx">renderer</span><span class="p">.</span><span class="nx">dispose</span><span class="p">();</span>
-  <span class="p">}</span>
-    <span class="p">})</span>
-    <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
+    <span class="kd">function</span> <span class="nx">exportGLTF</span><span class="p">(</span> <span class="nx">input</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">const</span> <span class="nx">gltfExporter</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">GLTFExporter</span><span class="p">();</span>
+        <span class="nx">gltfExporter</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span> <span class="nx">input</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span> <span class="nx">result</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span> <span class="nx">result</span> <span class="k">instanceof</span> <span class="nx">ArrayBuffer</span> <span class="p">)</span> <span class="p">{</span>
+                <span class="nx">saveArrayBuffer</span><span class="p">(</span> <span class="nx">result</span><span class="p">,</span> <span class="s1">&#39;scene.glb&#39;</span> <span class="p">);</span>
+            <span class="p">}</span> 
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="kd">const</span> <span class="nx">output</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span> <span class="nx">result</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mf">2</span> <span class="p">);</span>
+                <span class="nx">saveString</span><span class="p">(</span> <span class="nx">output</span><span class="p">,</span> <span class="s1">&#39;scene.gltf&#39;</span> <span class="p">);</span>
+
+            <span class="p">}</span>
+        <span class="p">})</span>
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">saveArrayBuffer</span><span class="p">(</span> <span class="nx">buffer</span><span class="p">,</span> <span class="nx">filename</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">save</span><span class="p">(</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span> <span class="p">[</span> <span class="nx">buffer</span> <span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;application/octet-stream&#39;</span> <span class="p">}</span> <span class="p">),</span> <span class="nx">filename</span> <span class="p">);</span>
+    <span class="p">}</span>
+    <span class="kd">const</span> <span class="nx">link</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span> <span class="s1">&#39;a&#39;</span> <span class="p">);</span>
+    <span class="nx">link</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">display</span> <span class="o">=</span> <span class="s1">&#39;none&#39;</span><span class="p">;</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span> <span class="nx">link</span> <span class="p">);</span>
+    <span class="kd">function</span> <span class="nx">save</span><span class="p">(</span> <span class="nx">blob</span><span class="p">,</span> <span class="nx">filename</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">link</span><span class="p">.</span><span class="nx">href</span> <span class="o">=</span> <span class="nx">URL</span><span class="p">.</span><span class="nx">createObjectURL</span><span class="p">(</span> <span class="nx">blob</span> <span class="p">);</span>
+        <span class="nx">link</span><span class="p">.</span><span class="nx">download</span> <span class="o">=</span> <span class="nx">filename</span><span class="p">;</span>
+        <span class="nx">link</span><span class="p">.</span><span class="nx">click</span><span class="p">();</span>
+
+    <span class="p">}</span>
+    <span class="kd">function</span> <span class="nx">saveString</span><span class="p">(</span> <span class="nx">text</span><span class="p">,</span> <span class="nx">filename</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="nx">save</span><span class="p">(</span> <span class="k">new</span> <span class="nx">Blob</span><span class="p">(</span> <span class="p">[</span> <span class="nx">text</span> <span class="p">],</span> <span class="p">{</span> <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;text/plain&#39;</span> <span class="p">}</span> <span class="p">),</span> <span class="nx">filename</span> <span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="nx">createGraph</span><span class="p">();</span>
+
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input#exportButton&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span><span class="nx">exportGLTF</span><span class="p">(</span><span class="nx">cubes</span><span class="p">)})</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input#mean2&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span><span class="nx">updateMu2</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">)})</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;input#sd2&#39;</span><span class="p">).</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;change&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(){</span><span class="nx">updateSigma2</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="p">)})</span>
+    <span class="kd">function</span> <span class="nx">updateSigma2</span><span class="p">(</span><span class="nx">s</span><span class="p">){</span>
+        <span class="nx">sigma</span> <span class="o">=</span> <span class="o">+</span><span class="nx">s</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;p#sd2&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">sigma</span><span class="p">)</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#threeDOutput&quot;</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
+        <span class="nx">createGraph</span><span class="p">()</span>
+    <span class="p">}</span>
+    
+    <span class="kd">function</span> <span class="nx">updateMu2</span><span class="p">(</span><span class="nx">m</span><span class="p">){</span>
+        <span class="nx">mu</span> <span class="o">=</span> <span class="o">+</span><span class="nx">m</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;p#mean2&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">mu</span><span class="p">)</span>
+        <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;#threeDOutput&quot;</span><span class="p">).</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
+        <span class="nx">createGraph</span><span class="p">()</span>
+    <span class="p">}</span>
+    
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="output2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><input type="button" id="exportButton" value="Export GLTF">
+<br>
+<input type="range" id="sd2" name="sd2" min="20" max="200" value="50">
+<label for="sd2">Sigma σ - Standard Deviation</label>
+<p id="sd2">50</p>
+
+<input type="range" id="mean2" name="mean2" min="200" max="700" value="500">
+<label for="mean2">mu σ - Mean</label> 
+<p id="mean2">500</p>
+<div id="threeDOutput"></div>
 <script type="module">
+
     import * as THREE from 'https://threejs.org/build/three.module.js';
     import { OrbitControls } from 'https://threejs.org/examples/jsm/controls/OrbitControls.js';
     import { GLTFExporter } from 'https://threejs.org/examples/jsm/exporters/GLTFExporter.js';
-    d3.text("https://gist.githubusercontent.com/dudaspm/2c78fe8deab29c0ac2c9d9c4ab9cdc25/raw/dc8ba78fa08e26e908ff6b5a01b265e278f57539/toyData.simulations.csv")
-    .then((input) => {
-        console.log(input)
-        var data = []
-        data = input.split("\n")
-        data.map((d,i)=>+d)
-        document.getElementById("data").innerHTML = JSON.stringify(data[0])   
-        var height = 700
-        var width = 700
+    var cubes = new THREE.Object3D();
+    var sigma = 50
+    var mu = (squares*squares*squares)/2
+    function createGraph() {
+        var squares = 10
+
+        var points = d3.range(1000).map(d=> d3.randomNormal(mu, sigma)(d))
+        points = points.map(d=> Math.round(d))
+        var data = d3.range(squares*squares*squares).map(d=>0)
+        var rolledData = d3.rollup(points,v => v.length, d => d)
+        for (let [key, value] of rolledData) {
+            data[key] = value
+        }
+
+        var height = 400
+        var width = 400
 
         var palette = d3.interpolateReds
         var color = d3.scaleLinear().domain(d3.extent(data)).range([0,1])
-        var squares = 10
+
         let renderer = new THREE.WebGLRenderer({antialias: true});
         renderer.setSize(width, height);
         renderer.setPixelRatio(devicePixelRatio);
@@ -1344,101 +1601,99 @@
             45, // Field of view
             height / width, // Aspect ratio
             0.1, // Near
-            10000 // Far
+            3000 // Far
         );
-        console.log(camera)
-  var controls = new OrbitControls(camera, renderer.domElement);
 
-  controls.addEventListener("change", () => renderer.render(scene, camera));
-    camera.position.x = 0;
-  camera.position.y = 0;
-  camera.position.z = 2000;
-  var cubes = new THREE.Object3D();
-  scene.add( cubes );
-  var x = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
-  var y = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
-  var z = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
-  var counter = 0;
-  d3.range(0,squares).forEach(function(dx) {
-    d3.range(0,squares).forEach(function(dy) {
-      d3.range(0,squares).forEach(function(dz) {
-        //console.log(x(dx), y(dy),z(dz), width/(squares-1));
-        if (data[counter]>.5) {
-          var size = width/(squares-1)
-          var geometry = new THREE.BoxGeometry(size,size,size);
-          if (data[counter]>.5) {
-            var material = new THREE.MeshBasicMaterial({color: palette(color(data[counter])), transparent : false, opacity:.3});
-          }
-          else {
-            var material = new THREE.MeshBasicMaterial({color: palette(color(data[counter])), transparent : true, opacity:.1});
-          }
-          var cube = new THREE.Mesh(geometry, material);
-          cube.position.x = x(dx);
-          cube.position.y = y(dy);
-          cube.position.z = z(dz);
-          cubes.add(cube);
+        var controls = new OrbitControls(camera, renderer.domElement)
 
-        }
-        counter++;
-      })
-    })
-  })
-        function exportGLTF( input ) {
+        controls.addEventListener("change", () => renderer.render(scene, camera))
+        camera.position.x = 0;
+        camera.position.y = 0;
+        camera.position.z = 1000;
+        cubes = new THREE.Object3D();
+        scene.add( cubes );
+        var x = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
+        var y = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
+        var z = d3.scaleLinear().range([-width/2,width/2]).domain([0,squares-1])
+        var counter = 0;
+        console.log(data)
 
-            const gltfExporter = new GLTFExporter();
+        d3.range(0,squares).forEach(function(dx) {
+            d3.range(0,squares).forEach(function(dy) {
+                d3.range(0,squares).forEach(function(dz) {
 
+                    if (data[counter]>=1) {
+                        var size = width/(squares-1)
+                        var geometry = new THREE.BoxGeometry(size,size,size);
+                        var material = new THREE.MeshBasicMaterial({color: palette(color(data[counter])), transparent : true, opacity:color(data[counter])})
+                        var cube = new THREE.Mesh(geometry, material);
+                        cube.position.x = x(dx);
+                        cube.position.y = y(dy);
+                        cube.position.z = z(dz);
+                        cubes.add(cube);
 
-            gltfExporter.parse( input, function ( result ) {
-                console.log(result)
+                    }
+                counter++;
+                })
+            })
+        })
+        document.getElementById("threeDOutput").appendChild( renderer.domElement )
 
-                if ( result instanceof ArrayBuffer ) {
+        var render = function () {
+            requestAnimationFrame( render );
+            renderer.render(scene, camera);
+        };
 
-                    saveArrayBuffer( result, 'scene.glb' );
-
-                } else {
-
-                    const output = JSON.stringify( result, null, 2 );
-                    console.log( output );
-                    saveString( output, 'scene.gltf' );
-
-                }
-
-            } );
-
-        }
-        function saveArrayBuffer( buffer, filename ) {
-
-            save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
-
-        }
-			const link = document.createElement( 'a' );
-			link.style.display = 'none';
-			document.body.appendChild( link );
-			function save( blob, filename ) {
-
-				link.href = URL.createObjectURL( blob );
-				link.download = filename;
-				link.click();
-
-				// URL.revokeObjectURL( url ); breaks Firefox...
-
-			}
-			function saveString( text, filename ) {
-
-				save( new Blob( [ text ], { type: 'text/plain' } ), filename );
-
-			}
-        exportGLTF( cubes )
-  try {
-    while (true) {
-      renderer.render(scene, camera);
-      return document.getElementById("output").appendChild( renderer.domElement )
+        render();
     }
-  } finally {
-    renderer.dispose();
-  }
-    })
-    .catch((error) => console.log(error) )
+    function exportGLTF( input ) {
+        const gltfExporter = new GLTFExporter();
+        gltfExporter.parse( input, function ( result ) {
+            if ( result instanceof ArrayBuffer ) {
+                saveArrayBuffer( result, 'scene.glb' );
+            } 
+            else {
+                const output = JSON.stringify( result, null, 2 );
+                saveString( output, 'scene.gltf' );
+
+            }
+        })
+    }
+    function saveArrayBuffer( buffer, filename ) {
+        save( new Blob( [ buffer ], { type: 'application/octet-stream' } ), filename );
+    }
+    const link = document.createElement( 'a' );
+    link.style.display = 'none';
+    document.body.appendChild( link );
+    function save( blob, filename ) {
+        link.href = URL.createObjectURL( blob );
+        link.download = filename;
+        link.click();
+
+    }
+    function saveString( text, filename ) {
+        save( new Blob( [ text ], { type: 'text/plain' } ), filename )
+    }
+
+    createGraph();
+
+    document.querySelector('input#exportButton').addEventListener('click', function(){exportGLTF(cubes)})
+    document.querySelector('input#mean2').addEventListener('change', function(){updateMu2(this.value)})
+    document.querySelector('input#sd2').addEventListener('change', function(){updateSigma2(this.value)})
+    function updateSigma2(s){
+        sigma = +s
+        d3.select("p#sd2").text(sigma)
+        d3.select("#threeDOutput").select("*").remove()
+        createGraph()
+    }
+
+    function updateMu2(m){
+        mu = +m
+        d3.select("p#mean2").text(mu)
+        d3.select("#threeDOutput").select("*").remove()
+        createGraph()
+    }
+
 </script>
 </div></div>
 </div>
@@ -1470,6 +1725,7 @@
         
         <div class='prev-next-bottom'>
             
+    <a class='left-prev' id="prev-link" href="Making%20a%20Map.html" title="previous page">Making a Map</a>
 
         </div>
         

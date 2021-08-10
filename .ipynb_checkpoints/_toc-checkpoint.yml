@@ -26,7 +26,4 @@ parts:
     - file: Bar Charts
     - file: Network Graphs
     - file: Making a Map
-    
-  - caption: Application of Graphs
-    chapters:
-    - file: Topic Modeling Sets
+    - file: D3+ThreeJS    

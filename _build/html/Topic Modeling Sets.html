@@ -81,7 +81,7 @@
     <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Making a Map" href="Making%20a%20Map.html" />
+    <link rel="prev" title="Introduction" href="Introduction.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -213,6 +213,11 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Introduction.html">
+   Introduction
+  </a>
+ </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Topic Modeling - Graphically
@@ -321,6 +326,19 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#topic-modeling-graphs">
+   Topic Modeling -&gt; Graphs
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -344,63 +362,321 @@
 </div>
 </div>
 </div>
+<div class="section" id="topic-modeling-graphs">
+<h2>Topic Modeling -&gt; Graphs<a class="headerlink" href="#topic-modeling-graphs" title="Permalink to this headline">¶</a></h2>
+<p>First, let’s talk about what is actually happening when it comes to topic modeling and it translate to a 2D graphic. For this, we are going have three topics (a topic on 🐈, a topic on 🐦, and a topic on 🐳). We are predefining these for the sake of simplisty.</p>
+<p>Now that we have our topics, we need some documents to map to our topics. What we want to show is how related the document is to that given topic. If we are reading a document called “I love 🐦” we would expect it to map almost entirely to 🐦. Let’s take a look at these extremes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">something</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">something</span> <span class="o">=</span> <span class="n">something</span> <span class="o">+</span> <span class="mi">1</span>
+
+</pre></div>
+</div>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="extremes"></div>
+
+<script type="text/javascript">   
+    var width = 600
+    var height = 300
+    var documents = []
+    documents.push(({"title":"I love 🐦", "bird":1, "cat":0, "whale": 0, "icon":"🐦"}))
+    documents.push(({"title":"Swimming with 🐳", "bird":0, "cat":0, "whale": 1, "icon":"🐳"}))
+    documents.push(({"title":"Fancy 🐈", "bird":0, "cat":1, "whale": 0, "icon":"🐈"}))
+    console.log(documents)
+    var svg = d3.select("div#extremes").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    var rectSize = 50
+    var splits = 7
+    svg.selectAll("rect.documents").data(documents)
+        .join("rect")
+        .attr("class","documents")
+        .attr("x",(width/splits) - rectSize/2)
+        .attr("y", (d,i)=>((height/5)*(i+1)) - rectSize/2)
+        .attr("width", rectSize)
+        .attr("height", rectSize)
+        .style("fill","lightgrey")
+        .style("stroke","black")
+        .style("stroke-width",1)
+        .on("mouseover", function(e,d){
+            d3.select(e.currentTarget).transition().style("stroke-width",3)    
+            var item = svg.selectAll("rect.documents").nodes();
+            var i = item.indexOf(this);
+            svg.select("circle#point_"+i)
+                .transition()
+                .duration(1000) 
+                .ease(d3.easeBounce)
+                .attr("cy",(height/5))
+        })
+        .on("mouseout", function(e,d){
+            d3.select(e.currentTarget).transition().style("stroke-width",1)   
+            var item = svg.selectAll("rect.documents").nodes();
+            var i = item.indexOf(this);
+            svg.select("circle#point_"+i)
+                .transition()
+                .attr("cy",(height/5)*4)
+        })
+
+    svg.selectAll("text.documents").data(documents)
+        .join("text")
+        .attr("class","documents")
+        .attr("x",(width/splits) + (rectSize/2) + 10)
+        .attr("y", (d,i)=>(height/5)*(i+1))
+        .text(d=>d.title)
+
+    svg.selectAll("line").data(documents)
+        .join("line")
+        .attr("x1", (d,i)=>(width/splits)*(i+4))
+        .attr("y1", (height/5))
+        .attr("x2", (d,i)=>(width/splits)*(i+4))
+        .attr("y2", (height/5)*4)
+        .style("stroke","black")
+        .style("stroke-width",1)
+
+    svg.selectAll("circle.topics").data(documents)
+        .join("circle")
+        .attr("class","topics")
+        .attr("id", (d,i)=> "point_"+i)
+        .attr("cx", (d,i)=>(width/splits)*(i+4))
+        .attr("cy", (height/5)*4)
+        .attr("r",5)
+        .style("stroke","black")
+        .style("stroke-width",1)
+
+    svg.selectAll("text.topics").data(documents)
+        .join("text")
+        .attr("class","topics")
+        .attr("x", (d,i)=>(width/splits)*(i+4))
+        .attr("y", (height/5))
+        .style("text-anchor", "middle")
+        .text(d=>d.icon)
+
+
+    svg.append("text")
+        .attr("x",(width/splits))
+        .attr("y",10)
+
+        .text("Documents")
+
+    svg.append("text")
+        .attr("x",(width/splits)*5)
+        .attr("y",10)
+        .style("text-anchor", "middle")
+        .text("Topics")
+
+
+</script>
+</div></div>
+</div>
+<p>Based on this, when we have clearly defined documents, it is pretty easy to map them to a specific topic. But what’s the fun in that? What about situations where documents have multiple topics. Let’s take a look at this when our documents stretch over multiple topics.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;triangle1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;cotopic&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
     <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">var</span> <span class="nx">triangles</span> <span class="o">=</span> <span class="mf">1</span>
-    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">triangles</span><span class="o">*</span><span class="mf">3</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">tri_size</span> <span class="o">=</span> <span class="mf">10</span>
-    
-    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#triangle1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">topics</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bird&quot;</span><span class="p">,</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span><span class="s2">&quot;whale&quot;</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">documents</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nx">documents</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="s2">&quot;The Adventures of 🐈 and 🐦&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;whale&quot;</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="o">:</span><span class="s2">&quot;🐦&quot;</span><span class="p">}))</span>
+    <span class="nx">documents</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="s2">&quot;Mammels: 🐈 to 🐳&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;whale&quot;</span><span class="o">:</span> <span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="o">:</span><span class="s2">&quot;🐳&quot;</span><span class="p">}))</span>
+    <span class="nx">documents</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;title&quot;</span><span class="o">:</span><span class="s2">&quot;At the Zoo 🐈, 🐳, and 🐦&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="o">:</span><span class="mf">.333</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">:</span><span class="mf">.333</span><span class="p">,</span> <span class="s2">&quot;whale&quot;</span><span class="o">:</span> <span class="mf">.333</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="o">:</span><span class="s2">&quot;🐈&quot;</span><span class="p">}))</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">documents</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#cotopic&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-        
-    <span class="kd">var</span> <span class="nx">tri_x</span> <span class="o">=</span> <span class="p">[(</span><span class="nx">tri_size</span><span class="o">/</span><span class="mf">2</span><span class="p">),</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="mf">0</span><span class="p">]</span>
-    <span class="kd">var</span> <span class="nx">tri_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">]</span>
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">triangles</span><span class="o">*</span><span class="mf">3</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_x</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_y</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">4</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">3</span><span class="p">)</span> <span class="c1">// reminder, this means 3 pixels</span>
+    
+    <span class="kd">var</span> <span class="nx">rectSize</span> <span class="o">=</span> <span class="mf">50</span>
+    <span class="kd">var</span> <span class="nx">splits</span> <span class="o">=</span> <span class="mf">7</span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect.documents&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">documents</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;documents&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">)</span> <span class="o">-</span> <span class="nx">rectSize</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;((</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mf">1</span><span class="p">))</span> <span class="o">-</span> <span class="nx">rectSize</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">rectSize</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">rectSize</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span><span class="s2">&quot;lightgrey&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span><span class="mf">1</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;mouseover&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">d</span><span class="p">){</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">).</span><span class="nx">transition</span><span class="p">().</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span><span class="mf">3</span><span class="p">)</span>    
+            <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect.documents&quot;</span><span class="p">).</span><span class="nx">nodes</span><span class="p">();</span>
+            <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+            <span class="nx">topics</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">j</span><span class="p">){</span>
+                <span class="kd">var</span> <span class="nx">top</span> <span class="o">=</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">)</span>
+                <span class="kd">var</span> <span class="nx">bottom</span> <span class="o">=</span> <span class="p">((</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">)</span><span class="o">*</span><span class="mf">4</span><span class="p">)</span>
+                <span class="kd">var</span> <span class="nx">middle</span> <span class="o">=</span> <span class="nx">bottom</span><span class="o">-</span><span class="nx">top</span>
+                <span class="nx">svg</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;circle#point2_&quot;</span><span class="o">+</span><span class="nx">j</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
+                    <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span> 
+                    <span class="p">.</span><span class="nx">ease</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">easeBounce</span><span class="p">)</span>
+                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">-</span><span class="p">(</span><span class="nx">middle</span> <span class="o">*</span> <span class="nx">documents</span><span class="p">[</span><span class="nx">i</span><span class="p">][</span><span class="nx">topics</span><span class="p">[</span><span class="nx">j</span><span class="p">]]))</span>  
+            <span class="p">})</span>
 
+        <span class="p">})</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;mouseout&quot;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">d</span><span class="p">){</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">currentTarget</span><span class="p">).</span><span class="nx">transition</span><span class="p">().</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span><span class="mf">1</span><span class="p">)</span>   
+            <span class="kd">var</span> <span class="nx">item</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect.documents&quot;</span><span class="p">).</span><span class="nx">nodes</span><span class="p">();</span>
+            <span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="nx">item</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle.point2&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,(</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">)</span><span class="o">*</span><span class="mf">4</span><span class="p">)</span>
+        <span class="p">})</span>
+
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;text.documents&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">documents</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;documents&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="nx">rectSize</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span> <span class="o">+</span> <span class="mf">10</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;(</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mf">1</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">title</span><span class="p">)</span>
+        
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">documents</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mf">4</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mf">4</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">)</span><span class="o">*</span><span class="mf">4</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span><span class="mf">1</span><span class="p">)</span>
+        
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle.point2&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">documents</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;point2&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="s2">&quot;point2_&quot;</span><span class="o">+</span><span class="nx">i</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mf">4</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">)</span><span class="o">*</span><span class="mf">4</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span><span class="mf">5</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span><span class="mf">1</span><span class="p">)</span>
+        
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;text.topics&quot;</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="nx">documents</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;topics&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mf">4</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mf">5</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">icon</span><span class="p">)</span>
+        
+        
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="mf">10</span><span class="p">)</span>
+        
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Documents&quot;</span><span class="p">)</span>
+
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,(</span><span class="nx">width</span><span class="o">/</span><span class="nx">splits</span><span class="p">)</span><span class="o">*</span><span class="mf">5</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="mf">10</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Topics&quot;</span><span class="p">)</span>
+        
+        
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="triangle1"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="cotopic"></div>
 
 <script type="text/javascript">   
-    var width = 300
+    var width = 600
     var height = 300
-    var triangles = 1
-    var dataset = d3.range(triangles*3).map(d=>d)
-    var tri_size = 10
-
-    var svg = d3.select("div#triangle1").append("svg")
+    var topics = ["bird","cat","whale"]
+    var documents = []
+    documents.push(({"title":"The Adventures of 🐈 and 🐦", "bird":.5, "cat":.5, "whale": 0, "icon":"🐦"}))
+    documents.push(({"title":"Mammels: 🐈 to 🐳", "bird":0, "cat":.5, "whale": .5, "icon":"🐳"}))
+    documents.push(({"title":"At the Zoo 🐈, 🐳, and 🐦", "bird":.333, "cat":.333, "whale": .333, "icon":"🐈"}))
+    console.log(documents)
+    var svg = d3.select("div#cotopic").append("svg")
         .attr("width", width)
         .attr("height", height)
 
-    var tri_x = [(tri_size/2), tri_size, 0]
-    var tri_y = [0, tri_size, tri_size]
-    svg.selectAll("circle")
-        .data(d3.range(triangles*3).map(d=>d))
+    var rectSize = 50
+    var splits = 7
+    svg.selectAll("rect.documents").data(documents)
+        .join("rect")
+        .attr("class","documents")
+        .attr("x",(width/splits) - rectSize/2)
+        .attr("y", (d,i)=>((height/5)*(i+1)) - rectSize/2)
+        .attr("width", rectSize)
+        .attr("height", rectSize)
+        .style("fill","lightgrey")
+        .style("stroke","black")
+        .style("stroke-width",1)
+        .on("mouseover", function(e,d){
+            d3.select(e.currentTarget).transition().style("stroke-width",3)    
+            var item = svg.selectAll("rect.documents").nodes();
+            var i = item.indexOf(this);
+            topics.forEach(function(e,j){
+                var top = (height/5)
+                var bottom = ((height/5)*4)
+                var middle = bottom-top
+                svg.select("circle#point2_"+j)
+                    .transition()
+                    .duration(1000) 
+                    .ease(d3.easeBounce)
+                    .attr("cy", bottom-(middle * documents[i][topics[j]]))  
+            })
+
+        })
+        .on("mouseout", function(e,d){
+            d3.select(e.currentTarget).transition().style("stroke-width",1)   
+            var item = svg.selectAll("rect.documents").nodes();
+            var i = item.indexOf(this);
+            svg.selectAll("circle.point2")
+                .transition()
+                .attr("cy",(height/5)*4)
+        })
+
+    svg.selectAll("text.documents").data(documents)
+        .join("text")
+        .attr("class","documents")
+        .attr("x",(width/splits) + (rectSize/2) + 10)
+        .attr("y", (d,i)=>(height/5)*(i+1))
+        .text(d=>d.title)
+
+    svg.selectAll("line").data(documents)
+        .join("line")
+        .attr("x1", (d,i)=>(width/splits)*(i+4))
+        .attr("y1", (height/5))
+        .attr("x2", (d,i)=>(width/splits)*(i+4))
+        .attr("y2", (height/5)*4)
+        .style("stroke","black")
+        .style("stroke-width",1)
+
+    svg.selectAll("circle.point2").data(documents)
         .join("circle")
-        .attr("cx", (d,i)=> tri_x[i])
-        .attr("cy", (d,i)=> tri_y[i])
-        .attr("r", 4)
-        .style("fill", "purple")
-        .style("stroke", "black")
-        .style("stroke-width", 3) // reminder, this means 3 pixels
+        .attr("class","point2")
+        .attr("id", (d,i)=> "point2_"+i)
+        .attr("cx", (d,i)=>(width/splits)*(i+4))
+        .attr("cy", (height/5)*4)
+        .attr("r",5)
+        .style("stroke","black")
+        .style("stroke-width",1)
+
+    svg.selectAll("text.topics").data(documents)
+        .join("text")
+        .attr("class","topics")
+        .attr("x", (d,i)=>(width/splits)*(i+4))
+        .attr("y", (height/5))
+        .style("text-anchor", "middle")
+        .text(d=>d.icon)
+
+
+    svg.append("text")
+        .attr("x",(width/splits))
+        .attr("y",10)
+
+        .text("Documents")
+
+    svg.append("text")
+        .attr("x",(width/splits)*5)
+        .attr("y",10)
+        .style("text-anchor", "middle")
+        .text("Topics")
+
 
 </script>
 </div></div>
@@ -408,76 +684,252 @@
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;triangle2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">20</span>
-    <span class="kd">var</span> <span class="nx">triangles</span> <span class="o">=</span> <span class="mf">1</span>
-    <span class="kd">var</span> <span class="nx">tri_col</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">tri_row</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">tri_size</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_col</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_row</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">tri_x</span> <span class="o">=</span> <span class="p">[(</span><span class="nx">tri_size</span><span class="o">/</span><span class="mf">2</span><span class="p">),</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="mf">0</span><span class="p">]</span>
-    <span class="kd">var</span> <span class="nx">tri_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">]</span>   
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;1&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;topics&quot;</span> <span class="na">oninput</span><span class="o">=</span><span class="s">&quot;graph(+this.value)&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;topics&quot;</span><span class="p">&gt;</span>Weight Strength: <span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">em</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;topics&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;font-style: normal;&quot;</span><span class="p">&gt;</span>0<span class="p">&lt;/</span><span class="nt">em</span><span class="p">&gt;</span>
     
-    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#triangle2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;addDocument()&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Add More Documents&quot;</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;forceTopics&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span> 
+    <span class="kd">var</span> <span class="nx">simulation</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span>
+    <span class="kd">var</span> <span class="nx">numOfDocs</span> <span class="o">=</span> <span class="mf">1</span>
+    <span class="kd">var</span> <span class="nx">currentWeighting</span> <span class="o">=</span> <span class="mf">0</span>
+    <span class="kd">var</span> <span class="nx">tri_x</span> <span class="o">=</span> <span class="p">[(</span><span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">),</span> <span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">margin</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">60</span>
+    <span class="kd">var</span> <span class="nx">tri_y</span> <span class="o">=</span> <span class="p">[</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">]</span>   
+    <span class="nx">nodes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;🐦&quot;</span><span class="p">,</span><span class="s2">&quot;fx&quot;</span><span class="o">:</span><span class="nx">tri_x</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="s2">&quot;fy&quot;</span><span class="o">:</span><span class="nx">tri_y</span><span class="p">[</span><span class="mf">0</span><span class="p">]}))</span>
+    <span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;🐳&quot;</span><span class="p">,</span><span class="s2">&quot;fx&quot;</span><span class="o">:</span><span class="nx">tri_x</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span><span class="s2">&quot;fy&quot;</span><span class="o">:</span><span class="nx">tri_y</span><span class="p">[</span><span class="mf">1</span><span class="p">]}))</span>
+    <span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;🐈&quot;</span><span class="p">,</span><span class="s2">&quot;fx&quot;</span><span class="o">:</span><span class="nx">tri_x</span><span class="p">[</span><span class="mf">2</span><span class="p">],</span><span class="s2">&quot;fy&quot;</span><span class="o">:</span><span class="nx">tri_y</span><span class="p">[</span><span class="mf">2</span><span class="p">]}))</span>
+    <span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;🐈 and 🐦&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;whale&quot;</span><span class="o">:</span> <span class="mf">0</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="o">:</span><span class="s2">&quot;🐦&quot;</span><span class="p">}))</span>
+    <span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;🐈 to 🐳&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="o">:</span><span class="mf">0</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;whale&quot;</span><span class="o">:</span> <span class="mf">.5</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="o">:</span><span class="s2">&quot;🐳&quot;</span><span class="p">}))</span>
+    <span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;🐈, 🐳, and 🐦&quot;</span><span class="p">,</span> <span class="s2">&quot;bird&quot;</span><span class="o">:</span><span class="mf">.333</span><span class="p">,</span> <span class="s2">&quot;cat&quot;</span><span class="o">:</span><span class="mf">.333</span><span class="p">,</span> <span class="s2">&quot;whale&quot;</span><span class="o">:</span> <span class="mf">.333</span><span class="p">,</span> <span class="s2">&quot;icon&quot;</span><span class="o">:</span><span class="s2">&quot;🐈&quot;</span><span class="p">}))</span>
+    <span class="nx">links</span> <span class="o">=</span> <span class="p">[]</span>  
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">3</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">3</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">2</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">3</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">0</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">4</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">0</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">4</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">2</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">4</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">.5</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">5</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">.333</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">5</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">.333</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">2</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">5</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="mf">.333</span><span class="p">}))</span>
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#forceTopics&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>          
+              
+    <span class="kd">var</span> <span class="nx">simulation</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceSimulation</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceLink</span><span class="p">(</span><span class="nx">links</span><span class="p">).</span><span class="nx">id</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">strength</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">weight</span><span class="o">*</span><span class="p">(</span><span class="mf">0</span><span class="o">/</span><span class="mf">10</span><span class="p">)))</span>
+        <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;charge&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceManyBody</span><span class="p">().</span><span class="nx">strength</span><span class="p">(</span><span class="o">-</span><span class="mf">30</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceCenter</span><span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mf">2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">/</span> <span class="mf">2</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;tick&quot;</span><span class="p">,</span> <span class="nx">ticked</span><span class="p">)</span>
+  
+
+    <span class="kd">var</span> <span class="nx">link</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.links&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">links</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;links&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgrey&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-opacity&quot;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mf">10</span><span class="o">*</span><span class="nx">d</span><span class="p">.</span><span class="nx">weight</span><span class="p">))</span>
+
+    <span class="kd">var</span> <span class="nx">scale</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleOrdinal</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">schemeCategory10</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">node</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;text.nodes&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">nodes</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;nodes&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;20px&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+
+    <span class="nx">node</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+      <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
+
+    <span class="kd">function</span> <span class="nx">ticked</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;text.nodes&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
         
-    <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">tri_col</span><span class="o">*</span><span class="nx">tri_row</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="s2">&quot;translate(&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="o">%</span><span class="nx">tri_col</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">y</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">d</span><span class="o">/</span><span class="nx">tri_col</span><span class="p">)))</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
-    <span class="nx">g</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">triangles</span><span class="o">*</span><span class="mf">3</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_x</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_y</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">4</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">3</span><span class="p">)</span> <span class="c1">// reminder, this means 3 pixels</span>
+        <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.links&quot;</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">source</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">x</span><span class="p">)</span>
+            <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">y</span><span class="p">)</span>
+        <span class="p">}</span>
+    
+<span class="kd">function</span> <span class="nx">graph</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="nx">currentWeighting</span> <span class="o">=</span> <span class="nx">n</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
+    <span class="nx">simulation</span>
+    <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceLink</span><span class="p">(</span><span class="nx">links</span><span class="p">).</span><span class="nx">id</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">strength</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">weight</span><span class="o">*</span><span class="p">(</span><span class="o">+</span><span class="nx">n</span><span class="o">/</span><span class="mf">10</span><span class="p">)))</span>
+    <span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;center&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceCenter</span><span class="p">(</span><span class="nx">width</span> <span class="o">/</span> <span class="mf">2</span><span class="p">,</span> <span class="nx">height</span> <span class="o">/</span> <span class="mf">2</span><span class="p">).</span><span class="nx">strength</span><span class="p">(</span><span class="mf">1</span><span class="o">-</span><span class="p">(</span><span class="o">+</span><span class="nx">n</span><span class="o">/</span><span class="mf">10</span><span class="p">)))</span>
+    <span class="p">.</span><span class="nx">alpha</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">alphaTarget</span><span class="p">(</span><span class="mf">0.3</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">restart</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">addDocument</span><span class="p">()</span> <span class="p">{</span>
+    
+    <span class="nx">nodes</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;name&quot;</span><span class="o">:</span><span class="s2">&quot;Doc_&quot;</span><span class="o">+</span><span class="nx">numOfDocs</span><span class="p">}))</span>
+    <span class="nx">simulation</span><span class="p">.</span><span class="nx">nodes</span><span class="p">(</span><span class="nx">nodes</span><span class="p">)</span>
+    <span class="nx">w1</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="o">*</span><span class="mf">10</span><span class="p">)</span>
+    <span class="nx">w2</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">*</span> <span class="p">(</span><span class="mf">10</span> <span class="o">-</span> <span class="nx">w1</span><span class="p">))</span>
+    <span class="nx">w3</span> <span class="o">=</span> <span class="p">(</span><span class="mf">10</span> <span class="o">-</span> <span class="nx">w1</span><span class="p">)</span> <span class="o">-</span> <span class="nx">w2</span>
+
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">5</span><span class="o">+</span><span class="nx">numOfDocs</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="nx">w1</span><span class="o">/</span><span class="mf">10</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">1</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">5</span><span class="o">+</span><span class="nx">numOfDocs</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="nx">w2</span><span class="o">/</span><span class="mf">10</span><span class="p">}))</span>
+    <span class="nx">links</span><span class="p">.</span><span class="nx">push</span><span class="p">(({</span><span class="s2">&quot;source&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">2</span><span class="p">],</span><span class="s2">&quot;target&quot;</span><span class="o">:</span><span class="nx">nodes</span><span class="p">[</span><span class="mf">5</span><span class="o">+</span><span class="nx">numOfDocs</span><span class="p">],</span><span class="s2">&quot;weight&quot;</span><span class="o">:</span><span class="nx">w3</span><span class="o">/</span><span class="mf">10</span><span class="p">}))</span>
+    <span class="nx">simulation</span><span class="p">.</span><span class="nx">force</span><span class="p">(</span><span class="s2">&quot;link&quot;</span><span class="p">,</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">forceLink</span><span class="p">(</span><span class="nx">links</span><span class="p">).</span><span class="nx">id</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">).</span><span class="nx">strength</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">weight</span><span class="o">*</span><span class="p">(</span><span class="nx">currentWeighting</span><span class="o">/</span><span class="mf">10</span><span class="p">)))</span>
+
+    <span class="nx">numOfDocs</span><span class="o">++</span>
+    <span class="nx">updateGraph</span><span class="p">()</span>
+    
+
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">updateGraph</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line.links&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">links</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;links&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;#999&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-opacity&quot;</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">sqrt</span><span class="p">(</span><span class="mf">10</span><span class="o">*</span><span class="nx">d</span><span class="p">.</span><span class="nx">weight</span><span class="p">))</span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">nodes</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span><span class="s2">&quot;nodes&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;font-size&quot;</span><span class="p">,</span> <span class="s2">&quot;20px&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>    
+
+<span class="p">}</span>
+
 
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="triangle2"></div>
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><input type="range" min="1" max="10" value="0" name="topics" oninput="graph(+this.value)">
+<label for="topics">Weight Strength: </label><em id="topics" style="font-style: normal;">0</em>
 
-<script type="text/javascript">   
-    var width = 300
-    var height = 300
-    var margin = 20
-    var triangles = 1
-    var tri_col = 10
-    var tri_row = 10
-    var tri_size = 10
-    var x = d3.scaleLinear().range([margin , width - margin]).domain([0,tri_col-1])
-    var y = d3.scaleLinear().range([margin , height-margin]).domain([0,tri_row-1])
-    var tri_x = [(tri_size/2), tri_size, 0]
-    var tri_y = [0, tri_size, tri_size]   
+<input type="button" onclick="addDocument()" value="Add More Documents">
+<div id="forceTopics"></div>
 
-    var svg = d3.select("div#triangle2").append("svg")
+<script type="text/javascript"> 
+    var simulation
+    var width = 400
+    var height = 400
+    var margin = 30
+    var numOfDocs = 1
+    var currentWeighting = 0
+    var tri_x = [(width/2), width-margin, margin]
+    var margin = 60
+    var tri_y = [margin, height-margin, height-margin]   
+    nodes = []
+    nodes.push(({"name":"🐦","fx":tri_x[0],"fy":tri_y[0]}))
+    nodes.push(({"name":"🐳","fx":tri_x[1],"fy":tri_y[1]}))
+    nodes.push(({"name":"🐈","fx":tri_x[2],"fy":tri_y[2]}))
+    nodes.push(({"name":"🐈 and 🐦", "bird":.5, "cat":.5, "whale": 0, "icon":"🐦"}))
+    nodes.push(({"name":"🐈 to 🐳", "bird":0, "cat":.5, "whale": .5, "icon":"🐳"}))
+    nodes.push(({"name":"🐈, 🐳, and 🐦", "bird":.333, "cat":.333, "whale": .333, "icon":"🐈"}))
+    links = []  
+    links.push(({"source":nodes[0],"target":nodes[3],"weight":.5}))
+    links.push(({"source":nodes[1],"target":nodes[3],"weight":.5}))
+    links.push(({"source":nodes[2],"target":nodes[3],"weight":0}))
+    links.push(({"source":nodes[0],"target":nodes[4],"weight":0}))
+    links.push(({"source":nodes[1],"target":nodes[4],"weight":.5}))
+    links.push(({"source":nodes[2],"target":nodes[4],"weight":.5}))
+    links.push(({"source":nodes[0],"target":nodes[5],"weight":.333}))
+    links.push(({"source":nodes[1],"target":nodes[5],"weight":.333}))
+    links.push(({"source":nodes[2],"target":nodes[5],"weight":.333}))
+    var svg = d3.select("div#forceTopics").append("svg")
         .attr("width", width)
-        .attr("height", height)
+        .attr("height", height)          
 
-    var g = svg.selectAll("g")
-        .data(d3.range(tri_col*tri_row).map(d=>d))
-        .join("g")
-        .attr("transform", d => "translate("+(x(d%tri_col))+","+(y(Math.floor(d/tri_col)))+")")
-    g.selectAll("circle")
-        .data(d3.range(triangles*3).map(d=>d))
-        .join("circle")
-        .attr("cx", (d,i)=> tri_x[i])
-        .attr("cy", (d,i)=> tri_y[i])
-        .attr("r", 4)
-        .style("fill", "purple")
-        .style("stroke", "black")
-        .style("stroke-width", 3) // reminder, this means 3 pixels
+    var simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(links).id(d => d.name).strength(d=>d.weight*(0/10)))
+        .force("charge", d3.forceManyBody().strength(-30))
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .on("tick", ticked)
+
+
+    var link = svg.selectAll("line.links")
+        .data(links).join("line")
+        .attr("class","links")
+        .style("stroke", "lightgrey")
+        .style("stroke-opacity", 0.6)
+        .attr("stroke-width", d => Math.sqrt(10*d.weight))
+
+    var scale = d3.scaleOrdinal(d3.schemeCategory10);
+    var node = svg.selectAll("text.nodes")
+        .data(nodes).join("text")
+        .attr("class","nodes")
+        .style("font-size", "20px")
+        .style("text-anchor", "middle")
+        .text(d => d.name)
+
+    node.append("title")
+      .text(d => d.name);
+
+    function ticked() {
+        svg.selectAll("text.nodes")
+            .attr("x",d=>d.x)
+            .attr("y",d=>d.y)
+
+        svg.selectAll("line.links")
+            .attr("x1", d => d.source.x)
+            .attr("y1", d => d.source.y)
+            .attr("x2", d => d.target.x)
+            .attr("y2", d => d.target.y)
+        }
+
+function graph(n) {
+
+    currentWeighting = n
+    var width = 400
+    var height = 400
+    simulation
+    .force("link", d3.forceLink(links).id(d => d.name).strength(d=>d.weight*(+n/10)))
+    .force("center", d3.forceCenter(width / 2, height / 2).strength(1-(+n/10)))
+    .alpha(.5)
+    .alphaTarget(0.3)
+    .restart();
+}
+function addDocument() {
+
+    nodes.push(({"name":"Doc_"+numOfDocs}))
+    simulation.nodes(nodes)
+    w1 = Math.round(Math.random()*10)
+    w2 = Math.floor(Math.random() * (10 - w1))
+    w3 = (10 - w1) - w2
+
+    links.push(({"source":nodes[0],"target":nodes[5+numOfDocs],"weight":w1/10}))
+    links.push(({"source":nodes[1],"target":nodes[5+numOfDocs],"weight":w2/10}))
+    links.push(({"source":nodes[2],"target":nodes[5+numOfDocs],"weight":w3/10}))
+    simulation.force("link", d3.forceLink(links).id(d => d.name).strength(d=>d.weight*(currentWeighting/10)))
+
+    numOfDocs++
+    updateGraph()
+
+
+}
+function updateGraph() {
+    svg.selectAll("line.links")
+        .data(links).join("line")
+        .attr("class","links")
+        .style("stroke", "#999")
+        .style("stroke-opacity", 0.6)
+        .attr("stroke-width", d => Math.sqrt(10*d.weight))
+    svg.selectAll("text")
+        .data(nodes).join("text")
+        .attr("class","nodes")
+        .style("font-size", "20px")
+        .style("text-anchor", "middle")
+        .text(d => d.name)    
+
+}
+
 
 </script>
 </div></div>
@@ -486,14 +938,14 @@
 <p><span class="math notranslate nohighlight">\(n = 5\)</span></p>
 <p><span class="math notranslate nohighlight">\(r = 3\)</span></p>
 <p><span class="math notranslate nohighlight">\(\frac{n!}{ r! (n - r)!}\)</span></p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;emoji1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
-    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">600</span>
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">500</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">200</span>
     <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span>
     <span class="kd">var</span> <span class="nx">fac</span> <span class="o">=</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mf">1</span><span class="p">)</span> <span class="o">?</span> <span class="mf">1</span> <span class="o">:</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mf">1</span><span class="p">)</span> <span class="o">*</span> <span class="nx">n</span><span class="p">;</span>
     <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">5</span>
@@ -520,13 +972,11 @@
     <span class="kd">var</span> <span class="nx">tri_size</span> <span class="o">=</span> <span class="mf">20</span>
     <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_col</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
     <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">tri_row</span><span class="p">))</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">tri_row</span><span class="p">))</span>
   
     <span class="kd">var</span> <span class="nx">tri_x</span> <span class="o">=</span> <span class="p">[(</span><span class="nx">tri_size</span><span class="o">/</span><span class="mf">2</span><span class="p">),</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="mf">0</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">tri_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">]</span>   
     <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateTurbo</span>
     <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">topics</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">y</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">())</span>
     
     <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#emoji1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
@@ -564,6 +1014,7 @@
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_x</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
         <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_y</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
         <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;alignment-baseline&quot;</span><span class="p">,</span><span class="s2">&quot;middle&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">)</span>
 
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -574,8 +1025,8 @@
 <div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="emoji1"></div>
 
 <script type="text/javascript">   
-    var width = 600
-    var height = 600
+    var width = 500
+    var height = 200
     var margin = 30
     var fac = n => !(n > 1) ? 1 : fac(n - 1) * n;
     var n = 5
@@ -602,13 +1053,11 @@
     var tri_size = 20
     var x = d3.scaleLinear().range([margin , width - margin]).domain([0,tri_col-1])
     var y = d3.scaleBand().range([margin, height-margin]).domain(d3.range(tri_row))
-    console.log(d3.range(tri_row))
 
     var tri_x = [(tri_size/2), tri_size, 0]
     var tri_y = [0, tri_size, tri_size]   
     var palette = d3.interpolateTurbo
     var color = d3.scaleLinear().range([0,1]).domain([0,topics.length-1])
-    console.log(y.bandwidth())
 
     var svg = d3.select("div#emoji1").append("svg")
         .attr("width", width)
@@ -646,6 +1095,7 @@
         .attr("x", (d,i)=> tri_x[i])
         .attr("y", (d,i)=> tri_y[i])
         .style("text-anchor", "middle")
+        .style("alignment-baseline","middle")
         .text(d=>d)
 
 </script>
@@ -985,364 +1435,7 @@
 </script>
 </div></div>
 </div>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;triangle5&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">20</span>
-    <span class="kd">var</span> <span class="nx">fac</span> <span class="o">=</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mf">1</span><span class="p">)</span> <span class="o">?</span> <span class="mf">1</span> <span class="o">:</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mf">1</span><span class="p">)</span> <span class="o">*</span> <span class="nx">n</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">6</span>
-    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="mf">3</span> 
-    <span class="kd">var</span> <span class="nx">soup</span> <span class="o">=</span> <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">topics</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">n</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">soup</span><span class="p">[</span><span class="nx">d</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">sets</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span><span class="o">+</span><span class="mf">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">j</span><span class="o">+</span><span class="mf">1</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">k</span><span class="p">])</span>
-                <span class="nx">sets</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">temp</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="kd">var</span> <span class="nx">triangles</span> <span class="o">=</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">*</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="nx">r</span><span class="p">)</span> <span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">tri_col</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">tri_row</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">sets</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="nx">tri_col</span><span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">tri_size</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_col</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_row</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">tri_x</span> <span class="o">=</span> <span class="p">[(</span><span class="nx">tri_size</span><span class="o">/</span><span class="mf">2</span><span class="p">),</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="mf">0</span><span class="p">]</span>
-    <span class="kd">var</span> <span class="nx">tri_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">]</span>   
-    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateTurbo</span>
-    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">topics</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    
-    
-    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#triangle5&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-        
-    <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">sets</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="s2">&quot;translate(&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="nx">tri_col</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">y</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">i</span><span class="o">/</span><span class="nx">tri_col</span><span class="p">)))</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
-    <span class="nx">g</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_x</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_y</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">topics</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">d</span><span class="p">))))</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span> <span class="c1">// reminder, this means 3 pixels</span>
-
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="triangle5"></div>
-
-<script type="text/javascript">   
-    var width = 300
-    var height = 300
-    var margin = 20
-    var fac = n => !(n > 1) ? 1 : fac(n - 1) * n;
-    var n = 6
-    var r = 3 
-    var soup = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    var topics = d3.range(n).map(d=>soup[d])
-    var sets = []
-    for (let i = 0; i < topics.length - 1; i++) {
-        for (let j = i+1; j < topics.length - 1; j++) {
-            for (let k = j+1; k < topics.length; k++) {
-                var temp = []
-                temp.push(topics[i])
-                temp.push(topics[j])
-                temp.push(topics[k])
-                sets.push(temp)
-            }
-        }
-    }
-
-    var triangles = fac(n) / ( fac(r) * fac(n - r) )
-    var tri_col = 10
-    var tri_row = Math.ceil(sets.length/tri_col)
-    var tri_size = 10
-    var x = d3.scaleLinear().range([margin , width - margin]).domain([0,tri_col-1])
-    var y = d3.scaleLinear().range([margin , height-margin]).domain([0,tri_row-1])
-    var tri_x = [(tri_size/2), tri_size, 0]
-    var tri_y = [0, tri_size, tri_size]   
-    var palette = d3.interpolateTurbo
-    var color = d3.scaleLinear().range([0,1]).domain([0,topics.length-1])
-
-
-    var svg = d3.select("div#triangle5").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    var g = svg.selectAll("g")
-        .data(sets)
-        .join("g")
-        .attr("transform", (d,i) => "translate("+(x(i%tri_col))+","+(y(Math.floor(i/tri_col)))+")")
-    g.selectAll("circle")
-        .data(d=>d)
-        .join("circle")
-        .attr("cx", (d,i)=> tri_x[i])
-        .attr("cy", (d,i)=> tri_y[i])
-        .attr("r", 5)
-        .style("fill", d=> palette(color(topics.indexOf(d))))
-        .style("stroke", "black")
-        .style("stroke-width", 1) // reminder, this means 3 pixels
-
-</script>
-</div></div>
-</div>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;triangle6&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">20</span>
-    <span class="kd">var</span> <span class="nx">fac</span> <span class="o">=</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mf">1</span><span class="p">)</span> <span class="o">?</span> <span class="mf">1</span> <span class="o">:</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mf">1</span><span class="p">)</span> <span class="o">*</span> <span class="nx">n</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">7</span>
-    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="mf">3</span> 
-    <span class="kd">var</span> <span class="nx">soup</span> <span class="o">=</span> <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">topics</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">n</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">soup</span><span class="p">[</span><span class="nx">d</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">sets</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span><span class="o">+</span><span class="mf">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">j</span><span class="o">+</span><span class="mf">1</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">k</span><span class="p">])</span>
-                <span class="nx">sets</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">temp</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-    
-    <span class="kd">var</span> <span class="nx">triangles</span> <span class="o">=</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">*</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="nx">r</span><span class="p">)</span> <span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">tri_col</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">tri_row</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">sets</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="nx">tri_col</span><span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">tri_size</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_col</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_row</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">tri_x</span> <span class="o">=</span> <span class="p">[(</span><span class="nx">tri_size</span><span class="o">/</span><span class="mf">2</span><span class="p">),</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="mf">0</span><span class="p">]</span>
-    <span class="kd">var</span> <span class="nx">tri_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">]</span>   
-    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateTurbo</span>
-    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">topics</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    
-    
-    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#triangle6&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-        
-    <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">sets</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="s2">&quot;translate(&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="nx">tri_col</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">y</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">i</span><span class="o">/</span><span class="nx">tri_col</span><span class="p">)))</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
-    <span class="nx">g</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_x</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_y</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">topics</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">d</span><span class="p">))))</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span> <span class="c1">// reminder, this means 3 pixels</span>
-
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="triangle6"></div>
-
-<script type="text/javascript">   
-    var width = 300
-    var height = 300
-    var margin = 20
-    var fac = n => !(n > 1) ? 1 : fac(n - 1) * n;
-    var n = 7
-    var r = 3 
-    var soup = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    var topics = d3.range(n).map(d=>soup[d])
-    var sets = []
-    for (let i = 0; i < topics.length - 1; i++) {
-        for (let j = i+1; j < topics.length - 1; j++) {
-            for (let k = j+1; k < topics.length; k++) {
-                var temp = []
-                temp.push(topics[i])
-                temp.push(topics[j])
-                temp.push(topics[k])
-                sets.push(temp)
-            }
-        }
-    }
-
-    var triangles = fac(n) / ( fac(r) * fac(n - r) )
-    var tri_col = 10
-    var tri_row = Math.ceil(sets.length/tri_col)
-    var tri_size = 10
-    var x = d3.scaleLinear().range([margin , width - margin]).domain([0,tri_col-1])
-    var y = d3.scaleLinear().range([margin , height-margin]).domain([0,tri_row-1])
-    var tri_x = [(tri_size/2), tri_size, 0]
-    var tri_y = [0, tri_size, tri_size]   
-    var palette = d3.interpolateTurbo
-    var color = d3.scaleLinear().range([0,1]).domain([0,topics.length-1])
-
-
-    var svg = d3.select("div#triangle6").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    var g = svg.selectAll("g")
-        .data(sets)
-        .join("g")
-        .attr("transform", (d,i) => "translate("+(x(i%tri_col))+","+(y(Math.floor(i/tri_col)))+")")
-    g.selectAll("circle")
-        .data(d=>d)
-        .join("circle")
-        .attr("cx", (d,i)=> tri_x[i])
-        .attr("cy", (d,i)=> tri_y[i])
-        .attr("r", 5)
-        .style("fill", d=> palette(color(topics.indexOf(d))))
-        .style("stroke", "black")
-        .style("stroke-width", 1) // reminder, this means 3 pixels
-
-</script>
-</div></div>
-</div>
 <p>Topics = 8</p>
-<div class="cell tag_hide-input docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;triangle7&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
-    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">200</span>
-    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">20</span>
-    <span class="kd">var</span> <span class="nx">fac</span> <span class="o">=</span> <span class="nx">n</span> <span class="p">=&gt;</span> <span class="o">!</span><span class="p">(</span><span class="nx">n</span> <span class="o">&gt;</span> <span class="mf">1</span><span class="p">)</span> <span class="o">?</span> <span class="mf">1</span> <span class="o">:</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="mf">1</span><span class="p">)</span> <span class="o">*</span> <span class="nx">n</span><span class="p">;</span>
-    <span class="kd">var</span> <span class="nx">n</span> <span class="o">=</span> <span class="mf">8</span>
-    <span class="kd">var</span> <span class="nx">r</span> <span class="o">=</span> <span class="mf">3</span> 
-    <span class="kd">var</span> <span class="nx">soup</span> <span class="o">=</span> <span class="s1">&#39;abcdefghijklmnopqrstuvwxyz&#39;</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">topics</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">range</span><span class="p">(</span><span class="nx">n</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">soup</span><span class="p">[</span><span class="nx">d</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">sets</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">j</span> <span class="o">=</span> <span class="nx">i</span><span class="o">+</span><span class="mf">1</span><span class="p">;</span> <span class="nx">j</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mf">1</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">k</span> <span class="o">=</span> <span class="nx">j</span><span class="o">+</span><span class="mf">1</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">topics</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-                <span class="kd">var</span> <span class="nx">temp</span> <span class="o">=</span> <span class="p">[]</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">j</span><span class="p">])</span>
-                <span class="nx">temp</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">topics</span><span class="p">[</span><span class="nx">k</span><span class="p">])</span>
-                <span class="nx">sets</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">temp</span><span class="p">)</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="kd">var</span> <span class="nx">triangles</span> <span class="o">=</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">r</span><span class="p">)</span> <span class="o">*</span> <span class="nx">fac</span><span class="p">(</span><span class="nx">n</span> <span class="o">-</span> <span class="nx">r</span><span class="p">)</span> <span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">tri_col</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">tri_row</span> <span class="o">=</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="nx">sets</span><span class="p">.</span><span class="nx">length</span><span class="o">/</span><span class="nx">tri_col</span><span class="p">)</span>
-    <span class="kd">var</span> <span class="nx">tri_size</span> <span class="o">=</span> <span class="mf">10</span>
-    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_col</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">tri_row</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    <span class="kd">var</span> <span class="nx">tri_x</span> <span class="o">=</span> <span class="p">[(</span><span class="nx">tri_size</span><span class="o">/</span><span class="mf">2</span><span class="p">),</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="mf">0</span><span class="p">]</span>
-    <span class="kd">var</span> <span class="nx">tri_y</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">,</span> <span class="nx">tri_size</span><span class="p">]</span>   
-    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateTurbo</span>
-    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">topics</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
-    
-    
-    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#triangle7&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-        
-    <span class="kd">var</span> <span class="nx">g</span> <span class="o">=</span> <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">sets</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="s2">&quot;translate(&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="o">%</span><span class="nx">tri_col</span><span class="p">))</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">y</span><span class="p">(</span><span class="nb">Math</span><span class="p">.</span><span class="nx">floor</span><span class="p">(</span><span class="nx">i</span><span class="o">/</span><span class="nx">tri_col</span><span class="p">)))</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
-    <span class="nx">g</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_x</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">tri_y</span><span class="p">[</span><span class="nx">i</span><span class="p">])</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">topics</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">d</span><span class="p">))))</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span> <span class="c1">// reminder, this means 3 pixels</span>
-
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="triangle7"></div>
-
-<script type="text/javascript">   
-    var width = 600
-    var height = 200
-    var margin = 20
-    var fac = n => !(n > 1) ? 1 : fac(n - 1) * n;
-    var n = 8
-    var r = 3 
-    var soup = 'abcdefghijklmnopqrstuvwxyz'.split('');
-    var topics = d3.range(n).map(d=>soup[d])
-    var sets = []
-    for (let i = 0; i < topics.length - 1; i++) {
-        for (let j = i+1; j < topics.length - 1; j++) {
-            for (let k = j+1; k < topics.length; k++) {
-                var temp = []
-                temp.push(topics[i])
-                temp.push(topics[j])
-                temp.push(topics[k])
-                sets.push(temp)
-            }
-        }
-    }
-
-    var triangles = fac(n) / ( fac(r) * fac(n - r) )
-    var tri_col = 10
-    var tri_row = Math.ceil(sets.length/tri_col)
-    var tri_size = 10
-    var x = d3.scaleLinear().range([margin , width - margin]).domain([0,tri_col-1])
-    var y = d3.scaleLinear().range([margin , height-margin]).domain([0,tri_row-1])
-    var tri_x = [(tri_size/2), tri_size, 0]
-    var tri_y = [0, tri_size, tri_size]   
-    var palette = d3.interpolateTurbo
-    var color = d3.scaleLinear().range([0,1]).domain([0,topics.length-1])
-
-
-    var svg = d3.select("div#triangle7").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    var g = svg.selectAll("g")
-        .data(sets)
-        .join("g")
-        .attr("transform", (d,i) => "translate("+(x(i%tri_col))+","+(y(Math.floor(i/tri_col)))+")")
-    g.selectAll("circle")
-        .data(d=>d)
-        .join("circle")
-        .attr("cx", (d,i)=> tri_x[i])
-        .attr("cy", (d,i)=> tri_y[i])
-        .attr("r", 5)
-        .style("fill", d=> palette(color(topics.indexOf(d))))
-        .style("stroke", "black")
-        .style("stroke-width", 1) // reminder, this means 3 pixels
-
-</script>
-</div></div>
-</div>
 <p>You can see how the complexity increase with the number of topics. Using the slider, change the number of topics to see how much this space increase with the number of topics.</p>
 <div class="cell tag_hide-input docutils container">
 <div class="cell_input docutils container">
@@ -1518,6 +1611,7 @@ graph(3)
 </div></div>
 </div>
 </div>
+</div>
 
     <script type="text/x-thebe-config">
     {
@@ -1544,7 +1638,7 @@ graph(3)
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Making%20a%20Map.html" title="previous page">Making a Map</a>
+    <a class='left-prev' id="prev-link" href="Introduction.html" title="previous page">Introduction</a>
 
         </div>
         
