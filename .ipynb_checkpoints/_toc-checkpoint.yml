@@ -27,3 +27,22 @@ parts:
     - file: Network Graphs
     - file: Making a Map
     - file: D3+ThreeJS    
+    
+    
+format: jb-book
+root: index
+parts:
+  - caption: Getting Starting
+    chapters:
+    - file: chapter1/Notebook Introduction
+    - file: chapter1/Getting Started
+    - file: chapter1/Troubleshooting D3.js Issues
+
+  - caption: The Basics
+    chapters:
+    - file: chapter2/The Basics - Intro
+    - file: chapter2/xxxxxxx
+    - file: chapter2/xxxxxxx
+    - file: chapter2/xxxxxxx
+    - file: chapter2/xxxxxxx
+    - file: chapter2/xxxxxxx

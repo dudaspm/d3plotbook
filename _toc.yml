@@ -1,29 +1,26 @@
-# Table of content
-# Learn more at https://jupyterbook.org/customize/toc.html
-#
 format: jb-book
-root: intro
+root: index
 parts:
   - caption: Getting Starting
     chapters:
-    - file: Notebook Introduction
-    - file: Getting Started
-    - file: Troubleshooting D3.js Issues
+    - file: chapter1/Notebook Introduction
+    - file: chapter1/Getting Started
+    - file: chapter1/Troubleshooting D3.js Issues
 
   - caption: The Basics
     chapters:
-    - file: The Basics - Intro
-    - file: Now with data!
-    - file: Style, Scales, and Shapes
-    - file: Accessing Data
-    - file: Scaling, Legends, and Color
-    - file: Transitions
-    
+    - file: chapter2/The Basics - Intro
+    - file: chapter2/Now with data!
+    - file: chapter2/Style, Scales, and Shapes
+    - file: chapter2/Accessing Data
+    - file: chapter2/Scaling, Legends, and Color
+    - file: chapter2/Transitions
+
   - caption: Specific Designs
     chapters:
-    - file: Specific Designs - Intro
-    - file: Connected Scatterplot
-    - file: Bar Charts
-    - file: Network Graphs
-    - file: Making a Map
-    - file: D3+ThreeJS    
+    - file: chapter3/Specific Designs - Intro
+    - file: chapter3/Connected Scatterplot
+    - file: chapter3/Bar Charts
+    - file: chapter3/Network Graphs
+    - file: chapter3/Making a Map
+    - file: chapter3/D3+ThreeJS
