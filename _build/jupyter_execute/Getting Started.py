@@ -43,7 +43,7 @@
 
 # No, no...close... but we need to do this in a way that tells the notebook you want to use the D3.js. 
 
-# #### (Required First Step) Enabling D3 in JupyterLab/Google Colab
+# #### (Required First Step) Enabling D3 in Jupyter Lab/Google Colab
 
 # In[1]:
 
@@ -52,12 +52,13 @@ from IPython.display import  HTML
 
 def load_d3_in_cell_output():
   display(HTML("<script src='https://d3js.org/d3.v6.min.js'></script>"))
+
 get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
 
 
 # The example below should output a blue circle. If so, everything is working properly! If not, please make sure to run the "Required First Step."
 
-# #### Both Colab and JupyterLab will be able to run the following example
+# #### Both Colab and Jupyter Lab will be able to run the following example
 
 # In[2]:
 

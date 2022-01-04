@@ -32,7 +32,7 @@ data.head()
 # 
 # Bostock, M., Ogievetsky, V., & Heer, J. (2011). D³ data-driven documents. *IEEE transactions on visualization and computer graphics*, 17(12), 2301-2309.
 
-# In[2]:
+# In[12]:
 
 
 from IPython.display import HTML, Javascript, display
@@ -51,7 +51,7 @@ configure_d3()
 
 # ### Group
 
-# In[3]:
+# In[13]:
 
 
 get_ipython().run_cell_magic('html', '', '<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    \n    d3.csv(\'weather.csv\')\n        .then(function(data) {\n            const dateConverter = d3.timeParse("%_m/%_d/%Y")\n            const daysOfTheWeek = d3.timeFormat("%a")\n            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))\n            console.log(d3.group(data, d => daysOfTheWeek(d.DATE)))\n        })\n        .catch(function(error){\n        \n        })\n    \n})\n</script>')
@@ -59,7 +59,7 @@ get_ipython().run_cell_magic('html', '', '<script type="text/javascript">   \nre
 
 # ### Rollup
 
-# In[4]:
+# In[14]:
 
 
 get_ipython().run_cell_magic('html', '', '<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    \n    d3.csv(\'weather.csv\')\n        .then(function(data) {\n            const dateConverter = d3.timeParse("%_m/%_d/%Y")\n            const daysOfTheWeek = d3.timeFormat("%a")\n            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))\n            console.log(d3.rollup(data, v => d3.mean(v, d => d.PRCP), k => daysOfTheWeek(k.DATE)))\n        })\n        .catch(function(error){\n        \n        })\n    \n})\n</script>')
@@ -67,13 +67,13 @@ get_ipython().run_cell_magic('html', '', '<script type="text/javascript">   \nre
 
 # ### ScaleBand
 
-# In[5]:
+# In[15]:
 
 
 get_ipython().run_cell_magic('html', '', '\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    \n    const someData = [0,4,14,20,30,31,42,50,59,62]\n    tryingScaleBands = d3.scaleBand().range([0,100]).domain(d3.extent(someData))\n    d3.select("div#graph1").text(someData.map(d=>tryingScaleBands(d))) \n})\n</script>\n<div id="graph1"></div>')
 
 
-# In[6]:
+# In[16]:
 
 
 get_ipython().run_cell_magic('html', '', '\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    \n    const someData = [0,4,14,20,30,31,42,50,59,62]\n    tryingScaleBands = d3.scaleBand().range([0,100]).domain(someData.map(d=>d))\n    d3.select("div#graph2").text("list length: "+(someData.length)+"   scaleBand output: "+someData.map(d=>tryingScaleBands(d))) \n})\n</script>\n<div id="graph2"></div>')
@@ -159,7 +159,7 @@ get_ipython().run_cell_magic('html', '', '\n<script type="text/javascript">   \n
 # Map - JavaScript | MDN. https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map. Accessed 9 Apr. 2021.
 # 
 
-# In[7]:
+# In[17]:
 
 
 get_ipython().run_cell_magic('html', '', '<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    \n    d3.csv(\'weather.csv\')\n        .then(function(data) {\n            const dateConverter = d3.timeParse("%_m/%_d/%Y")\n            const daysOfTheWeek = d3.timeFormat("%a")\n            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))\n            const nestedData = d3.rollup(data, v => d3.mean(v, d => d.PRCP), d => daysOfTheWeek(d.DATE))\n            console.log(nestedData)\n            var backToList = []\n            for (let [key, value] of nestedData) {\n                console.log(key + \' = \' + value)\n                backToList.push({"day":key,"avg":value})\n            }\n            console.log(backToList)     \n        \n            \n        })\n        .catch(function(error){\n        \n        })\n    \n})\n</script>')
@@ -167,7 +167,7 @@ get_ipython().run_cell_magic('html', '', '<script type="text/javascript">   \nre
 
 # ### Graph
 
-# In[8]:
+# In[18]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="graph3"></div>\n<script type="text/javascript">   \nrequire([\'d3\'], function (d3) {\n    \n    d3.csv(\'weather.csv\')\n        .then(function(data) {\n            const dateConverter = d3.timeParse("%_m/%_d/%Y")\n            const daysOfTheWeek = d3.timeFormat("%a")\n            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))\n            const nestedData = d3.rollup(data, v => d3.mean(v, d => d.PRCP), k => daysOfTheWeek(k.DATE))\n            var backToList = []\n            for (let [key, value] of nestedData) {\n                backToList.push({"day":key,"avg":value})\n            } \n            const width = 600\n            const height = 300\n            const margin = 60 \n            const svg = d3.select("div#graph3").append("svg")\n                .attr("width", width)\n                .attr("height", height)            \n            \n            const x = d3.scaleBand().range([margin , width - margin]).domain(backToList.map(d=>d.day)).padding(0)\n            const y = d3.scaleLinear().range([height-margin , margin]).domain([0,d3.max(backToList, (d,i) => d.avg)])\n            \n            const xAxis = d3.axisBottom().scale(x)\n            svg.append("g")\n                .attr("class", "axis")\n                .attr("transform", "translate(0," + (height-margin) + ")")\n                .call(xAxis) \n\n            svg.append("text")\n                .attr("x", width/2)\n                .attr("y", height-5)\n                .style("text-anchor", "middle")\n                .text("Days of the Week")\n            \n            const yAxis = d3.axisLeft().scale(y)\n            svg.append("g")\n                .attr("class", "axis")\n                .attr("transform", "translate(" + margin + ",0)")\n                .call(yAxis)\n\n            svg.append("text")\n                .attr("transform", "rotate(-90,15,"+(height/2)+")")\n                .attr("x", 15)\n                .attr("y", height/2)\n                .style("text-anchor", "middle")\n                .text("Average Rainfall (inches)")\n\n            svg.append("g").selectAll("rect")\n                .data(backToList)\n                .join("rect")\n                .attr("x", (d,i)=>x(d.day))\n                .attr("y",(d,i)=>y(d.avg))\n                .attr("width",x.bandwidth)\n                .attr("height", d => (height-margin) - y(d.avg))\n                .style("stroke-width", 2) \n                .style("stroke","black")\n                .style("fill", "steelblue")\n                .append("title")\n                .text(d=>d.avg)\n            \n        })\n        .catch(function(error){\n        \n        })\n    \n})\n</script>')

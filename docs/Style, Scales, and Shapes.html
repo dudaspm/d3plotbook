@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Styles, Scales, and Shapes &#8212; D3 + Plot + Jupyter</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,8 +22,8 @@
       
 
     
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -44,9 +44,9 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -68,10 +68,10 @@
     <script src="_static/underscore-1.12.0.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
         const thebe_selector_output = ".output,.cell_output"
@@ -82,7 +82,10 @@
     <link rel="next" title="Accessing Data" href="Accessing%20Data.html" />
     <link rel="prev" title="Now with data!" href="Now%20with%20data%21.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -100,13 +103,14 @@
     <a class="navbar-brand text-wrap" href="index.html">
       
       
+      
       <h1 class="site-logo" id="site-title">D3 + Plot + Jupyter</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -115,7 +119,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Getting Starting
  </span>
@@ -137,7 +141,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   The Basics
  </span>
@@ -174,7 +178,7 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Specific Designs
  </span>
@@ -203,6 +207,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="Making%20a%20Map.html">
    Making a Map
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="D3%2BThreeJS.html">
+   D3.js + Three.js → Aero Adobe
   </a>
  </li>
 </ul>
@@ -251,7 +260,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -306,12 +315,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav">
+            <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#styles-and-shapes">
@@ -363,12 +372,1218 @@
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Styles, Scales, and Shapes</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#styles-and-shapes">
+   Styles and Shapes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#color-scales">
+     Color Scales
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scale-linear-d3-scalelinear">
+     Scale Linear (d3.scaleLinear)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shapes">
+   Shapes
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rectangles">
+     Rectangles
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#text">
+     Text
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lines">
+     Lines
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#paths">
+     Paths
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="styles-scales-and-shapes">
+<h1>Styles, Scales, and Shapes<a class="headerlink" href="#styles-scales-and-shapes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="styles-and-shapes">
+<h2>Styles and Shapes<a class="headerlink" href="#styles-and-shapes" title="Permalink to this headline">¶</a></h2>
+<p><em>Styling</em> - The styling is handled through something call CSS (Cascading Style Sheets), but we can specifically handle this within our D3.js code. Here is a list of typical style changes.</p>
+<ul class="simple">
+<li><p>fill - the color inside the shape</p></li>
+<li><p>stroke - the border of the shape</p></li>
+<li><p>opacity - the transparency of the shape</p></li>
+<li><p>Note: there are more combinations, but these are the basics and covers a good amount of styling.</p></li>
+</ul>
+<p><em>Shapes</em> - At this point, we have been using circles primarily for out designs. There are few other shapes we need to cover and what is needed to draw these.</p>
+<ul class="simple">
+<li><p>Circles (“circle”) - cx, cy, r</p></li>
+<li><p>Rectangles (“rect”) - x, y, width, height</p></li>
+<li><p>Line (“line”) - x1, y1, x2, y2</p></li>
+<li><p>Text (“text”) - x, y</p></li>
+<li><p>Paths (“path”) - these are by far the most complicate shapes, and will require further discussion throughout these notebooks</p></li>
+<li><p>Note: There are ellipse, polylines, and polygons, but these are RARELY used in D3.js
+.</p></li>
+</ul>
+<p>First things, first… Let’s bring back our last project for Part 2.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
+
+<span class="k">def</span> <span class="nf">load_d3_in_cell_output</span><span class="p">():</span>
+  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;script src=&#39;https://d3js.org/d3.v6.min.js&#39;&gt;&lt;/script&gt;&quot;</span><span class="p">))</span>
+<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">load_d3_in_cell_output</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+    
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">30</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere1"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var dataset = [3, 5, 5, 6, 15, 18]
+
+    var svg = d3.select("div#gohere1").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+  svg.selectAll("circle")
+    .data(dataset)
+    .join("circle")
+    .attr("cx", (d,i)=> i*30)
+    .attr("cy", (d,i)=> height - (i*20))
+    .attr("r", (d,i)=> d)
+</script>
+</div></div>
+</div>
+<p>In the above example, we used .attr(ibute) for the attributes of the given shape. We can use another function called .style() to add the CSS styling directly to the shape.</p>
+<p>For our first example, we make these <em>purple circles with a black border that is 3 px in width</em></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+    
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">30</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">3</span><span class="p">)</span> <span class="c1">// reminder, this means 3 pixels</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere2"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var dataset = [3, 5, 5, 6, 15, 18]
+
+    var svg = d3.select("div#gohere2").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+  svg.selectAll("circle")
+    .data(dataset)
+    .join("circle")
+    .attr("cx", (d,i)=> i*30)
+    .attr("cy", (d,i)=> height - (i*20))
+    .attr("r", (d,i)=> d)
+    .style("fill", "purple")
+    .style("stroke", "black")
+    .style("stroke-width", 3) // reminder, this means 3 pixels
+
+</script>
+</div></div>
+</div>
+<p><strong>Your Turn</strong> - Create the 6 circles with the stroke: blue, stroke-width: 5px, and fill: lightgrey</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+    
+  <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">30</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgrey&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span> <span class="c1">// reminder, this means 3 pixels</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere3"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var dataset = [3, 5, 5, 6, 15, 18]
+
+    var svg = d3.select("div#gohere3").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+  svg.selectAll("circle")
+    .data(dataset)
+    .join("circle")
+    .attr("cx", (d,i)=> i*30)
+    .attr("cy", (d,i)=> height - (i*20))
+    .attr("r", (d,i)=> d)
+    .style("fill", "lightgrey")
+    .style("stroke", "blue")
+    .style("stroke-width", 5) // reminder, this means 3 pixels
+</script>
+</div></div>
+</div>
+<p>Again, the cool thing about D3.js is that we can use the data to style as well. Here is the same plot, but the stroke-width will be the value of our data set.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    
+    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+    
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">30</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">i</span><span class="p">)</span> 
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere4"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var dataset = [3, 5, 5, 6, 15, 18]
+
+    const svg = d3.select("div#gohere4").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    svg.selectAll("circle")
+        .data(dataset)
+        .join("circle")
+        .attr("cx", (d,i)=> i*30)
+        .attr("cy", (d,i)=> height - (i*20))
+        .attr("r", (d,i)=> d)
+        .style("fill", "purple")
+        .style("stroke", "black")
+        .style("stroke-width", (d,i) => i) 
+</script>
+</div></div>
+</div>
+<div class="section" id="color-scales">
+<h3>Color Scales<a class="headerlink" href="#color-scales" title="Permalink to this headline">¶</a></h3>
+<p>For the most part, this is not very helpful. One way to make this more useful is to use color based on our data, or in other words, the darker the color, the larger the value.</p>
+<p>To implement this, I would HIGHLY suggest visit <a class="reference external" href="https://github.com/d3/d3-scale-chromatic">color-scales</a>. As mentioned in the article, the color scales were created using Cynthia A. Brewer’s <a class="reference external" href="https://colorbrewer2.org/">ColorBrewer</a>. ColorBrewer was designed to help designers find color-blind safe and print and copier safe color palette. ColorBrewer is my (and several other programming languages) “go-to” color palette.</p>
+<p>For this, I will be choosing the Sequential (Single Hue) - Purple color. For these color palettes, they are expecting a value between 0 to 1, where 0 is the far-left of the color palette, the far-right is 1.</p>
+<p><img alt="purple.PNG" src="https://raw.githubusercontent.com/dudaspm/d3plotbook/main/purple.PNG" /></p>
+<p>For now, to get our values between 0 and 1. I will take the largest value in our array (dataset, which is 18) and divide all of our values by this. Meaning, 3 will become 3/18, 5 will be 5/18 and so on.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere5&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere5&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+    
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">30</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">d</span><span class="o">/</span><span class="mf">18</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere5"></div>
+
+<script type="text/javascript">   
+
+    var width = 300
+    var height = 300
+    var dataset = [3, 5, 5, 6, 15, 18]
+    var palette =  d3.interpolatePurples
+
+    var svg = d3.select("div#gohere5").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    svg.selectAll("circle")
+        .data(dataset)
+        .join("circle")
+        .attr("cx", (d,i)=> i*30)
+        .attr("cy", (d,i)=> height - (i*20))
+        .attr("r", (d,i)=> d)
+        .style("fill", (d,i) => palette(d/18))
+        .style("stroke", "black")
+        .style("stroke-width", 2) 
+
+</script>
+</div></div>
+</div>
+<p>Cool! We have some color! Though, we want to setup a way for our data to fit the 0 to 1 range withOUT needing us to manaully adding the largest value. There is a way to do this using <a class="reference external" href="https://github.com/d3/d3-scale">scaling</a>. Scaling allows use to create a range of values based on our data set. There are multiple types of scaling.For continuous data, or data with numeric values (Linear, Power, Log, Identity, Time, Radial). There are types of scaling, but for now we will focus on these.</p>
+</div>
+<div class="section" id="scale-linear-d3-scalelinear">
+<h3>Scale Linear (d3.scaleLinear)<a class="headerlink" href="#scale-linear-d3-scalelinear" title="Permalink to this headline">¶</a></h3>
+<p>Let’s start by creating a scaling function called between0and1. To do this we will need two things:</p>
+<ul class="simple">
+<li><p>the <strong>.domain()</strong> which is the lowest and highest number that will be given to the function. This is usually the smallest number in our array or 3, and largest number, 18.</p></li>
+<li><p>the <strong>.range()</strong> is the range of values we want to map to, as in we want all numbers to be within 0 to 1.</p></li>
+</ul>
+<p>Our smallest number (3), will be mapped 0 and our largest number (18) mapped to 1.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><figure>
+<video width="480" height="240" controls muted >
+  <source src="https://github.com/dudaspm/d3plotbook/blob/main/Styles_Scales_Shapes_video.mp4?raw=true" type=video/mp4>
+</video>
+  <figcaption>(No Audio) Figure showing how are list [5,3,16,5,6,18] maps to the domain and range [0,1]</figcaption>
+</figure>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+<span class="kd">var</span> <span class="nx">between0and1</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">3</span><span class="p">,</span><span class="mf">18</span><span class="p">])</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">between0and1</span><span class="p">(</span><span class="mf">18</span><span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="printout1"></p>
+<script>
+var dataset = [5, 3, 16, 5, 6, 18]
+var between0and1 = d3.scaleLinear().range([0,1]).domain([3,18])
+document.getElementById("printout1").innerHTML = between0and1(18)
+</script>
+</div></div>
+</div>
+<p>Again, though, we are still manually putting these values into our boundries. That’s why there are built in functions to help AUTOMAGICALLY find the lowest and highest values in an array.</p>
+<ul class="simple">
+<li><p><strong>d3.max()</strong> - finds the max value in the array</p></li>
+<li><p><strong>d3.min()</strong> - finds the min value in the array</p></li>
+<li><p><strong>d3.extent()</strong> - finds both the min and max values in an array</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">min</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="printout2"></p>
+<script>
+var dataset = [5, 3, 16, 5, 6, 18]
+document.getElementById("printout2").innerHTML = d3.min(dataset)
+</script>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="printout3"></p>
+<script>
+var dataset = [5, 3, 16, 5, 6, 18]
+document.getElementById("printout3").innerHTML = d3.max(dataset)
+</script>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout4&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="printout4"></p>
+<script>
+var dataset = [5, 3, 16, 5, 6, 18]
+document.getElementById("printout4").innerHTML = d3.extent(dataset)
+</script>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere6&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateInferno</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span>
+    
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere6&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+ 
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">30</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;lightgrey&quot;</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">5</span><span class="p">)</span> 
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere6"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolateInferno
+    var color = d3.scaleLinear().range([0,1]).domain(d3.extent(dataset))
+
+    var svg = d3.select("div#gohere6").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    svg.selectAll("circle")
+        .data(dataset)
+        .join("circle")
+        .attr("cx", (d,i)=> i*30)
+        .attr("cy", (d,i)=> height - (i*20))
+        .attr("r", (d,i)=> d)
+        .style("fill", "lightgrey" )
+        .style("stroke", (d,i) => palette(color(d)) )
+        .style("stroke-width", 5) 
+</script>
+</div></div>
+</div>
+<p>So, when to use d3.extent or d3.min/d3.max? This is a good example of this case. Right now, </p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>assumes that our lowest number, 3, is mapped to 0. Though, in some cases, we want 0 to be mapped to 0. Meaning we should use</p> 
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere7&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+    
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere7&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+ 
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">30</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere7"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere7").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    svg.selectAll("circle")
+        .data(dataset)
+        .join("circle")
+        .attr("cx", (d,i)=> i*30)
+        .attr("cy", (d,i)=> height - (i*20))
+        .attr("r", (d,i)=> d)
+        .style("fill", (d,i) => palette(color(d)) )
+        .style("stroke", "black")
+        .style("stroke-width", 2) 
+
+</script>
+</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="shapes">
+<h2>Shapes<a class="headerlink" href="#shapes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rectangles">
+<h3>Rectangles<a class="headerlink" href="#rectangles" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere8&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+    
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere8&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
+ 
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="o">*</span><span class="mf">5</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">height</span> <span class="o">-</span> <span class="p">(</span><span class="nx">i</span><span class="o">*</span><span class="mf">20</span><span class="p">))</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+    <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere8"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere8").append("svg")
+        .attr("width", width)
+        .attr("height", height)
+
+    svg.selectAll("rect")
+    .data(dataset)
+    .join("rect")
+    .attr("x", (d,i)=> d*5)
+    .attr("y", (d,i)=> height - (i*20))
+    .attr("width", 20)
+    .attr("height", 20)
+    .style("fill", (d,i) => palette(color(d)) )
+    .style("stroke", "black")
+    .style("stroke-width", 2) 
+    .style("stroke-width", 2) 
+</script>
+</div></div>
+</div>
+<p>For rectangles, the x,y is the origin of the rectangle (again in the top-lefthand corner). Right now, we are missing a rectangle, well, not missing it, it just off the canvas. For data point 3, index 0, the x position is 15, and the y position is the height. Meaning, we need to correct this. Also, we are not using the space very well. This was true with our circles, but let’s see if we can fix this issue here as well. The best way to do this is to create margins. For now, let’s just set a margin of 30. 30 on the top, bottom, left, and right. We will do this using the scaleLinear function for both the x and y axis.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere9&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span> <span class="c1">// Add my margin</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+  
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere9&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>    
+    
+    <span class="c1">// Use the margin to create an x domain and range</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span> 
+
+    <span class="c1">// Use the margin to create an y domain and range</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>   
+
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere9"></div>
+
+<script type="text/javascript">   
+
+    var width = 300
+    var height = 300
+    var margin = 30 // Add my margin
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere9").append("svg")
+        .attr("width", width)
+        .attr("height", height)    
+
+    // Use the margin to create an x domain and range
+    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) 
+
+    // Use the margin to create an y domain and range
+    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   
+
+    svg.selectAll("rect")
+        .data(dataset)
+        .join("rect")
+        .attr("x", (d,i)=> x(d))
+        .attr("y", (d,i)=> y(i))
+        .attr("width", 20)
+        .attr("height", 20)
+        .style("fill", (d,i) => palette(color(d)) )
+        .style("stroke", "black")
+        .style("stroke-width", 2) 
+
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="text">
+<h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
+<p>Next, we add some text next to our boxes. For the most part, we will be using the same code as our rectangles. Let’s take a look.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere10&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span> <span class="c1">// Add my margin</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+  
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere10&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>    
+    
+    <span class="c1">// Use the margin to create an x domain and range</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span> 
+
+    <span class="c1">// Use the margin to create an y domain and range</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>   
+
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+    
+    <span class="c1">// adding in the text </span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="s2">&quot;x: &quot;</span><span class="o">+</span><span class="nx">d</span><span class="o">+</span><span class="s2">&quot; y: &quot;</span><span class="o">+</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere10"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var margin = 30 // Add my margin
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere10").append("svg")
+        .attr("width", width)
+        .attr("height", height)    
+
+    // Use the margin to create an x domain and range
+    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) 
+
+    // Use the margin to create an y domain and range
+    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   
+
+    svg.selectAll("rect")
+        .data(dataset)
+        .join("rect")
+        .attr("x", (d,i)=> x(d))
+        .attr("y", (d,i)=> y(i))
+        .attr("width", 20)
+        .attr("height", 20)
+        .style("fill", (d,i) => palette(color(d)) )
+        .style("stroke", "black")
+        .style("stroke-width", 2) 
+
+    // adding in the text 
+    svg.selectAll("text")
+        .data(dataset)
+        .join("text")
+        .attr("x", (d,i)=> x(d))
+        .attr("y", (d,i)=> y(i))
+        .text((d,i) => "x: "+d+" y: "+i)
+</script>
+</div></div>
+</div>
+<p>Adding in the text, the only additional piece we need to add is what the .text() will be. In this case, I am again using the data to add specific data related text to the screen. If we take a particular look at this function, we can see how we used both text and data together.</p>
+<p><code>.text((d,i) =&gt; <span style="color:#008ec4">”x: “</span>+<span style="color:#005f87">d</span>+<span style="color:#008ec4">” y: “</span>+<span style="color:#005f87">i</span>)</code></p>
+<p>Using the “x: “, the plus sign (+), and d will combine or concatenate the two to make one string</p>
+<p>The last thing that needs to be adjusted is the fact that both the rectangle and the text occupy the same x,y coordinate, which means they overlap a bit. Also, the text for our last rectangle is off the canvas. So, let’s adjust both of these.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere11&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span> <span class="c1">// Add my margin</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+  
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere11&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>    
+    
+    <span class="c1">// Use the margin to create an x domain and range</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span> 
+
+    <span class="c1">// Use the margin to create an y domain and range</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>   
+
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="mf">20</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+    
+    <span class="c1">// adding in the text </span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="c1">// moving our text up a bit (subtracting 5 pixels)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="o">-</span><span class="mf">5</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">text</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="s2">&quot;x: &quot;</span><span class="o">+</span><span class="nx">d</span><span class="o">+</span><span class="s2">&quot; y: &quot;</span><span class="o">+</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere11"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var margin = 30 // Add my margin
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere11").append("svg")
+        .attr("width", width)
+        .attr("height", height)    
+
+    // Use the margin to create an x domain and range
+    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) 
+
+    // Use the margin to create an y domain and range
+    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   
+
+    svg.selectAll("rect")
+        .data(dataset)
+        .join("rect")
+        .attr("x", (d,i)=> x(d))
+        .attr("y", (d,i)=> y(i))
+        .attr("width", 20)
+        .attr("height", 20)
+        .style("fill", (d,i) => palette(color(d)) )
+        .style("stroke", "black")
+        .style("stroke-width", 2) 
+
+    // adding in the text 
+    svg.selectAll("text")
+        .data(dataset)
+        .join("text")
+        .attr("x", (d,i)=> x(d))
+        // moving our text up a bit (subtracting 5 pixels)
+        .attr("y", (d,i)=> y(i)-5)
+        .text((d,i) => "x: "+d+" y: "+i)
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="lines">
+<h3>Lines<a class="headerlink" href="#lines" title="Permalink to this headline">¶</a></h3>
+<p>Next, we have lines. Lines are similar to circles, rectangles, and text. You need a starting x,y, and similar to the rectangle you need secondary dimension (width/height), whereas lines need an ending x,y position. I think there can be a misconception about lines, based on “line graphs.” Line graphs (as seen below) look like a single line but fluctuations here and there when a better way to think about lines independent of one another. Paths (talked about next) are where we will be able to think about one, continuous line.</p>
+<table>
+<tr>
+<td>
+<img
+  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/linechart1.PNG'
+  width="200" />
+</td>
+<td>
+<img
+  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/linechart2.PNG'
+  width="200" />
+</td>
+</tr>
+<tr>
+<td>
+Figure 1 - </br>How you might assume the line shape would work.
+</td>
+<td>
+Figure 2 - </br>How the line shape actually works.
+</td>
+</tr>
+</table><div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere12&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span> <span class="c1">// Add my margin</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+  
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere12&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>    
+    
+    <span class="c1">// Use the margin to create an x domain and range</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span> 
+
+    <span class="c1">// Use the margin to create an y domain and range</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>   
+
+    <span class="c1">// update this to select the lines, then join (or add) lines.</span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="c1">// lines require x1,y1 (where the line starts) and x2,y2 (where the lines end)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">)</span><span class="o">+</span><span class="mf">10</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="o">+</span><span class="mf">10</span><span class="p">)</span>
+        <span class="c1">// to change the color of the line we need to update the stroke, not the fill. </span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">palette</span><span class="p">(</span><span class="nx">color</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">10</span><span class="p">)</span> 
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere12"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var margin = 30 // Add my margin
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere12").append("svg")
+        .attr("width", width)
+        .attr("height", height)    
+
+    // Use the margin to create an x domain and range
+    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) 
+
+    // Use the margin to create an y domain and range
+    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   
+
+    // update this to select the lines, then join (or add) lines.
+    svg.selectAll("line")
+        .data(dataset)
+        .join("line")
+        // lines require x1,y1 (where the line starts) and x2,y2 (where the lines end)
+        .attr("x1", (d,i)=> x(d))
+        .attr("y1", (d,i)=> y(i))
+        .attr("x2", (d,i)=> x(d)+10)
+        .attr("y2", (d,i)=> y(i)+10)
+        // to change the color of the line we need to update the stroke, not the fill. 
+        .style("stroke", (d,i) => palette(color(d)) )
+        .style("stroke-width", 10) 
+
+</script>
+</div></div>
+</div>
+<p>To create a line chart from these lines would require several changes. Here is an example of how to do it, but there is a MUCH simpler way using paths, which we will talk about in a second.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere13&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span> <span class="c1">// Add my margin</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+  
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere13&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>    
+    
+    <span class="c1">// Use the margin to create an x domain and range</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span> 
+
+    <span class="c1">// Use the margin to create an y domain and range</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>   
+
+    <span class="c1">// update this to select the lines, then join (or add) lines.</span>
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;line&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y1&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
+        <span class="c1">// we then need to end our line with the next data point.</span>
+        <span class="c1">// that&#39;s why we use (i+1) and why we cutoff the last position in our array</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">dataset</span><span class="p">[</span><span class="nx">i</span><span class="o">+</span><span class="mf">1</span><span class="p">]))</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y2&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="o">+</span><span class="mf">1</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span> <span class="p">)</span> <span class="c1">// changing this back, as not all the data points (and colors) will be represented</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">10</span><span class="p">)</span> 
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere13"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var margin = 30 // Add my margin
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere13").append("svg")
+        .attr("width", width)
+        .attr("height", height)    
+
+    // Use the margin to create an x domain and range
+    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) 
+
+    // Use the margin to create an y domain and range
+    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   
+
+    // update this to select the lines, then join (or add) lines.
+    svg.selectAll("line")
+        .data(dataset.slice(0, -1))
+        .join("line")
+        .attr("x1", (d,i)=> x(d))
+        .attr("y1", (d,i)=> y(i))
+        // we then need to end our line with the next data point.
+        // that's why we use (i+1) and why we cutoff the last position in our array
+        .attr("x2", (d,i)=> x(dataset[i+1]))
+        .attr("y2", (d,i)=> y(i+1))
+        .style("stroke", "black" ) // changing this back, as not all the data points (and colors) will be represented
+        .style("stroke-width", 10) 
+</script>
+</div></div>
+</div>
+<p>As you can see, this is not the most elegant way to handle creating a line.</p>
+</div>
+<div class="section" id="paths">
+<h3>Paths<a class="headerlink" href="#paths" title="Permalink to this headline">¶</a></h3>
+<p>Finally, we have paths. Up to this point, we have been focusing on the idea “for each data point, we create a shape or object.” Paths require multiple data points to create the shape/object. We can use a function to create our line. We can either do this in a new (separate) cell or in with the code itself. Let’s build it in our design.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere14&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+    <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+    <span class="kd">var</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">30</span> <span class="c1">// Add my margin</span>
+    <span class="kd">var</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">5</span><span class="p">,</span> <span class="mf">3</span><span class="p">,</span> <span class="mf">16</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
+    <span class="kd">var</span> <span class="nx">palette</span> <span class="o">=</span>  <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolatePurples</span>
+    <span class="kd">var</span> <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)])</span>
+  
+    <span class="kd">var</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere14&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>    
+    
+    <span class="c1">// Use the margin to create an x domain and range</span>
+    <span class="kd">var</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">))</span> 
+
+    <span class="c1">// Use the margin to create an y domain and range</span>
+    <span class="kd">var</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">,</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>   
+
+    <span class="c1">// this is our function to create the line, where the x is based on the d(ata) and the y on the i(ndex)</span>
+    <span class="kd">var</span> <span class="nx">line</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">line</span><span class="p">()</span>
+        <span class="p">.</span><span class="nx">x</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">))</span> 
+        <span class="p">.</span><span class="nx">y</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">y</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span> 
+
+    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">data</span><span class="p">([</span><span class="nx">dataset</span><span class="p">])</span>
+        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;path&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;d&quot;</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span> <span class="s2">&quot;black&quot;</span> <span class="p">)</span>
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">10</span><span class="p">)</span> 
+        <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;none&quot;</span><span class="p">)</span> <span class="c1">// SPECIAL NOTE HERE: we set the fill to &quot;none&quot; because a path will have a fill color</span>
+
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere14"></div>
+
+<script type="text/javascript">   
+    var width = 300
+    var height = 300
+    var margin = 30 // Add my margin
+    var dataset = [5, 3, 16, 5, 6, 18]
+    var palette =  d3.interpolatePurples
+    var color = d3.scaleLinear().range([0,1]).domain([0,d3.max(dataset)])
+
+    var svg = d3.select("div#gohere14").append("svg")
+        .attr("width", width)
+        .attr("height", height)    
+
+    // Use the margin to create an x domain and range
+    var x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset)) 
+
+    // Use the margin to create an y domain and range
+    var y = d3.scaleLinear().range([height-margin,margin]).domain([0,dataset.length-1])   
+
+    // this is our function to create the line, where the x is based on the d(ata) and the y on the i(ndex)
+    var line = d3.line()
+        .x((d,i)=> x(d)) 
+        .y((d,i)=> y(i)) 
+
+    svg.selectAll("path")
+        .data([dataset])
+        .join("path")
+        .attr("d", line)
+        .style("stroke", "black" )
+        .style("stroke-width", 10) 
+        .style("fill", "none") // SPECIAL NOTE HERE: we set the fill to "none" because a path will have a fill color
+
+</script>
+</div></div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "dudaspm/d3plotbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
                 
-  <div class="section" id="styles-scales-and-shapes">
+  <div class="tex2jax_ignore mathjax_ignore section" id="styles-scales-and-shapes">
 <h1>Styles, Scales, and Shapes<a class="headerlink" href="#styles-scales-and-shapes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="styles-and-shapes">
 <h2>Styles and Shapes<a class="headerlink" href="#styles-and-shapes" title="Permalink to this headline">¶</a></h2>
@@ -1508,33 +2723,41 @@ Figure 2 - </br>How the line shape actually works.
               </div>
               
         
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="Now%20with%20data%21.html" title="previous page">Now with data!</a>
-    <a class='right-next' id="next-link" href="Accessing%20Data.html" title="next page">Accessing Data</a>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Now%20with%20data%21.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Now with data!</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="Accessing%20Data.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Accessing Data</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
         
         </div>
     </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By Patrick M. Dudas<br/>
-        
-            &copy; Copyright 2021.<br/>
-      </p>
-    </div>
-  </footer>
+    <footer class="footer">
+  <p>
+    
+      By Patrick M. Dudas<br/>
+    
+        &copy; Copyright 2021.<br/>
+  </p>
+</footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
