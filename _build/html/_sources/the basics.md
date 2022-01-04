@@ -1,1 +1,0 @@
-In this section we focus on the core concepts of D3.js. 
