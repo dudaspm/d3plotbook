@@ -45,7 +45,7 @@
 
 # ### (Required First Step) Enabling D3 in Jupyter Lab/Google Colab
 
-# In[1]:
+# In[8]:
 
 
 from IPython.display import  HTML
@@ -60,7 +60,7 @@ get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
 
 # ### Both Colab and Jupyter Lab will be able to run the following example
 
-# In[2]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example1"></div>\n\n<script type="text/javascript">   \n    var width = 300\n    var height = 100\n    \n    var svg = d3.select("div#example1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n\n    var circle = svg.append("circle")\n        .attr("cx", 150)\n        .attr("cy", 50)\n        .attr("r", 20)\n        .style("fill", "blue")\n        .style("stroke", "black")\n\n</script>')
@@ -81,7 +81,7 @@ get_ipython().run_cell_magic('html', '', '<div id="example1"></div>\n\n<script t
 
 # <img  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/intro_2.PNG'  width="300" />
 
-# In[3]:
+# In[10]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example2"></div>\n\n<script type="text/javascript">   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n\n</script>')
@@ -115,7 +115,7 @@ get_ipython().run_cell_magic('html', '', '<div id="example2"></div>\n\n<script t
 
 # To do this, we take our canvas and *append*, well, a circle. Considering a circle needs a cx, cy, and r, we will add those as attr(ibutes). Which gets us...
 
-# In[4]:
+# In[11]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example3"></div>\n\n<script type="text/javascript">   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n</script>')
@@ -148,7 +148,7 @@ get_ipython().run_cell_magic('html', '', '<div id="example3"></div>\n\n<script t
 
 # To create the actual graph from above, we need to take advantage of the height variable to do so. 
 
-# In[5]:
+# In[12]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example4"></div>\n\n<script type="text/javascript">   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", height - 280)\n        .attr("r", 80)\n\n</script>')
@@ -158,7 +158,7 @@ get_ipython().run_cell_magic('html', '', '<div id="example4"></div>\n\n<script t
 
 # Your turn: Create a new easel and canvas. On the canvas, add 3 circles to your canvas at different places and of different sizes.
 
-# In[6]:
+# In[13]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example5"></div>\n\n<script type="text/javascript">   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example5").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    # YOUR CODE HERE #\n\n</script>')
@@ -173,7 +173,7 @@ get_ipython().run_cell_magic('html', '', '<div id="example5"></div>\n\n<script t
 # </svg>
 # ```
 
-# In[7]:
+# In[14]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example6"></div>\n\n<script type="text/javascript">   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example6").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    # YOUR CODE HERE #\n\n</script>')
