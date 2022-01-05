@@ -6,7 +6,7 @@ author: Patrick M. Dudas
 email: pmd19@psu.edu
 copyright : "2021 - The Pennsylvania State University"  # Copyright year to be placed in the footer
 description: >- # this means to ignore newlines until "baseurl:"
-  My JupyterLab + Python Book
+  D3 + Plot + Jupyter
   
 # the name of your GitHub Repo. 
 # If there is no subpath for your site, use an empty string ""  
@@ -25,6 +25,13 @@ url: "https://dudaspm.github.io/" #@@@ CHANGE THIS - 6 @@@#
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
+  
+execute:
+  timeout: 120
+  
+sphinx:
+  config:
+    bibtex_reference_style: author_year
 # Main page settings
 # Optional: you can replace with <https://github.com/my-first-jupyter-book/my-book-site> your repo URL
 footer_text               : View source repository at <a href="https://github.com/dudaspm/d3plotbook"></a> #@@@ CHANGE THIS - 7 @@@#
@@ -83,7 +90,7 @@ launch_buttons:
     codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 repository:
-  url: https://github.com/dudaspm/d3plotbook
+  url: https://github.com/dudaspm/LDA_Bias_Data
   branch: main
 html:
   use_edit_page_button: true
@@ -153,6 +160,5 @@ plugins:
   - jekyll-redirect-from
   - jekyll-scholar
 
-
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
-jupyter_book_version: "0.11.3"
+jupyter_book_version: "0.11.1"
