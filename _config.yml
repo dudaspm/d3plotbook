@@ -28,6 +28,7 @@ bibtex_bibfiles:
   
 execute:
   timeout: 120
+  execute_notebooks: force
   
 sphinx:
   config:
@@ -90,7 +91,7 @@ launch_buttons:
     codemirror_theme                 : "abcdef"  # Theme for codemirror cells, for options see https://codemirror.net/doc/manual.html#config
 
 repository:
-  url: https://github.com/dudaspm/LDA_Bias_Data
+  url: https://github.com/dudaspm/d3plotbook
   branch: main
 html:
   use_edit_page_button: true
