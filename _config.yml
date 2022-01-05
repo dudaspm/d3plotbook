@@ -4,8 +4,9 @@
 title: D3 + Plot + Jupyter
 author: Patrick M. Dudas
 email: pmd19@psu.edu
+copyright : "2021 - The Pennsylvania State University"  # Copyright year to be placed in the footer
 description: >- # this means to ignore newlines until "baseurl:"
-  My D3 + Plot + Jupyter Book
+  My JupyterLab + Python Book
   
 # the name of your GitHub Repo. 
 # If there is no subpath for your site, use an empty string ""  
@@ -24,9 +25,6 @@ url: "https://dudaspm.github.io/" #@@@ CHANGE THIS - 6 @@@#
 # Add a bibtex file so that we can create citations
 bibtex_bibfiles:
   - references.bib
-sphinx:
-  config:
-    bibtex_reference_style: author_year
 # Main page settings
 # Optional: you can replace with <https://github.com/my-first-jupyter-book/my-book-site> your repo URL
 footer_text               : View source repository at <a href="https://github.com/dudaspm/d3plotbook"></a> #@@@ CHANGE THIS - 7 @@@#
@@ -112,7 +110,6 @@ custom_static_url         : "/assets/custom" # Path to user's custom CSS/JS file
 # Jekyll build settings (only modify if you know what you're doing)
 
 # Site settings
-future: true
 defaults:
   - scope:
       path: ""
@@ -156,5 +153,6 @@ plugins:
   - jekyll-redirect-from
   - jekyll-scholar
 
+
 # Jupyter Book version - DO NOT CHANGE THIS. It is generated when a new book is created
-jupyter_book_version: "0.10.2"
+jupyter_book_version: "0.11.3"
