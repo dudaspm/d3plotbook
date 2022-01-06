@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bar Charts &#8212; My sample book</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Network Graph" href="Network%20Graphs.html" />
+    <link rel="prev" title="Connected Scatterplot" href="Connected%20Scatterplot.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   D3 + Plot in JupyterLab Notebooks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting Starting
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter1/Notebook%20Introduction.html">
+   Notebook Introduction - 🐸
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter1/Getting%20Started.html">
+   Getting Started
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter1/Troubleshooting%20D3.js%20Issues.html">
+   Troubleshooting D3.js Issues
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  The Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/The%20Basics%20-%20Intro.html">
+   The Basics - Intro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Now%20with%20data%21.html">
+   Now with data!
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Style%2C%20Scales%2C%20and%20Shapes.html">
+   Styles, Scales, and Shapes
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Accessing%20Data.html">
+   Accessing Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Scaling%2C%20Legends%2C%20and%20Color.html">
+   Scaling, Legends, and Color
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Transitions.html">
+   Transitions
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Specific Designs
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Specific%20Designs%20-%20Intro.html">
+   Specific Designs - Intro
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Connected%20Scatterplot.html">
+   Connected Scatterplot
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Bar Charts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Network%20Graphs.html">
+   Network Graph
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Making%20a%20Map.html">
+   Making a Map
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="D3%2BThreeJS.html">
+   D3.js + Three.js → Aero Adobe
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/chapter3/Bar Charts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter3/Bar Charts.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chapter3/Bar Charts.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data">
+   Data
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acknowledgement">
+   Acknowledgement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#group">
+   Group
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rollup">
+   Rollup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#scaleband">
+   ScaleBand
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#graph">
+   Graph
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="bar-charts">
+<h1>Bar Charts<a class="headerlink" href="#bar-charts" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/e518430a731ac11f52de9217311c674d/raw/4c2f2bd6639582a420ef321493188deebc4a575e/StateCollege2000-2020.csv&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># replace all NAs with 0s</span>
+<span class="n">data</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;weather.csv&#39;</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Temp</span><span class="o">/</span><span class="n">ipykernel_1684</span><span class="o">/</span><span class="mf">3202616535.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">url</span><span class="o">=</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/e518430a731ac11f52de9217311c674d/raw/4c2f2bd6639582a420ef321493188deebc4a575e/StateCollege2000-2020.csv&quot;</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">data</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># replace all NAs with 0s</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;pandas&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="acknowledgement">
+<h2>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this headline">¶</a></h2>
+<p><cite>Cite as: Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeal, Kristy Thomas, Xungang Yin, Steven Anthony, Ron Ray, Russell S. Vose, Byron E.Gleason, and Tamara G. Houston (2012): Global Historical Climatology Network - Daily (GHCN-Daily), Version 3. CITY:US420020. NOAA National Climatic Data Center. doi:10.7289/V5D21VHZ 02/22/2021.</p>
+<p>Publications citing this dataset should also cite the following article: Matthew J. Menne, Imke Durre, Russell S. Vose, Byron E. Gleason, and Tamara G. Houston, 2012: An Overview of the Global Historical Climatology Network-Daily Database. J. Atmos. Oceanic Technol., 29, 897-910. doi:10.1175/JTECH-D-11-00103.1.</p>
+<p>Use liability: NOAA and NCEI cannot provide any warranty as to the accuracy, reliability, or completeness of furnished data. Users assume responsibility to determine the usability of these data. The user is responsible for the results of any application of this data for other than its intended purpose.</cite></p>
+<p>Links:
+<a class="reference external" href="https://data.noaa.gov/onestop/">https://data.noaa.gov/onestop/</a></p>
+<p><a class="reference external" href="https://www.ncdc.noaa.gov/cdo-web/search">https://www.ncdc.noaa.gov/cdo-web/search</a></p>
+<p>Bostock, M., Ogievetsky, V., &amp; Heer, J. (2011). D³ data-driven documents. <em>IEEE transactions on visualization and computer graphics</em>, 17(12), 2301-2309.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="k">def</span> <span class="nf">configure_d3</span><span class="p">():</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    require.config({</span>
+<span class="s2">      paths: {</span>
+<span class="s2">        d3: &quot;https://d3js.org/d3.v6.min&quot;</span>
+<span class="s2">      }</span>
+<span class="s2">    })&quot;&quot;&quot;</span><span class="p">))</span>
+
+
+<span class="n">configure_d3</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/javascript">
+    require.config({
+      paths: {
+        d3: "https://d3js.org/d3.v6.min"
+      }
+    })</script></div>
+</div>
+</div>
+<div class="section" id="group">
+<h2>Group<a class="headerlink" href="#group" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s1">&#39;weather.csv&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">dateConverter</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeParse</span><span class="p">(</span><span class="s2">&quot;%_m/%_d/%Y&quot;</span><span class="p">)</span>
+            <span class="kd">const</span> <span class="nx">daysOfTheWeek</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeFormat</span><span class="p">(</span><span class="s2">&quot;%a&quot;</span><span class="p">)</span>
+            <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="s2">&quot;DATE&quot;</span><span class="o">:</span><span class="nx">dateConverter</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">DATE</span><span class="p">),</span><span class="s2">&quot;PRCP&quot;</span><span class="o">:+</span><span class="nx">d</span><span class="p">.</span><span class="nx">PRCP</span><span class="p">}))</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">daysOfTheWeek</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">DATE</span><span class="p">)))</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.csv('weather.csv')
+        .then(function(data) {
+            const dateConverter = d3.timeParse("%_m/%_d/%Y")
+            const daysOfTheWeek = d3.timeFormat("%a")
+            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))
+            console.log(d3.group(data, d => daysOfTheWeek(d.DATE)))
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="rollup">
+<h2>Rollup<a class="headerlink" href="#rollup" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s1">&#39;weather.csv&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">dateConverter</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeParse</span><span class="p">(</span><span class="s2">&quot;%_m/%_d/%Y&quot;</span><span class="p">)</span>
+            <span class="kd">const</span> <span class="nx">daysOfTheWeek</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeFormat</span><span class="p">(</span><span class="s2">&quot;%a&quot;</span><span class="p">)</span>
+            <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="s2">&quot;DATE&quot;</span><span class="o">:</span><span class="nx">dateConverter</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">DATE</span><span class="p">),</span><span class="s2">&quot;PRCP&quot;</span><span class="o">:+</span><span class="nx">d</span><span class="p">.</span><span class="nx">PRCP</span><span class="p">}))</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">mean</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">PRCP</span><span class="p">),</span> <span class="nx">k</span> <span class="p">=&gt;</span> <span class="nx">daysOfTheWeek</span><span class="p">(</span><span class="nx">k</span><span class="p">.</span><span class="nx">DATE</span><span class="p">)))</span>
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.csv('weather.csv')
+        .then(function(data) {
+            const dateConverter = d3.timeParse("%_m/%_d/%Y")
+            const daysOfTheWeek = d3.timeFormat("%a")
+            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))
+            console.log(d3.rollup(data, v => d3.mean(v, d => d.PRCP), k => daysOfTheWeek(k.DATE)))
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="scaleband">
+<h2>ScaleBand<a class="headerlink" href="#scaleband" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="kd">const</span> <span class="nx">someData</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">4</span><span class="p">,</span><span class="mf">14</span><span class="p">,</span><span class="mf">20</span><span class="p">,</span><span class="mf">30</span><span class="p">,</span><span class="mf">31</span><span class="p">,</span><span class="mf">42</span><span class="p">,</span><span class="mf">50</span><span class="p">,</span><span class="mf">59</span><span class="p">,</span><span class="mf">62</span><span class="p">]</span>
+    <span class="nx">tryingScaleBands</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">100</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">someData</span><span class="p">))</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#graph1&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">someData</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">tryingScaleBands</span><span class="p">(</span><span class="nx">d</span><span class="p">)))</span> 
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;graph1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    const someData = [0,4,14,20,30,31,42,50,59,62]
+    tryingScaleBands = d3.scaleBand().range([0,100]).domain(d3.extent(someData))
+    d3.select("div#graph1").text(someData.map(d=>tryingScaleBands(d))) 
+})
+</script>
+<div id="graph1"></div>
+</div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="kd">const</span> <span class="nx">someData</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">4</span><span class="p">,</span><span class="mf">14</span><span class="p">,</span><span class="mf">20</span><span class="p">,</span><span class="mf">30</span><span class="p">,</span><span class="mf">31</span><span class="p">,</span><span class="mf">42</span><span class="p">,</span><span class="mf">50</span><span class="p">,</span><span class="mf">59</span><span class="p">,</span><span class="mf">62</span><span class="p">]</span>
+    <span class="nx">tryingScaleBands</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">100</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">someData</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">))</span>
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#graph2&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;list length: &quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">someData</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;   scaleBand output: &quot;</span><span class="o">+</span><span class="nx">someData</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">tryingScaleBands</span><span class="p">(</span><span class="nx">d</span><span class="p">)))</span> 
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;graph2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html">
+<script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    const someData = [0,4,14,20,30,31,42,50,59,62]
+    tryingScaleBands = d3.scaleBand().range([0,100]).domain(someData.map(d=>d))
+    d3.select("div#graph2").text("list length: "+(someData.length)+"   scaleBand output: "+someData.map(d=>tryingScaleBands(d))) 
+})
+</script>
+<div id="graph2"></div>
+</div></div>
+</div>
+<p>This makes a bit more sense. As you can see, this is evenly spacing all of our data based on the maximum range (100) minus the minimal range value (0), then dividing this by the size (the number of values) in the list. Or…</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{(\text{maximum range value} - \text{minimum range value})}{\text{total number in the array}} = \frac{(100-0)}{10}
+\]</div>
+<p>scaleBand() has a couple of neat features that can help with bar chart design. Two in particular are called scaleBand().bandwidth and scaleBand().padding.</p>
+<ul class="simple">
+<li><p>scaleBand().bandwidth - will give you the distance between points in scaleBand(). Meaning, it will be perfect for our bar charts, because we will be using rectangles for our bars.</p></li>
+<li><p>scaleBand().padding - increases the padding between each bar.</p></li>
+</ul>
+<p>Here is a graph showing the use of scaleBand() and using scaleBand().bandwidth to create the width of the rectangles.</p>
+<p><img alt="learning-d3-js-part-5-bar-chart.svg" src="chapter3/attachment:learning-d3-js-part-5-bar-chart.svg" /></p>
+<p>The figure below maps out 10 values and padding for 0 to 1. 0 indicating no padding and 1 meaning 100% padding (or no rectangle at all). Notice how values and the axis get evenly spaced based on the padding as well.</p>
+<p><img alt="learning-d3-js-part-5-bar-chart_2.svg" src="chapter3/attachment:learning-d3-js-part-5-bar-chart_2.svg" /></p>
+<p>Creating the rectangles themselves is another significant change from the line chart. With rectangles, you need 4 components:</p>
+<p><span style="color:#008ec4">svg</span>.append(<span style="color:#008ec4">”g”</span>).selectAll(<span style="color:#008ec4">”rect”</span>)
+<br>  .data(<span style="color:#008ec4">data</span>)
+<br>  .join(<span style="color:#008ec4">”rect”</span>)
+<br>the x position (as it relates to the date)
+<br>  .attr(<span style="color:#008ec4">”x”</span>, (d,i)=&gt;x(<span style="color:#008ec4">d</span>.day))
+<br>the y position (as it relates to the interest), NOTE it is NOT the x-axis
+<br>  .attr(<span style="color:#008ec4">”y”</span>,(d,i)=&gt;y(<span style="color:#008ec4">d</span>.avg))
+<br>the width, which we talked about in regards to using the bandwidth
+<br>  .attr(<span style="color:#008ec4">”width”</span>,<span style="color:#008ec4">x</span>.bandwidth)
+<br>this one is a bit, well, weird. I will explain below.
+<br>  .attr(<span style="color:#008ec4">”height”</span>, d =&gt; <span style="color:#008ec4">y</span>(0) - <span style="color:#008ec4">y</span>(<span style="color:#008ec4">d</span>.avg))
+<br>  .style(<span style="color:#008ec4">”stroke-width”</span>, 2)
+<br>  .style(<span style="color:#008ec4">”stroke”</span>,<span style="color:#008ec4">”black”</span>)
+<br>  .style(<span style="color:#008ec4">”fill”</span>, <span style="color:#008ec4">”steelblue”</span>)</p>
+<p>OK, let’s talk about height. The weirdness stems from our 0,0 being in the top-left corner of the screen. Meaning, when we create a rectangle and add a ‘’height,’’ it goes down and not up.</p>
+<p>Here is an example of a rectangle that starts in the middle of the box. When we add height, it goes down. You may think, well, can I use a negative height? The answer is no. What does this mean? Continue below.</p>
+<p><img alt="learning-d3-js-part-5-bar-chart_4.svg" src="chapter3/attachment:learning-d3-js-part-5-bar-chart_4.svg" /></p>
+<p>This how we get the following. We first need to recall that the y is
+<br>
+.attr(<span style="color:#008ec4">”y”</span>,(d,i)=&gt;y(<span style="color:#008ec4">d</span>.avg))
+<br>
+This is NOT the x-axis, but the position of the actual value at that given avg.
+<br><br>
+Next, we take the maximum height value from our y scaleLinear().
+<br></p>
+<p>y = <span style="color:#008ec4">d3</span>.scaleLinear().range([<span style="color:#008ec4">height</span>-<span style="color:#008ec4">margin</span>.bottom , <span style="color:#008ec4">margin</span>.top]).domain([<span style="color:#008ec4">0,d3.max(backToList, (d,i) =&gt; d.avg)</span>])</p>
+<p><br><br>
+The largest value is (<span style="color:#008ec4">height</span>-<span style="color:#008ec4">margin</span>.bottom) or in another words, the smallest index in our y scaleLinear() ( <span style="color:#008ec4">y</span>(0))
+Last part we need to remember that we are starting at y(<span style="color:#008ec4">d</span>.interest) and we trying to get back to the x-axis. Meaning, we need to subtract out <span style="color:#008ec4">y</span>(<span style="color:#008ec4">d</span>.avg)
+<br><br></p>
+<p>We can write out the height two different ways:
+<br></p>
+<p>.attr(<span style="color:#008ec4">”height”</span>, d =&gt; <span style="color:#008ec4">y</span>(0) - <span style="color:#008ec4">y</span>(<span style="color:#008ec4">d</span>.avg))</p>
+<br>
+OR
+<br>
+<p>.attr(<span style="color:#008ec4">”height”</span>, d =&gt; (<span style="color:#008ec4">height</span>-<span style="color:#008ec4">margin</span>.bottom) - <span style="color:#008ec4">y</span>(<span style="color:#008ec4">d</span>.avg))</p>
+<br>
+My choice? 
+.attr(<span style="color:#008ec4">"height"</span>, d => (<span style="color:#008ec4">height</span>-<span style="color:#008ec4">margin</span>.bottom) - <span style="color:#008ec4">y</span>(<span style="color:#008ec4">d</span>.avg))
+<br> because this will be true no matter what the minimal value is for y. It is constant.<p>Map - JavaScript | MDN. <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map</a>. Accessed 9 Apr. 2021.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s1">&#39;weather.csv&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">dateConverter</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeParse</span><span class="p">(</span><span class="s2">&quot;%_m/%_d/%Y&quot;</span><span class="p">)</span>
+            <span class="kd">const</span> <span class="nx">daysOfTheWeek</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeFormat</span><span class="p">(</span><span class="s2">&quot;%a&quot;</span><span class="p">)</span>
+            <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="s2">&quot;DATE&quot;</span><span class="o">:</span><span class="nx">dateConverter</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">DATE</span><span class="p">),</span><span class="s2">&quot;PRCP&quot;</span><span class="o">:+</span><span class="nx">d</span><span class="p">.</span><span class="nx">PRCP</span><span class="p">}))</span>
+            <span class="kd">const</span> <span class="nx">nestedData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">mean</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">PRCP</span><span class="p">),</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">daysOfTheWeek</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">DATE</span><span class="p">))</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nestedData</span><span class="p">)</span>
+            <span class="kd">var</span> <span class="nx">backToList</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">nestedData</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">key</span> <span class="o">+</span> <span class="s1">&#39; = &#39;</span> <span class="o">+</span> <span class="nx">value</span><span class="p">)</span>
+                <span class="nx">backToList</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="s2">&quot;day&quot;</span><span class="o">:</span><span class="nx">key</span><span class="p">,</span><span class="s2">&quot;avg&quot;</span><span class="o">:</span><span class="nx">value</span><span class="p">})</span>
+            <span class="p">}</span>
+            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">backToList</span><span class="p">)</span>     
+        
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.csv('weather.csv')
+        .then(function(data) {
+            const dateConverter = d3.timeParse("%_m/%_d/%Y")
+            const daysOfTheWeek = d3.timeFormat("%a")
+            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))
+            const nestedData = d3.rollup(data, v => d3.mean(v, d => d.PRCP), d => daysOfTheWeek(d.DATE))
+            console.log(nestedData)
+            var backToList = []
+            for (let [key, value] of nestedData) {
+                console.log(key + ' = ' + value)
+                backToList.push({"day":key,"avg":value})
+            }
+            console.log(backToList)     
+
+
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+<div class="section" id="graph">
+<h2>Graph<a class="headerlink" href="#graph" title="Permalink to this headline">¶</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;graph3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
+    
+    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s1">&#39;weather.csv&#39;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kd">const</span> <span class="nx">dateConverter</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeParse</span><span class="p">(</span><span class="s2">&quot;%_m/%_d/%Y&quot;</span><span class="p">)</span>
+            <span class="kd">const</span> <span class="nx">daysOfTheWeek</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">timeFormat</span><span class="p">(</span><span class="s2">&quot;%a&quot;</span><span class="p">)</span>
+            <span class="nx">data</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="p">({</span><span class="s2">&quot;DATE&quot;</span><span class="o">:</span><span class="nx">dateConverter</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">DATE</span><span class="p">),</span><span class="s2">&quot;PRCP&quot;</span><span class="o">:+</span><span class="nx">d</span><span class="p">.</span><span class="nx">PRCP</span><span class="p">}))</span>
+            <span class="kd">const</span> <span class="nx">nestedData</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">rollup</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">v</span> <span class="p">=&gt;</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">mean</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">PRCP</span><span class="p">),</span> <span class="nx">k</span> <span class="p">=&gt;</span> <span class="nx">daysOfTheWeek</span><span class="p">(</span><span class="nx">k</span><span class="p">.</span><span class="nx">DATE</span><span class="p">))</span>
+            <span class="kd">var</span> <span class="nx">backToList</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="p">[</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">]</span> <span class="k">of</span> <span class="nx">nestedData</span><span class="p">)</span> <span class="p">{</span>
+                <span class="nx">backToList</span><span class="p">.</span><span class="nx">push</span><span class="p">({</span><span class="s2">&quot;day&quot;</span><span class="o">:</span><span class="nx">key</span><span class="p">,</span><span class="s2">&quot;avg&quot;</span><span class="o">:</span><span class="nx">value</span><span class="p">})</span>
+            <span class="p">}</span> 
+            <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
+            <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">300</span>
+            <span class="kd">const</span> <span class="nx">margin</span> <span class="o">=</span> <span class="mf">60</span> 
+            <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#graph3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>            
+            
+            <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleBand</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">width</span> <span class="o">-</span> <span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">backToList</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">day</span><span class="p">)).</span><span class="nx">padding</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span>
+            <span class="kd">const</span> <span class="nx">y</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span> <span class="p">,</span> <span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">d3</span><span class="p">.</span><span class="nx">max</span><span class="p">(</span><span class="nx">backToList</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">d</span><span class="p">.</span><span class="nx">avg</span><span class="p">)])</span>
+            
+            <span class="kd">const</span> <span class="nx">xAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisBottom</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(0,&quot;</span> <span class="o">+</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">xAxis</span><span class="p">)</span> 
+
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">-</span><span class="mf">5</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Days of the Week&quot;</span><span class="p">)</span>
+            
+            <span class="kd">const</span> <span class="nx">yAxis</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">axisLeft</span><span class="p">().</span><span class="nx">scale</span><span class="p">(</span><span class="nx">y</span><span class="p">)</span>
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;axis&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;translate(&quot;</span> <span class="o">+</span> <span class="nx">margin</span> <span class="o">+</span> <span class="s2">&quot;,0)&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">yAxis</span><span class="p">)</span>
+
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;transform&quot;</span><span class="p">,</span> <span class="s2">&quot;rotate(-90,15,&quot;</span><span class="o">+</span><span class="p">(</span><span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="mf">15</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;text-anchor&quot;</span><span class="p">,</span> <span class="s2">&quot;middle&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Average Rainfall (inches)&quot;</span><span class="p">)</span>
+
+            <span class="nx">svg</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;g&quot;</span><span class="p">).</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">backToList</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;rect&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span><span class="nx">x</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">day</span><span class="p">))</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span><span class="nx">y</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">avg</span><span class="p">))</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span><span class="nx">x</span><span class="p">.</span><span class="nx">bandwidth</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">d</span> <span class="p">=&gt;</span> <span class="p">(</span><span class="nx">height</span><span class="o">-</span><span class="nx">margin</span><span class="p">)</span> <span class="o">-</span> <span class="nx">y</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">avg</span><span class="p">))</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke-width&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span> 
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;stroke&quot;</span><span class="p">,</span><span class="s2">&quot;black&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">style</span><span class="p">(</span><span class="s2">&quot;fill&quot;</span><span class="p">,</span> <span class="s2">&quot;steelblue&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span><span class="nx">d</span><span class="p">.</span><span class="nx">avg</span><span class="p">)</span>
+            
+        <span class="p">})</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
+        
+        <span class="p">})</span>
+    
+<span class="p">})</span>
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div id="graph3"></div>
+<script type="text/javascript">   
+require(['d3'], function (d3) {
+
+    d3.csv('weather.csv')
+        .then(function(data) {
+            const dateConverter = d3.timeParse("%_m/%_d/%Y")
+            const daysOfTheWeek = d3.timeFormat("%a")
+            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"PRCP":+d.PRCP}))
+            const nestedData = d3.rollup(data, v => d3.mean(v, d => d.PRCP), k => daysOfTheWeek(k.DATE))
+            var backToList = []
+            for (let [key, value] of nestedData) {
+                backToList.push({"day":key,"avg":value})
+            } 
+            const width = 600
+            const height = 300
+            const margin = 60 
+            const svg = d3.select("div#graph3").append("svg")
+                .attr("width", width)
+                .attr("height", height)            
+
+            const x = d3.scaleBand().range([margin , width - margin]).domain(backToList.map(d=>d.day)).padding(0)
+            const y = d3.scaleLinear().range([height-margin , margin]).domain([0,d3.max(backToList, (d,i) => d.avg)])
+
+            const xAxis = d3.axisBottom().scale(x)
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + (height-margin) + ")")
+                .call(xAxis) 
+
+            svg.append("text")
+                .attr("x", width/2)
+                .attr("y", height-5)
+                .style("text-anchor", "middle")
+                .text("Days of the Week")
+
+            const yAxis = d3.axisLeft().scale(y)
+            svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(" + margin + ",0)")
+                .call(yAxis)
+
+            svg.append("text")
+                .attr("transform", "rotate(-90,15,"+(height/2)+")")
+                .attr("x", 15)
+                .attr("y", height/2)
+                .style("text-anchor", "middle")
+                .text("Average Rainfall (inches)")
+
+            svg.append("g").selectAll("rect")
+                .data(backToList)
+                .join("rect")
+                .attr("x", (d,i)=>x(d.day))
+                .attr("y",(d,i)=>y(d.avg))
+                .attr("width",x.bandwidth)
+                .attr("height", d => (height-margin) - y(d.avg))
+                .style("stroke-width", 2) 
+                .style("stroke","black")
+                .style("fill", "steelblue")
+                .append("title")
+                .text(d=>d.avg)
+
+        })
+        .catch(function(error){
+
+        })
+
+})
+</script>
+</div></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapter3"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Connected%20Scatterplot.html" title="previous page">Connected Scatterplot</a>
+    <a class='right-next' id="next-link" href="Network%20Graphs.html" title="next page">Network Graph</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book Community<br/>
+        
+            &copy; Copyright 2021.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
