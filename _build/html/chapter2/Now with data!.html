@@ -349,14 +349,14 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
     <span class="kd">var</span> <span class="nx">groceryList</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script>
+<div class="output text_html"><script type="module">
     var groceryList = []
 </script>
 </div></div>
@@ -368,24 +368,26 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="kd">var</span> <span class="nx">groceryList</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="nx">groceryList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;apples&quot;</span><span class="p">)</span>
-<span class="nx">groceryList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;bananas&quot;</span><span class="p">)</span>
-<span class="nx">groceryList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;coffee&quot;</span><span class="p">)</span>
-<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">groceryList</span>
+
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
+    <span class="kd">var</span> <span class="nx">groceryList</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="nx">groceryList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;apples&quot;</span><span class="p">)</span>
+    <span class="nx">groceryList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;bananas&quot;</span><span class="p">)</span>
+    <span class="nx">groceryList</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;coffee&quot;</span><span class="p">)</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">groceryList</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><p id="printout1"></p>
-<script>
-var groceryList = []
-groceryList.push("apples")
-groceryList.push("bananas")
-groceryList.push("coffee")
-document.getElementById("printout1").innerHTML = groceryList
+
+<script type="module">
+    var groceryList = []
+    groceryList.push("apples")
+    groceryList.push("bananas")
+    groceryList.push("coffee")
+    document.getElementById("printout1").innerHTML = groceryList
 </script>
 </div></div>
 </div>
@@ -393,7 +395,8 @@ document.getElementById("printout1").innerHTML = groceryList
 <h3>Referencing parts of our array.<a class="headerlink" href="#referencing-parts-of-our-array" title="Permalink to this headline">¶</a></h3>
 <p>With our lists, we can access the data we put into them by using a numeric reference. Like saying, this is first on the list, second on the list, and so on. Unfortunately, this is where it gets a little weird. Where we expect to see that ordering would be 1, 2, 3, etc. it actually starts at 0. So, it’s 0, 1, 2, etc…</p>
 <p>So, to access let’s say “banana”. We would use position 1 or index 1 to access this element. Here is our array written out:</p>
-<img src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/array1.PNG" alt="an easel" width="200"/><div class="cell docutils container">
+<a class="array reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/array1.PNG"><img alt="an array written out" class="array align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/array1.PNG" style="width: 200px;" /></a>
+<div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
@@ -513,6 +516,8 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>  
+    <span class="k">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">d3</span> <span class="kr">from</span> <span class="s2">&quot;https://cdn.skypack.dev/d3@7&quot;</span><span class="p">;</span>  
+    
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
     <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
     
@@ -532,6 +537,8 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <div class="output text_html"><div id="gohere1"></div>
 
 <script type="module">  
+    import * as d3 from "https://cdn.skypack.dev/d3@7";  
+
     var width = 600
     var height = 400
 
@@ -565,7 +572,8 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span> 
-
+    <span class="k">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">d3</span> <span class="kr">from</span> <span class="s2">&quot;https://cdn.skypack.dev/d3@7&quot;</span><span class="p">;</span>  
+    
     <span class="kd">var</span> <span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
     <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
@@ -592,6 +600,7 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <div class="output text_html"><div id="gohere2"></div>
 
 <script type="module"> 
+    import * as d3 from "https://cdn.skypack.dev/d3@7";  
 
     var drawingCircles = [3, 5, 5, 6, 15, 18]
     var width = 600
@@ -634,7 +643,8 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;traditional&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span> 
-
+    <span class="k">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">d3</span> <span class="kr">from</span> <span class="s2">&quot;https://cdn.skypack.dev/d3@7&quot;</span><span class="p">;</span>  
+    
     <span class="kd">var</span> <span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
     <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">200</span>
@@ -669,6 +679,7 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <div class="output text_html"><div id="traditional"></div>
 
 <script type="module"> 
+    import * as d3 from "https://cdn.skypack.dev/d3@7";  
 
     var drawingCircles = [3, 5, 5, 6, 15, 18]
     var width = 600

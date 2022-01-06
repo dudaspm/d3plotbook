@@ -26,7 +26,7 @@
 # In[1]:
 
 
-get_ipython().run_cell_magic('html', '', '<script>\n    var groceryList = []\n</script>')
+get_ipython().run_cell_magic('html', '', '<script type="module">\n    var groceryList = []\n</script>')
 
 
 # Note, what we did was create a variable or a named piece of code. Something that can vary (hence its name, variable). Variables must be one continous string of letters/numbers. So, instead of **grocery list**, I called it **groceryList**. Why the capitalization? because it makes it easier to separate out the words in the name. As in, **grocerylist** vs. **groceryList**. We have a fun name for this: camel case. <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/CamelCase_new.svg" alt="camel case" width="100"/>
@@ -38,7 +38,7 @@ get_ipython().run_cell_magic('html', '', '<script>\n    var groceryList = []\n</
 # In[2]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout1"></p>\n<script>\nvar groceryList = []\ngroceryList.push("apples")\ngroceryList.push("bananas")\ngroceryList.push("coffee")\ndocument.getElementById("printout1").innerHTML = groceryList\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout1"></p>\n\n<script type="module">\n    var groceryList = []\n    groceryList.push("apples")\n    groceryList.push("bananas")\n    groceryList.push("coffee")\n    document.getElementById("printout1").innerHTML = groceryList\n</script>')
 
 
 # ### Referencing parts of our array.
@@ -48,7 +48,12 @@ get_ipython().run_cell_magic('html', '', '<p id="printout1"></p>\n<script>\nvar 
 # So, to access let's say "banana". We would use position 1 or index 1 to access this element. Here is our array written out:
 # 
 
-# <img src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/array1.PNG" alt="an easel" width="200"/>
+# ```{image} https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/array1.PNG
+# :alt: an array written out
+# :class: array
+# :width: 200px
+# :align: center
+# ```
 
 # In[3]:
 
@@ -119,7 +124,7 @@ display(HTML(table))
 # In[9]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="module">  \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="module">  \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n</script>')
 
 
 # Now we need to add our data to our artwork, which will allow us to create 6 circles from our 6 data points.
@@ -139,7 +144,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script ty
 # In[10]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="module"> \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    \n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n\n</script>')
 
 
 # We did it! We made 6 circles! You might be wondering why you only see 1 circle here. Well, logically, if you draw 6 circles all on top of each other of the same radius. This is what you would see. 
@@ -163,7 +168,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script ty
 # In[11]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="traditional"></div>\n\n<script type="module"> \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 200\n    \n    var svg = d3.select("div#traditional").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n          // Update\n        .join("circle")\n        .attr("cx", \n          function(d,i) {\n            return i*20\n          }\n        )\n        .attr("cy", 100)\n        .attr("r",\n          function(d,i) {\n            return d\n          }\n        )\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="traditional"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    \n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 200\n    \n    var svg = d3.select("div#traditional").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n          // Update\n        .join("circle")\n        .attr("cx", \n          function(d,i) {\n            return i*20\n          }\n        )\n        .attr("cy", 100)\n        .attr("r",\n          function(d,i) {\n            return d\n          }\n        )\n\n</script>')
 
 
 # #### Arrow JavaScript function
