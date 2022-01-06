@@ -6,11 +6,11 @@
 # Now that we know how to make a basic graph, we should focus on what makes D3 so special: its ability to connect data to visualizations. D3 actually stands for Data Driven Documents, meaning that data should inform the visual artifact or the document.
 # 
 
-# ### Introduction to Arrays
+# ## Introduction to Arrays
 # 
 # For this exercise, we will be using our HTML with JavaScript within the document. To do this, we will be using the script brackets. 
 # ```html
-# <script>
+# <script type="module">
 #   
 # </script>
 # ```
@@ -53,7 +53,7 @@ get_ipython().run_cell_magic('html', '', '<p id="printout1"></p>\n<script>\nvar 
 # In[3]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout2"></p>\n<script>\nvar groceryList = ["apples","bananas","coffee"]\ndocument.getElementById("printout2").innerHTML = groceryList[1]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout2"></p>\n<script type="module">\nvar groceryList = ["apples","bananas","coffee"]\ndocument.getElementById("printout2").innerHTML = groceryList[1]\n</script>')
 
 
 # I want to access "apple".
@@ -61,7 +61,7 @@ get_ipython().run_cell_magic('html', '', '<p id="printout2"></p>\n<script>\nvar 
 # In[4]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout3"></p>\n<script>\nvar groceryList = ["apples","bananas","coffee"]\ndocument.getElementById("printout3").innerHTML = groceryList[0]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout3"></p>\n<script type="module">\nvar groceryList = ["apples","bananas","coffee"]\ndocument.getElementById("printout3").innerHTML = groceryList[0]\n</script>')
 
 
 # Another way to create an array is just to list out the items or elements in array. 
@@ -71,19 +71,19 @@ get_ipython().run_cell_magic('html', '', '<p id="printout3"></p>\n<script>\nvar 
 # In[5]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout4"></p>\n<script>\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout4").innerHTML = listOfThings[0]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout4"></p>\n<script type="module">\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout4").innerHTML = listOfThings[0]\n</script>')
 
 
 # In[6]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout5"></p>\n<script>\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout5").innerHTML = listOfThings[2]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout5"></p>\n<script type="module">\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout5").innerHTML = listOfThings[2]\n</script>')
 
 
 # In[7]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout6"></p>\n<script>\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout6").innerHTML = listOfThings[3]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout6"></p>\n<script type="module">\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout6").innerHTML = listOfThings[3]\n</script>')
 
 
 # ### Arrays to Artwork
@@ -114,22 +114,12 @@ display(HTML(table))
 
 # Let's copy and paste our code from our previous notebook for creating a circle
 
+# ### In Jupyter Lab
+
 # In[9]:
 
 
-from IPython.display import  HTML
-
-def load_d3_in_cell_output():
-  display(HTML("<script src='https://d3js.org/d3.v6.min.js'></script>"))
-get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
-
-
-# ### In Jupyter Lab
-
-# In[10]:
-
-
-get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="text/javascript">   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="module">  \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n</script>')
 
 
 # Now we need to add our data to our artwork, which will allow us to create 6 circles from our 6 data points.
@@ -146,10 +136,10 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script ty
 # 2. Collect (the data we need to update) - **.data()**
 # 3. Update (the shape with this data) - **.join()**
 
-# In[11]:
+# In[10]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="text/javascript">   \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="module"> \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n\n</script>')
 
 
 # We did it! We made 6 circles! You might be wondering why you only see 1 circle here. Well, logically, if you draw 6 circles all on top of each other of the same radius. This is what you would see. 
@@ -170,36 +160,36 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script ty
 
 # #### Traditional JavaScript function
 
-# In[12]:
+# In[11]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="traditional"></div>\n\n<script type="text/javascript">   \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 200\n    \n    var svg = d3.select("div#traditional").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n          // Update\n        .join("circle")\n        .attr("cx", \n          function(d,i) {\n            return i*20\n          }\n        )\n        .attr("cy", 100)\n        .attr("r",\n          function(d,i) {\n            return d\n          }\n        )\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="traditional"></div>\n\n<script type="module"> \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 200\n    \n    var svg = d3.select("div#traditional").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n          // Update\n        .join("circle")\n        .attr("cx", \n          function(d,i) {\n            return i*20\n          }\n        )\n        .attr("cy", 100)\n        .attr("r",\n          function(d,i) {\n            return d\n          }\n        )\n\n</script>')
 
 
 # #### Arrow JavaScript function
 
-# In[13]:
+# In[12]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="arrow"></div>\n\n<script type="text/javascript">   \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#arrow").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n         // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*20)\n        .attr("cy", 280)\n        .attr("r", (d,i) => d)\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="arrow"></div>\n\n<script type="module">  \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#arrow").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n         // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*20)\n        .attr("cy", 280)\n        .attr("r", (d,i) => d)\n\n</script>')
 
 
 # As you can see, I used the i(ndex) and multiplied it by 20 to help create more spacing. This shows you the power of D3.js, the data is dictating the drawing (maybe they should use this for D3 acronym instead 😆).
 # 
 # Knowing this, let's making a drawing that looks like a plot of points with a positive slope (meaning the points are heading up as you move left to right.
 
-# In[14]:
+# In[13]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script type="text/javascript">   \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => i*20)\n        .attr("r", (d,i) => d)\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script type="module">\n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => i*20)\n        .attr("r", (d,i) => d)\n\n</script>')
 
 
 # So, in this example, the points are heading down the hill. Remember from before, the (0,0) position is in the top-left, not the bottom-left. With this in mind, we can use the **height** to draw these.
 
-# In[15]:
+# In[14]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script type="text/javascript">   \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => height - (i*20))\n        .attr("r", (d,i) => d)\n    \n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script type="module"> \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => height - (i*20))\n        .attr("r", (d,i) => d)\n    \n</script>')
 
 
 # Your turn: Create a new array with random numbers in it (how many and the order does not matter). Then create circles with that array.

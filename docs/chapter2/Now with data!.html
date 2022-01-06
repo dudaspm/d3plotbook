@@ -290,31 +290,33 @@
   <a class="reference internal nav-link" href="#introduction-to-arrays">
    Introduction to Arrays
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#referencing-parts-of-our-array">
-   Referencing parts of our array.
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#arrays-to-artwork">
-   Arrays to Artwork
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#in-jupyter-lab">
-   In Jupyter Lab
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#traditional-javascript-function">
-     Traditional JavaScript function
+    <a class="reference internal nav-link" href="#referencing-parts-of-our-array">
+     Referencing parts of our array.
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#arrow-javascript-function">
-     Arrow JavaScript function
+    <a class="reference internal nav-link" href="#arrays-to-artwork">
+     Arrays to Artwork
     </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#in-jupyter-lab">
+     In Jupyter Lab
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#traditional-javascript-function">
+       Traditional JavaScript function
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#arrow-javascript-function">
+       Arrow JavaScript function
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -335,7 +337,7 @@
 <div class="section" id="introduction-to-arrays">
 <h2>Introduction to Arrays<a class="headerlink" href="#introduction-to-arrays" title="Permalink to this headline">¶</a></h2>
 <p>For this exercise, we will be using our HTML with JavaScript within the document. To do this, we will be using the script brackets.</p>
-<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
   
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
@@ -387,16 +389,15 @@ document.getElementById("printout1").innerHTML = groceryList
 </script>
 </div></div>
 </div>
-</div>
 <div class="section" id="referencing-parts-of-our-array">
-<h2>Referencing parts of our array.<a class="headerlink" href="#referencing-parts-of-our-array" title="Permalink to this headline">¶</a></h2>
+<h3>Referencing parts of our array.<a class="headerlink" href="#referencing-parts-of-our-array" title="Permalink to this headline">¶</a></h3>
 <p>With our lists, we can access the data we put into them by using a numeric reference. Like saying, this is first on the list, second on the list, and so on. Unfortunately, this is where it gets a little weird. Where we expect to see that ordering would be 1, 2, 3, etc. it actually starts at 0. So, it’s 0, 1, 2, etc…</p>
 <p>So, to access let’s say “banana”. We would use position 1 or index 1 to access this element. Here is our array written out:</p>
 <img src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/array1.PNG" alt="an easel" width="200"/><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
 <span class="kd">var</span> <span class="nx">groceryList</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apples&quot;</span><span class="p">,</span><span class="s2">&quot;bananas&quot;</span><span class="p">,</span><span class="s2">&quot;coffee&quot;</span><span class="p">]</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">groceryList</span><span class="p">[</span><span class="mf">1</span><span class="p">]</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -405,7 +406,7 @@ document.getElementById("printout1").innerHTML = groceryList
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><p id="printout2"></p>
-<script>
+<script type="module">
 var groceryList = ["apples","bananas","coffee"]
 document.getElementById("printout2").innerHTML = groceryList[1]
 </script>
@@ -416,7 +417,7 @@ document.getElementById("printout2").innerHTML = groceryList[1]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
 <span class="kd">var</span> <span class="nx">groceryList</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;apples&quot;</span><span class="p">,</span><span class="s2">&quot;bananas&quot;</span><span class="p">,</span><span class="s2">&quot;coffee&quot;</span><span class="p">]</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">groceryList</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -425,7 +426,7 @@ document.getElementById("printout2").innerHTML = groceryList[1]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><p id="printout3"></p>
-<script>
+<script type="module">
 var groceryList = ["apples","bananas","coffee"]
 document.getElementById("printout3").innerHTML = groceryList[0]
 </script>
@@ -437,7 +438,7 @@ document.getElementById("printout3").innerHTML = groceryList[0]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
 <span class="kd">var</span> <span class="nx">listOfThings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span> <span class="mf">42</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;pb&quot;</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">]]</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout4&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">listOfThings</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -446,7 +447,7 @@ document.getElementById("printout3").innerHTML = groceryList[0]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><p id="printout4"></p>
-<script>
+<script type="module">
 var listOfThings = ["item1", 42, 3.14, ["pb","j"]]
 document.getElementById("printout4").innerHTML = listOfThings[0]
 </script>
@@ -456,7 +457,7 @@ document.getElementById("printout4").innerHTML = listOfThings[0]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout5&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
 <span class="kd">var</span> <span class="nx">listOfThings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span> <span class="mf">42</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;pb&quot;</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">]]</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout5&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">listOfThings</span><span class="p">[</span><span class="mf">2</span><span class="p">]</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -465,7 +466,7 @@ document.getElementById("printout4").innerHTML = listOfThings[0]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><p id="printout5"></p>
-<script>
+<script type="module">
 var listOfThings = ["item1", 42, 3.14, ["pb","j"]]
 document.getElementById("printout5").innerHTML = listOfThings[2]
 </script>
@@ -475,7 +476,7 @@ document.getElementById("printout5").innerHTML = listOfThings[2]
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;printout6&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
 <span class="kd">var</span> <span class="nx">listOfThings</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;item1&quot;</span><span class="p">,</span> <span class="mf">42</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;pb&quot;</span><span class="p">,</span><span class="s2">&quot;j&quot;</span><span class="p">]]</span>
 <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;printout6&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">listOfThings</span><span class="p">[</span><span class="mf">3</span><span class="p">]</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -484,7 +485,7 @@ document.getElementById("printout5").innerHTML = listOfThings[2]
 </div>
 <div class="cell_output docutils container">
 <div class="output text_html"><p id="printout6"></p>
-<script>
+<script type="module">
 var listOfThings = ["item1", 42, 3.14, ["pb","j"]]
 document.getElementById("printout6").innerHTML = listOfThings[3]
 </script>
@@ -492,7 +493,7 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="section" id="arrays-to-artwork">
-<h2>Arrays to Artwork<a class="headerlink" href="#arrays-to-artwork" title="Permalink to this headline">¶</a></h2>
+<h3>Arrays to Artwork<a class="headerlink" href="#arrays-to-artwork" title="Permalink to this headline">¶</a></h3>
 <p>For our array to artwork, we will be working with some data. For this I will be using some integer (or whole numbers).</p>
 <div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
 </pre></div>
@@ -503,26 +504,15 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <div class="output text_html"><table style='width:200px;'><tr><td>index</td><td>element</td></tr><tr><td>0</td><td>3</td></tr><tr><td>1</td><td>5</td></tr><tr><td>2</td><td>5</td></tr><tr><td>3</td><td>6</td></tr><tr><td>4</td><td>15</td></tr><tr><td>5</td><td>18</td></tr></table></div></div>
 </div>
 <p>Let’s copy and paste our code from our previous notebook for creating a circle</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
-
-<span class="k">def</span> <span class="nf">load_d3_in_cell_output</span><span class="p">():</span>
-  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;script src=&#39;https://d3js.org/d3.v6.min.js&#39;&gt;&lt;/script&gt;&quot;</span><span class="p">))</span>
-<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">load_d3_in_cell_output</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
 </div>
 <div class="section" id="in-jupyter-lab">
-<h2>In Jupyter Lab<a class="headerlink" href="#in-jupyter-lab" title="Permalink to this headline">¶</a></h2>
+<h3>In Jupyter Lab<a class="headerlink" href="#in-jupyter-lab" title="Permalink to this headline">¶</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>  
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
     <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
     
@@ -539,9 +529,9 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere1"></div>
+<div class="output text_html"><div id="gohere1"></div>
 
-<script type="text/javascript">   
+<script type="module">  
     var width = 600
     var height = 400
 
@@ -574,7 +564,7 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span> 
 
     <span class="kd">var</span> <span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
@@ -599,9 +589,9 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere2"></div>
+<div class="output text_html"><div id="gohere2"></div>
 
-<script type="text/javascript">   
+<script type="module"> 
 
     var drawingCircles = [3, 5, 5, 6, 15, 18]
     var width = 600
@@ -637,13 +627,13 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <li><p>using an arrow function</p></li>
 </ol>
 <div class="section" id="traditional-javascript-function">
-<h3>Traditional JavaScript function<a class="headerlink" href="#traditional-javascript-function" title="Permalink to this headline">¶</a></h3>
+<h4>Traditional JavaScript function<a class="headerlink" href="#traditional-javascript-function" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;traditional&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span> 
 
     <span class="kd">var</span> <span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
@@ -676,9 +666,9 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="traditional"></div>
+<div class="output text_html"><div id="traditional"></div>
 
-<script type="text/javascript">   
+<script type="module"> 
 
     var drawingCircles = [3, 5, 5, 6, 15, 18]
     var width = 600
@@ -711,13 +701,13 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="section" id="arrow-javascript-function">
-<h3>Arrow JavaScript function<a class="headerlink" href="#arrow-javascript-function" title="Permalink to this headline">¶</a></h3>
+<h4>Arrow JavaScript function<a class="headerlink" href="#arrow-javascript-function" title="Permalink to this headline">¶</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;arrow&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>  
 
     <span class="kd">var</span> <span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
@@ -742,9 +732,9 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="arrow"></div>
+<div class="output text_html"><div id="arrow"></div>
 
-<script type="text/javascript">   
+<script type="module">  
 
     var drawingCircles = [3, 5, 5, 6, 15, 18]
     var width = 600
@@ -774,7 +764,7 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
 
     <span class="kd">var</span> <span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
@@ -799,9 +789,9 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere3"></div>
+<div class="output text_html"><div id="gohere3"></div>
 
-<script type="text/javascript">   
+<script type="module">
 
     var drawingCircles = [3, 5, 5, 6, 15, 18]
     var width = 600
@@ -830,7 +820,7 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span> 
 
     <span class="kd">var</span> <span class="nx">drawingCircles</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
@@ -855,9 +845,9 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><div id="gohere4"></div>
+<div class="output text_html"><div id="gohere4"></div>
 
-<script type="text/javascript">   
+<script type="module"> 
 
     var drawingCircles = [3, 5, 5, 6, 15, 18]
     var width = 600
@@ -881,6 +871,7 @@ document.getElementById("printout6").innerHTML = listOfThings[3]
 </div></div>
 </div>
 <p>Your turn: Create a new array with random numbers in it (how many and the order does not matter). Then create circles with that array.</p>
+</div>
 </div>
 </div>
 </div>
