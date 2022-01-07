@@ -34,7 +34,7 @@
 # 
 # 
 
-# In[1]:
+# In[30]:
 
 
 from IPython.display import  HTML
@@ -73,7 +73,7 @@ get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
 # 
 # Here's a print out of the first row of data:
 
-# In[2]:
+# In[31]:
 
 
 get_ipython().run_cell_magic('html', '', '<p id="print1"></p>\n<script>\n    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")\n    .then((data) => \n        document.getElementById("print1").innerHTML = JSON.stringify(data[0])    \n    )\n</script>')
@@ -86,7 +86,7 @@ get_ipython().run_cell_magic('html', '', '<p id="print1"></p>\n<script>\n    d3.
 # 
 # Why? because Jupyter does a not so great job of showcasing errors. As much we try and teach ourselves to be perfect coders 🙄. We all make mistakes and too be honest, as much as I love D3.js. One small thing can cause problems. If you have not looked at the troubleshooting section of the notebook, please check it out. It will save you hours of your life in small errors. 
 
-# In[3]:
+# In[32]:
 
 
 get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv")\n    .then((data) => \n        document.getElementById("print2").innerHTML = JSON.stringify(data[0])    \n    )\n    .catch((error) => console.log(error) )\n</script>')
@@ -109,7 +109,7 @@ get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.
 # 
 # ```
 
-# In[4]:
+# In[33]:
 
 
 #!pip install pandas
@@ -133,7 +133,7 @@ get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.
 # When using an external library, like Pandas, we can rename the library (as in this case, pandas to pd). This is a common way to see Pandas being used. This means when I want to use something from this library, I will use pd instead of pandas. 
 # ```
 
-# In[5]:
+# In[34]:
 
 
 import pandas as pd

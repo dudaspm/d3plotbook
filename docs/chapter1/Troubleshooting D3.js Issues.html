@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Troubleshooting D3.js Issues &#8212; My sample book</title>
+    <title>Troubleshooting D3.js Issues &#8212; D3.js + Jupyter Lab</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -44,15 +44,15 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="The Basics - Intro" href="../chapter2/The%20Basics%20-%20Intro.html" />
-    <link rel="prev" title="Getting Started" href="Getting%20Started.html" />
+    <link rel="prev" title="Getting Started - 🐘" href="Getting%20Started.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -72,7 +72,7 @@
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
-      <h1 class="site-logo" id="site-title">My sample book</h1>
+      <h1 class="site-logo" id="site-title">D3.js + Jupyter Lab</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -100,7 +100,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="Getting%20Started.html">
-   Getting Started
+   Getting Started  - 🐘
   </a>
  </li>
  <li class="toctree-l1 current active">
@@ -238,15 +238,11 @@
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter1/Troubleshooting D3.js Issues.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
+        
+        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/main/chapter1/Troubleshooting D3.js Issues.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
 </div>
 
@@ -264,7 +260,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chapter1/Troubleshooting D3.js Issues.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/main?urlpath=lab/tree/chapter1/Troubleshooting D3.js Issues.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -272,6 +268,14 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/main/chapter1/Troubleshooting D3.js Issues.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -281,6 +285,43 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preface">
+   Preface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debugging">
+   Debugging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-a-debugger">
+     What is a debugger?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#accessing-the-debugger-developer-tools">
+       Accessing the Debugger (Developer Tools)
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-this-screen">
+       What is this Screen?
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -291,14 +332,51 @@
                 
   <div class="section" id="troubleshooting-d3-js-issues">
 <h1>Troubleshooting D3.js Issues<a class="headerlink" href="#troubleshooting-d3-js-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>I have run into 1000’s of issues during my development time with D3.js. This will be a growing document to express the issues that were more common and basics on debugging.</p>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>I will provide a perspective from Chrome, but these ideas will carry through other browsers as well.</p>
+<div class="section" id="what-is-a-debugger">
+<h3>What is a debugger?<a class="headerlink" href="#what-is-a-debugger" title="Permalink to this headline">¶</a></h3>
+<p>There are much better places to learn more about debuggers, but at a high-level you use them to debug your code. Too be honest, it is mostly used to see errors or warning (usually, errors). Especially, when you are expecting to see something and that something does not show up.</p>
+<div class="section" id="accessing-the-debugger-developer-tools">
+<h4>Accessing the Debugger (Developer Tools)<a class="headerlink" href="#accessing-the-debugger-developer-tools" title="Permalink to this headline">¶</a></h4>
+<p>When you have Chrome (or another browser open) and you create your code and…! Nothing happens. Your first stop should be, to find the Developer Tools.</p>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png" style="width: 500px;" /></a>
+<br><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also use the short-cut:</p>
+<ul class="simple">
+<li><p>Chrome:</p>
+<ul>
+<li><p>Shift + ⌘ + I (on macOS) or Ctrl + Shift + I (on Windows/Linux)</p></li>
+</ul>
+</li>
+<li><p>Firefox:</p>
+<ul>
+<li><p>Shift + ⌘ + I (on macOS) or Shift + CTRL + I (on Windows/Linux)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="what-is-this-screen">
+<h4>What is this Screen?<a class="headerlink" href="#what-is-this-screen" title="Permalink to this headline">¶</a></h4>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png" style="width: 800px;" /></a>
+<br></div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dudaspm/d3plotbook",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -318,7 +396,7 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Getting%20Started.html" title="previous page">Getting Started</a>
+    <a class='left-prev' id="prev-link" href="Getting%20Started.html" title="previous page">Getting Started  - 🐘</a>
     <a class='right-next' id="next-link" href="../chapter2/The%20Basics%20-%20Intro.html" title="next page">The Basics - Intro</a>
 
         </div>
@@ -329,9 +407,9 @@
     <div class="container">
       <p>
         
-          By The Jupyter Book Community<br/>
+          By Patrick M. Dudas<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2021 - The Pennsylvania State University.<br/>
       </p>
     </div>
   </footer>

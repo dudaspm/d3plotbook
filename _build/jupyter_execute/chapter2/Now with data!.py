@@ -29,7 +29,14 @@
 get_ipython().run_cell_magic('html', '', '<script type="module">\n    var groceryList = []\n</script>')
 
 
-# Note, what we did was create a variable or a named piece of code. Something that can vary (hence its name, variable). Variables must be one continous string of letters/numbers. So, instead of **grocery list**, I called it **groceryList**. Why the capitalization? because it makes it easier to separate out the words in the name. As in, **grocerylist** vs. **groceryList**. We have a fun name for this: camel case. <img src="https://upload.wikimedia.org/wikipedia/commons/c/c8/CamelCase_new.svg" alt="camel case" width="100"/>
+# Note, what we did was create a variable or a named piece of code. Something that can vary (hence its name, variable). Variables must be one continous string of letters/numbers. So, instead of **grocery list**, I called it **groceryList**. Why the capitalization? because it makes it easier to separate out the words in the name. As in, **grocerylist** vs. **groceryList**. We have a fun name for this: camel case. 
+# 
+# ```{image} https://upload.wikimedia.org/wikipedia/commons/c/c8/CamelCase_new.svg
+# :alt: camel case
+# :class: array
+# :width: 100px
+# :align: center
+# ```
 
 # <cite>File:CamelCase new.svg. (2020, April 15). Wikimedia Commons, the free media repository. Retrieved 15:25, June 3, 2020 from https://commons.wikimedia.org/w/index.php?title=File:CamelCase_new.svg&oldid=411544943.</cite>
 
@@ -58,7 +65,7 @@ get_ipython().run_cell_magic('html', '', '<p id="printout1"></p>\n\n<script type
 # In[3]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout2"></p>\n<script type="module">\nvar groceryList = ["apples","bananas","coffee"]\ndocument.getElementById("printout2").innerHTML = groceryList[1]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout2"></p>\n\n<script type="module">\n    var groceryList = ["apples","bananas","coffee"]\n    document.getElementById("printout2").innerHTML = groceryList[1]\n</script>')
 
 
 # I want to access "apple".
@@ -66,7 +73,7 @@ get_ipython().run_cell_magic('html', '', '<p id="printout2"></p>\n<script type="
 # In[4]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout3"></p>\n<script type="module">\nvar groceryList = ["apples","bananas","coffee"]\ndocument.getElementById("printout3").innerHTML = groceryList[0]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout3"></p>\n\n<script type="module">\n    var groceryList = ["apples","bananas","coffee"]\n    document.getElementById("printout3").innerHTML = groceryList[0]\n</script>')
 
 
 # Another way to create an array is just to list out the items or elements in array. 
@@ -76,19 +83,19 @@ get_ipython().run_cell_magic('html', '', '<p id="printout3"></p>\n<script type="
 # In[5]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout4"></p>\n<script type="module">\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout4").innerHTML = listOfThings[0]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout4"></p>\n\n<script type="module">\n    var listOfThings = ["item1", 42, 3.14, ["pb","j"]]\n    document.getElementById("printout4").innerHTML = listOfThings[0]\n</script>')
 
 
 # In[6]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout5"></p>\n<script type="module">\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout5").innerHTML = listOfThings[2]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout5"></p>\n\n<script type="module">\n    var listOfThings = ["item1", 42, 3.14, ["pb","j"]]\n    document.getElementById("printout5").innerHTML = listOfThings[2]\n</script>')
 
 
 # In[7]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="printout6"></p>\n<script type="module">\nvar listOfThings = ["item1", 42, 3.14, ["pb","j"]]\ndocument.getElementById("printout6").innerHTML = listOfThings[3]\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="printout6"></p>\n\n<script type="module">\n    var listOfThings = ["item1", 42, 3.14, ["pb","j"]]\n    document.getElementById("printout6").innerHTML = listOfThings[3]\n</script>')
 
 
 # ### Arrays to Artwork
@@ -176,7 +183,7 @@ get_ipython().run_cell_magic('html', '', '<div id="traditional"></div>\n\n<scrip
 # In[12]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="arrow"></div>\n\n<script type="module">  \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#arrow").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n         // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*20)\n        .attr("cy", 280)\n        .attr("r", (d,i) => d)\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="arrow"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#arrow").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n          // Collect\n        .data(drawingCircles)\n         // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*20)\n        .attr("cy", 280)\n        .attr("r", (d,i) => d)\n\n</script>')
 
 
 # As you can see, I used the i(ndex) and multiplied it by 20 to help create more spacing. This shows you the power of D3.js, the data is dictating the drawing (maybe they should use this for D3 acronym instead 😆).
@@ -186,7 +193,7 @@ get_ipython().run_cell_magic('html', '', '<div id="arrow"></div>\n\n<script type
 # In[13]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script type="module">\n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => i*20)\n        .attr("r", (d,i) => d)\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => i*20)\n        .attr("r", (d,i) => d)\n\n</script>')
 
 
 # So, in this example, the points are heading down the hill. Remember from before, the (0,0) position is in the top-left, not the bottom-left. With this in mind, we can use the **height** to draw these.
@@ -194,7 +201,7 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script ty
 # In[14]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script type="module"> \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => height - (i*20))\n        .attr("r", (d,i) => d)\n    \n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => height - (i*20))\n        .attr("r", (d,i) => d)\n    \n</script>')
 
 
 # Your turn: Create a new array with random numbers in it (how many and the order does not matter). Then create circles with that array.

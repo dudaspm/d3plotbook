@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Getting Started
+# # Getting Started  - 🐘
 
 # ## From the Top!
 
@@ -25,7 +25,13 @@
 
 # ### Our easel
 
-# <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Tripod_easel.jpg" alt="an easel" width="200"/>
+# ```{image} https://upload.wikimedia.org/wikipedia/commons/a/ae/Tripod_easel.jpg
+# :alt: an easel
+# :class: start
+# :width: 200px
+# :align: center
+# ```
+# <br>
 
 # <cite>File:Tripod easel.jpg. (2019, January 24). Wikimedia Commons, the free media repository. Retrieved 14:27, June 1, 2020 from https://commons.wikimedia.org/w/index.php?title=File:Tripod_easel.jpg&oldid=336282573.</cite>
 
@@ -33,9 +39,15 @@
 
 # ### Our paint
 
-# <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Oil_painting_palette.jpg" alt="a palette" width="200"/>
+# ```{image} https://upload.wikimedia.org/wikipedia/commons/0/04/Oil_painting_palette.jpg
+# :alt: Oil painting palette
+# :class: start
+# :width: 200px
+# :align: center
+# ```
+# <br>
 
-# <cite>File:Oil painting palette.jpg. (2017, September 27). Wikimedia Commons, the free media repository. Retrieved 14:30, June 1, 2020 from https://commons.wikimedia.org/w/index.php?title=File:Oil_painting_palette.jpg&oldid=260097528.</cite>
+# <cite>File:Oil painting palette.jpg. (2017, September 27). Wikimedia Commons, the free media repository. Retrieved 14:57, January 7, 2022 from https://commons.wikimedia.org/w/index.php?title=File:Oil_painting_palette.jpg&oldid=260097528.<cite>
 
 # Now before you get our easel ready, we need to pick a type of paint or art medium (water colors, markers, finger paints). Well in this analogy we are choosing D3 as our art medium. So, let's start by declaring, in our notebook, that we will be using D3.
 
@@ -49,7 +61,7 @@
 
 # ### Both Colab and Jupyter Lab will be able to run the following example
 
-# In[1]:
+# In[8]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example1"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    var width = 300\n    var height = 100\n    \n    var svg = d3.select("div#example1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n\n    var circle = svg.append("circle")\n        .attr("cx", 150)\n        .attr("cy", 50)\n        .attr("r", 20)\n        .style("fill", "blue")\n        .style("stroke", "black")\n\n</script>')
@@ -57,6 +69,8 @@ get_ipython().run_cell_magic('html', '', '<div id="example1"></div>\n\n<script t
 
 # ### Our canvas
 
+# 
+# 
 # <cite>File:Splined Canvas.jpg. (2015, October 11). Wikimedia Commons, the free media repository. Retrieved 14:38, June 1, 2020 from https://commons.wikimedia.org/w/index.php?title=File:Splined_Canvas.jpg&oldid=175318221.</cite>
 
 # The next analogy we need to consider is the canvas for our art work. I need to be a bit careful here, if you have a bit of visualization background, especially online. You may have heard of a programming langauge called Canvas. This is not that Canvas. For the sake of simplicity, I will be using the lower case "canvas" to reference the supporting medium for our D3.js art.
@@ -68,9 +82,15 @@ get_ipython().run_cell_magic('html', '', '<div id="example1"></div>\n\n<script t
 # 
 # In the image below, I am assuming the width of canvas will be 600 (600 pixels) and height will be 400 (400 pixels).
 
-# <img  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/intro_2.PNG'  width="300" />
+# ```{image} https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/intro_2.PNG
+# :alt: a palette
+# :class: array
+# :width: 300px
+# :align: center
+# ```
+# <br>
 
-# In[2]:
+# In[9]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example2"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n\n</script>')
@@ -98,13 +118,17 @@ get_ipython().run_cell_magic('html', '', '<div id="example2"></div>\n\n<script t
 
 # Our first shape we will add is a circle. A circle requires 3 things: its x position (cx), its y position (cy), and a radius (r). Here is an example mock-up for a circle at position (160, 280) and radius 80.
 
-# <img
-#   src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/circle_1.PNG'
-#   width="300" />
+# ```{image} https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/circle_1.PNG
+# :alt: a palette
+# :class: array
+# :width: 300px
+# :align: center
+# ``` 
+# <br>
 
 # To do this, we take our canvas and *append*, well, a circle. Considering a circle needs a cx, cy, and r, we will add those as attr(ibutes). Which gets us...
 
-# In[3]:
+# In[10]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example3"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example3").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", 280)\n        .attr("r", 80)\n</script>')
@@ -112,32 +136,18 @@ get_ipython().run_cell_magic('html', '', '<div id="example3"></div>\n\n<script t
 
 # I want to point out something that may look confusing. Some may notice that circle appears to be lower than expected. That is because in HTML (the structure of webpages), the 0,0 point is in the top left (figure 2 below) and not the bottom left (figure 1 below). Just something to be mindful of moving forward.
 
-# <table>
-# <tr>
-# <td>
-# <img
-#   src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_1.PNG'
-#   width="200" />
-# </td>
-# <td>
-# <img
-#   src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_2.PNG'
-#   width="200" />
-# </td>
-# </tr>
-# <tr>
-# <td>
-# Figure 1 - </br>How most assume an X,Y coordinate would look.
-# </td>
-# <td>
-# Figure 2 - </br>How it is done in HTML and thus, D3.js
-# </td>
-# </tr>
-# </table>
+# ```{list-table}
+# :header-rows: 0
+# 
+# * - <img src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_1.PNG' alt="0,0 bottom right" width="200" />
+#   - <img src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_2.PNG' alt="0,0 top left" width="200" />
+# * - Figure 1 - </br>How most assume an X,Y coordinate would look.
+#   - Figure 2 - </br>How it is done in HTML and thus, D3.js
+# ```
 
 # To create the actual graph from above, we need to take advantage of the height variable to do so. 
 
-# In[4]:
+# In[11]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example4"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    svg.append("circle")\n        .attr("cx", 160)\n        .attr("cy", height - 280)\n        .attr("r", 80)\n\n</script>')
@@ -145,12 +155,14 @@ get_ipython().run_cell_magic('html', '', '<div id="example4"></div>\n\n<script t
 
 # There we go!
 
+# ## Your Turn
+
 # Your turn: Create a new easel and canvas. On the canvas, add 3 circles to your canvas at different places and of different sizes.
 
-# In[5]:
+# In[12]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="example5"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example5").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // YOUR CODE HERE //\n\n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="example5"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example5").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // YOUR CODE HERE //\n\n</script>')
 
 
 # Your turn: Create a new easel and canvas. On the canvas, add a rectangle to your canvas at different places and of different sizes.
@@ -162,7 +174,7 @@ get_ipython().run_cell_magic('html', '', '<div id="example5"></div>\n\n<script t
 # </svg>
 # ```
 
-# In[6]:
+# In[13]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example6"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";   \n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#example6").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // YOUR CODE HERE //\n\n</script>')

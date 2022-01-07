@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Getting Started &#8212; My sample book</title>
+    <title>Getting Started - 🐘 &#8212; D3.js + Jupyter Lab</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -44,9 +44,9 @@
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
     </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -72,7 +72,7 @@
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
-      <h1 class="site-logo" id="site-title">My sample book</h1>
+      <h1 class="site-logo" id="site-title">D3.js + Jupyter Lab</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -100,7 +100,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Getting Started
+   Getting Started  - 🐘
   </a>
  </li>
  <li class="toctree-l1">
@@ -238,15 +238,11 @@
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
         aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
     <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fchapter1/Getting Started.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
         
+        
+        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/main/chapter1/Getting Started.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
 </div>
 
@@ -264,7 +260,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/chapter1/Getting Started.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/main?urlpath=lab/tree/chapter1/Getting Started.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -272,6 +268,14 @@
         
         
         
+        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/main/chapter1/Getting Started.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
         
     </div>
 </div>
@@ -345,6 +349,11 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#your-turn">
+   Your Turn
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -357,7 +366,7 @@
               <div>
                 
   <div class="section" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<h1>Getting Started  - 🐘<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="from-the-top">
 <h2>From the Top!<a class="headerlink" href="#from-the-top" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="why-am-i-here">
@@ -379,12 +388,14 @@
 <h2>Let’s start<a class="headerlink" href="#let-s-start" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="our-easel">
 <h3>Our easel<a class="headerlink" href="#our-easel" title="Permalink to this headline">¶</a></h3>
-<img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Tripod_easel.jpg" alt="an easel" width="200"/><p><cite>File:Tripod easel.jpg. (2019, January 24). Wikimedia Commons, the free media repository. Retrieved 14:27, June 1, 2020 from <a class="reference external" href="https://commons.wikimedia.org/w/index.php?title=File:Tripod_easel.jpg&amp;oldid=336282573">https://commons.wikimedia.org/w/index.php?title=File:Tripod_easel.jpg&amp;oldid=336282573</a>.</cite></p>
+<a class="start reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/a/ae/Tripod_easel.jpg"><img alt="an easel" class="start align-center" src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Tripod_easel.jpg" style="width: 200px;" /></a>
+<br><p><cite>File:Tripod easel.jpg. (2019, January 24). Wikimedia Commons, the free media repository. Retrieved 14:27, June 1, 2020 from <a class="reference external" href="https://commons.wikimedia.org/w/index.php?title=File:Tripod_easel.jpg&amp;oldid=336282573">https://commons.wikimedia.org/w/index.php?title=File:Tripod_easel.jpg&amp;oldid=336282573</a>.</cite></p>
 <p>When you want to create artwork, you need something to draw on. For this anology, I will be calling this the easel.</p>
 </div>
 <div class="section" id="our-paint">
 <h3>Our paint<a class="headerlink" href="#our-paint" title="Permalink to this headline">¶</a></h3>
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Oil_painting_palette.jpg" alt="a palette" width="200"/><p><cite>File:Oil painting palette.jpg. (2017, September 27). Wikimedia Commons, the free media repository. Retrieved 14:30, June 1, 2020 from <a class="reference external" href="https://commons.wikimedia.org/w/index.php?title=File:Oil_painting_palette.jpg&amp;oldid=260097528">https://commons.wikimedia.org/w/index.php?title=File:Oil_painting_palette.jpg&amp;oldid=260097528</a>.</cite></p>
+<a class="start reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/0/04/Oil_painting_palette.jpg"><img alt="Oil painting palette" class="start align-center" src="https://upload.wikimedia.org/wikipedia/commons/0/04/Oil_painting_palette.jpg" style="width: 200px;" /></a>
+<br><p><cite>File:Oil painting palette.jpg. (2017, September 27). Wikimedia Commons, the free media repository. Retrieved 14:57, January 7, 2022 from <a class="reference external" href="https://commons.wikimedia.org/w/index.php?title=File:Oil_painting_palette.jpg&amp;oldid=260097528">https://commons.wikimedia.org/w/index.php?title=File:Oil_painting_palette.jpg&amp;oldid=260097528</a>.<cite></p>
 <p>Now before you get our easel ready, we need to pick a type of paint or art medium (water colors, markers, finger paints). Well in this analogy we are choosing D3 as our art medium. So, let’s start by declaring, in our notebook, that we will be using D3.</p>
 <p>I DECLARE I WANT TO USE D3!</p>
 <p>No, no…close… but we need to do this in a way that tells the notebook you want to use the D3.js.</p>
@@ -453,7 +464,8 @@
 <li><p>Width of the canvas</p></li>
 </ul>
 <p>In the image below, I am assuming the width of canvas will be 600 (600 pixels) and height will be 400 (400 pixels).</p>
-<img  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/intro_2.PNG'  width="300" /><div class="cell docutils container">
+<a class="array reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/intro_2.PNG"><img alt="a palette" class="array align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/intro_2.PNG" style="width: 300px;" /></a>
+<br><div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;example2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
@@ -520,10 +532,8 @@
 <h3>Our shapes<a class="headerlink" href="#our-shapes" title="Permalink to this headline">¶</a></h3>
 <p>There are number of shapes we can add to our canvas, but for now we will focus on one of those shapes. Here is a listed of the available <a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Basic_Shapes">shape types</a>.</p>
 <p>Our first shape we will add is a circle. A circle requires 3 things: its x position (cx), its y position (cy), and a radius (r). Here is an example mock-up for a circle at position (160, 280) and radius 80.</p>
-<p><img
-  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/circle_1.PNG'
-  width="300" /></p>
-<p>To do this, we take our canvas and <em>append</em>, well, a circle. Considering a circle needs a cx, cy, and r, we will add those as attr(ibutes). Which gets us…</p>
+<a class="array reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/circle_1.PNG"><img alt="a palette" class="array align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/circle_1.PNG" style="width: 300px;" /></a>
+<br><p>To do this, we take our canvas and <em>append</em>, well, a circle. Considering a circle needs a cx, cy, and r, we will add those as attr(ibutes). Which gets us…</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
@@ -566,28 +576,23 @@
 </div></div>
 </div>
 <p>I want to point out something that may look confusing. Some may notice that circle appears to be lower than expected. That is because in HTML (the structure of webpages), the 0,0 point is in the top left (figure 2 below) and not the bottom left (figure 1 below). Just something to be mindful of moving forward.</p>
-<table>
-<tr>
-<td>
-<img
-  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_1.PNG'
-  width="200" />
+<table class="table">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><img src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_1.PNG' alt="0,0 bottom right" width="200" />
 </td>
-<td>
-<img
-  src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_2.PNG'
-  width="200" />
+<td><img src='https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/corner_2.PNG' alt="0,0 top left" width="200" />
 </td>
 </tr>
-<tr>
-<td>
-Figure 1 - </br>How most assume an X,Y coordinate would look.
-</td>
-<td>
-Figure 2 - </br>How it is done in HTML and thus, D3.js
-</td>
+<tr class="row-even"><td><p>Figure 1 - </br>How most assume an X,Y coordinate would look.</p></td>
+<td><p>Figure 2 - </br>How it is done in HTML and thus, D3.js</p></td>
 </tr>
-</table><p>To create the actual graph from above, we need to take advantage of the height variable to do so.</p>
+</tbody>
+</table>
+<p>To create the actual graph from above, we need to take advantage of the height variable to do so.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
@@ -632,6 +637,10 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div></div>
 </div>
 <p>There we go!</p>
+</div>
+</div>
+<div class="section" id="your-turn">
+<h2>Your Turn<a class="headerlink" href="#your-turn" title="Permalink to this headline">¶</a></h2>
 <p>Your turn: Create a new easel and canvas. On the canvas, add 3 circles to your canvas at different places and of different sizes.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -639,7 +648,8 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;example5&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-    <span class="k">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">d3</span> <span class="kr">from</span> <span class="s2">&quot;https://cdn.skypack.dev/d3@7&quot;</span><span class="p">;</span>   
+    <span class="k">import</span> <span class="o">*</span> <span class="kr">as</span> <span class="nx">d3</span> <span class="kr">from</span> <span class="s2">&quot;https://cdn.skypack.dev/d3@7&quot;</span><span class="p">;</span>  
+    
     <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
     <span class="kd">var</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">400</span>
     
@@ -716,14 +726,13 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
 </div>
 </div>
 </div>
-</div>
 
     <script type="text/x-thebe-config">
     {
         requestKernel: true,
         binderOptions: {
-            repo: "binder-examples/jupyter-stacks-datascience",
-            ref: "master",
+            repo: "dudaspm/d3plotbook",
+            ref: "main",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -754,9 +763,9 @@ Figure 2 - </br>How it is done in HTML and thus, D3.js
     <div class="container">
       <p>
         
-          By The Jupyter Book Community<br/>
+          By Patrick M. Dudas<br/>
         
-            &copy; Copyright 2021.<br/>
+            &copy; Copyright 2021 - The Pennsylvania State University.<br/>
       </p>
     </div>
   </footer>
