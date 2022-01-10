@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Troubleshooting D3.js Issues &#8212; D3.js + Jupyter Lab</title>
+    <title>Notebook Introduction - 🐸 &#8212; D3.js + Jupyter Lab</title>
     
   <link href="../_static/css/theme.css" rel="stylesheet" />
   <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,8 +51,8 @@
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The Basics - Intro" href="../chapter2/The%20Basics%20-%20Intro.html" />
-    <link rel="prev" title="Getting Started - 🐘" href="Getting%20Started%20-%20%F0%9F%90%98.html" />
+    <link rel="next" title="Getting Started - 🐘" href="Getting%20Started%20-%20%F0%9F%90%98.html" />
+    <link rel="prev" title="D3 + Plot in JupyterLab Notebooks" href="../index.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
     
@@ -93,8 +93,8 @@
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="Notebook%20Introduction%20-%20%F0%9F%90%B8.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Notebook Introduction - 🐸
   </a>
  </li>
@@ -103,8 +103,8 @@
    Getting Started  - 🐘
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Troubleshooting%20D3.js%20Issues.html">
    Troubleshooting D3.js Issues
   </a>
  </li>
@@ -223,7 +223,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/chapter1/Troubleshooting D3.js Issues.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="../_sources/chapter1/Notebook Introduction - 🐸.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -240,7 +240,7 @@
     <div class="dropdown-buttons sourcebuttons">
         
         
-        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/main/chapter1/Troubleshooting D3.js Issues.ipynb"><button
+        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/main/chapter1/Notebook Introduction - 🐸.ipynb"><button
                 type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
                 title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
     </div>
@@ -260,7 +260,7 @@
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/main?urlpath=lab/tree/chapter1/Troubleshooting D3.js Issues.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/main?urlpath=lab/tree/chapter1/Notebook Introduction - 🐸.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="../_static/images/logo_binder.svg"
@@ -268,7 +268,7 @@
         
         
         
-        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/main/chapter1/Troubleshooting D3.js Issues.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/main/chapter1/Notebook Introduction - 🐸.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
                 title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
                     src="../_static/images/logo_colab.png"
                     alt="Interact on Colab">Colab</button></a>
@@ -291,42 +291,13 @@
             <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#preface">
-   Preface
+  <a class="reference internal nav-link" href="#export-to-binder-or-google-colab">
+   Export to Binder or Google Colab
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#debugging">
-   Debugging
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#what-is-a-debugger">
-     What is a debugger?
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#what-is-this-screen">
-       What is this Screen?
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#example-error-and-developer-tool">
-       Example Error and Developer Tool
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#console-logs">
-     Console Logs
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#your-turn">
-   Your Turn
+  <a class="reference internal nav-link" href="#references">
+   References
   </a>
  </li>
 </ul>
@@ -340,111 +311,60 @@
         
               <div>
                 
-  <div class="section" id="troubleshooting-d3-js-issues">
-<h1>Troubleshooting D3.js Issues<a class="headerlink" href="#troubleshooting-d3-js-issues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="preface">
-<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
-<p>I have run into 1000s of issues during my development time with D3.js. This page will be a growing document to express the more common problems and basics of debugging.</p>
-</div>
-<div class="section" id="debugging">
-<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
-<p>I will provide a perspective from Chrome, but these ideas will also carry through other browsers.</p>
-<div class="section" id="what-is-a-debugger">
-<h3>What is a debugger?<a class="headerlink" href="#what-is-a-debugger" title="Permalink to this headline">¶</a></h3>
-<p>There are much better places to learn more about debuggers, but you use them to debug your code at a high level. To be honest, it is mostly used to see errors or warnings (usually, errors). Especially when you expect to see something and that something does not show up.</p>
-<p>When you have Chrome (or another browser open), and you create your code and…! Nothing happens. Your first stop should be to find the Developer Tools.</p>
-<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png" style="width: 500px;" /></a>
-<br><div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can also use the short-cut:</p>
-<ul class="simple">
-<li><p>Chrome:</p>
-<ul>
-<li><p>Shift + ⌘ + I (on macOS) or Ctrl + Shift + I (on Windows/Linux)</p></li>
-</ul>
-</li>
-<li><p>Firefox:</p>
-<ul>
-<li><p>Shift + ⌘ + I (on macOS) or Shift + CTRL + I (on Windows/Linux)</p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="what-is-this-screen">
-<h4>What is this Screen?<a class="headerlink" href="#what-is-this-screen" title="Permalink to this headline">¶</a></h4>
-<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png" style="width: 800px;" /></a>
-<br><p>There is a lot to unpack in this screen, but we will focus on the Console for our conversation. I would highly recommend learning more about what is available in the Developer Tools, but this is a bit too much for our discussion today. Please, see <a class="reference external" href="https://developer.chrome.com/docs/devtools/javascript/">Chrome Developer Tools</a> for more information.</p>
-<p>For now, we will stick with only the debugger located in the Console (highlighted below).</p>
-<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger3.png"><img alt="Finding the Developer Tools (Console highlighted)" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger3.png" style="width: 800px;" /></a>
-<br><p>In the console, we will see errors pop up when running code. Let’s see an example.</p>
-</div>
-<div class="section" id="example-error-and-developer-tool">
-<h4>Example Error and Developer Tool<a class="headerlink" href="#example-error-and-developer-tool" title="Permalink to this headline">¶</a></h4>
+  <div class="section" id="notebook-introduction">
+<h1>Notebook Introduction - 🐸<a class="headerlink" href="#notebook-introduction" title="Permalink to this headline">¶</a></h1>
+<p>This notebook allows you to both follow the text and interact with the code directly.</p>
+<p>At the top page, you will see:</p>
+<img src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen1.png" alt="icons at the top right corner of the screen" style="width:200px;margin-left:auto;margin-right:auto;display:block;">
+<p>Select the icon on the left, the rocket ship:</p>
+<img src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen2.png" alt="rocket ship icon for running the notebook" style="width:200px;margin-left:auto;margin-right:auto;display:block;">
+<p>Then go down to “Live Code”:</p>
+<img src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen4.png" alt="selecting Live Code" style="width:240px;margin-left:auto;margin-right:auto;display:block;">
+<p>You should see at the top of the page a loading bar that cycles through mulitple states.
+<img src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen6.png" alt="loading bar, first cycle" style="width:240px;margin-left:auto;margin-right:auto;display:block;"></p>
+<img src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen7.png" alt="loading bar, second cycle" style="width:240px;margin-left:auto;margin-right:auto;display:block;">
+<img src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen7b.png" alt="loading bar, thrid cycle" style="width:240px;margin-left:auto;margin-right:auto;display:block;">
+<img alt="loading bar, fourth cycle" src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen8.png" style="width:240px;margin-left:auto;margin-right:auto;display:block;">
+<p>Then, finally:
+<img src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen9.png" alt="loading bar, final cycle" style="width:240px;margin-left:auto;margin-right:auto;display:block;"></p>
+<p>Try this for yourself!</p>
+<p>Here is a basic line in Python, after setting to Live Code. You can edit the Python code <strong>directly in the notebook</strong> 😀 😀 😀</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
-    
-    <span class="nx">someVariable</span> <span class="o">+</span> <span class="mf">2</span> 
-    
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script type="module">
-
-    someVariable + 2 
-
-</script>
-</div></div>
-</div>
-<p>↑ Code will not run ↑</p>
-<p>Let’s take a look at the Console.</p>
-<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger4.png"><img alt="Finding the Developer Tools (Console highlighted)" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger4.png" style="width: 800px;" /></a>
-<br>
-<p>The error will specify two critical things:</p>
-<ul class="simple">
-<li><p>What the error is (good for Google Searching)</p>
-<ul>
-<li><p>In this case, “Uncaught ReferenceError: someVariable is not defined.”</p></li>
-</ul>
-</li>
-<li><p>Where the error occurred</p>
-<ul>
-<li><p>In this case, line 3.</p></li>
-</ul>
-</li>
-</ul>
-<p>Now, you may ask yourself, isn’t</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">someVariable</span> <span class="o">+</span> <span class="mf">2</span> 
-</pre></div>
-</div>
-<p>on line 3? You would be correct, but our first line tells Jupyter to run HTML code. So, start counting after</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4
 </pre></div>
 </div>
 </div>
 </div>
-<div class="section" id="console-logs">
-<h3>Console Logs<a class="headerlink" href="#console-logs" title="Permalink to this headline">¶</a></h3>
-<p>The next big thing related to the Console or the Debugging Tools, is the ability</p>
+<div class="section" id="export-to-binder-or-google-colab">
+<h2>Export to Binder or Google Colab<a class="headerlink" href="#export-to-binder-or-google-colab" title="Permalink to this headline">¶</a></h2>
+<p>As you can see you can also export these notebooks to Binder or Google Colab.</p>
+<img alt="Binder or Google Colab options" src="https://raw.githubusercontent.com/dudaspm/JupyterLab-Python/main/images/topscreen3.png" style="width:240px;margin-left:auto;margin-right:auto;display:block;">
+<p>This will take you to their respective websites but you can work with them there, if you would like!</p>
+<p>I know it tradition to have the refences at the end of books, but when you are standing on the shoulders of giants. You thank them first.</p>
 </div>
-</div>
-<div class="section" id="your-turn">
-<h2>Your Turn<a class="headerlink" href="#your-turn" title="Permalink to this headline">¶</a></h2>
-<p>Create a new cell and run the following code. Then use the Console to see the error and resolve it.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
-<span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;module&quot;</span><span class="o">&gt;</span>
-    
-    <span class="n">var</span> <span class="n">someVariable</span> <span class="o">=</span> <span class="mi">2</span> 
-    <span class="n">someVariable</span> <span class="o">=</span> <span class="n">someVariable</span> <span class="o">*</span> <span class="mi">2</span>
-    <span class="n">someVariable</span> <span class="o">=</span> <span class="n">somevariable</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">someVariable</span><span class="p">)</span>
-    
-<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
-</pre></div>
-</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p id="id1"><dl class="citation">
+<dt class="label" id="id2"><span class="brackets">BOH11</span></dt>
+<dd><p>Michael Bostock, Vadim Ogievetsky, and Jeffrey Heer. D³ data-driven documents. <em>IEEE transactions on visualization and computer graphics</em>, 17(12):2301–2309, 2011.</p>
+</dd>
+<dt class="label" id="id3"><span class="brackets">Obs20</span></dt>
+<dd><p>HQ Observable. Observable. 2020.</p>
+</dd>
+<dt class="label" id="id4"><span class="brackets">pdt20</span></dt>
+<dd><p>The pandas development team. <em>pandas-dev/pandas: Pandas</em>. February 2020. URL: <a class="reference external" href="https://doi.org/10.5281/zenodo.3509134">https://doi.org/10.5281/zenodo.3509134</a>, <a class="reference external" href="https://doi.org/10.5281/zenodo.3509134">doi:10.5281/zenodo.3509134</a>.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets">WesMcKinney10</span></dt>
+<dd><p>Wes McKinney. Data Structures for Statistical Computing in Python. In Stéfan van der Walt and Jarrod Millman, editors, <em>Proceedings of the 9th Python in Science Conference</em>, 56 – 61. 2010. <a class="reference external" href="https://doi.org/10.25080/Majora-92bf1922-00a">doi:10.25080/Majora-92bf1922-00a</a>.</p>
+</dd>
+</dl>
+</p>
 </div>
 </div>
 
@@ -473,8 +393,8 @@
         
         <div class='prev-next-bottom'>
             
-    <a class='left-prev' id="prev-link" href="Getting%20Started%20-%20%F0%9F%90%98.html" title="previous page">Getting Started  - 🐘</a>
-    <a class='right-next' id="next-link" href="../chapter2/The%20Basics%20-%20Intro.html" title="next page">The Basics - Intro</a>
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">D3 + Plot in JupyterLab Notebooks</a>
+    <a class='right-next' id="next-link" href="Getting%20Started%20-%20%F0%9F%90%98.html" title="next page">Getting Started  - 🐘</a>
 
         </div>
         
