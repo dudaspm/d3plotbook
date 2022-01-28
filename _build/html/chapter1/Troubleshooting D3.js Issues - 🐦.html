@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Troubleshooting D3.js Issues - 🐦 &#8212; D3.js + Jupyter Lab</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet">
+  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe,.cell"
+        const thebe_selector_input = "pre,.cell_input div.highlight"
+        const thebe_selector_output = ".output,.cell_output"
+    </script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="The Basics - Intro - 🐧" href="../chapter2/The%20Basics%20-%20Intro%20-%20%F0%9F%90%A7.html" />
+    <link rel="prev" title="Getting Started - 🐘" href="Getting%20Started%20-%20%F0%9F%90%98.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">D3.js + Jupyter Lab</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../index.html">
+   D3 in Jupyter Lab Notebooks
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  Getting Starting
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="Notebook%20Introduction%20-%20%F0%9F%90%B8.html">
+   Notebook Introduction - 🐸
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Getting%20Started%20-%20%F0%9F%90%98.html">
+   Getting Started  - 🐘
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Troubleshooting D3.js Issues - 🐦
+  </a>
+ </li>
+</ul>
+<p class="caption">
+ <span class="caption-text">
+  The Basics
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/The%20Basics%20-%20Intro%20-%20%F0%9F%90%A7.html">
+   The Basics - Intro - 🐧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Now%20with%20data%21%20-%20%F0%9F%90%B3.html">
+   Now with data! - 🐳
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Style%2C%20Scales%2C%20and%20Shapes%20-%20%F0%9F%90%AD.html">
+   Styles, Scales, and Shapes - 🐭
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Accessing%20Data%20-%20%F0%9F%90%B4.html">
+   Accessing Data - 🐴
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Scaling%2C%20Legends%2C%20and%20Color%20-%20%F0%9F%90%A8.html">
+   Scaling, Legends, and Color - 🐨
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../chapter2/Transitions%20-%20%F0%9F%90%A0.html">
+   Transitions - 🐠
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../_sources/chapter1/Troubleshooting D3.js Issues - 🐦.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        
+        
+        <a class="edit-button" href="https://github.com/dudaspm/d3plotbook/edit/main/chapter1/Troubleshooting D3.js Issues - 🐦.ipynb"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/dudaspm/d3plotbook/main?urlpath=lab/tree/chapter1/Troubleshooting D3.js Issues - 🐦.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        <a class="colab-button" href="https://colab.research.google.com/github/dudaspm/d3plotbook/blob/main/chapter1/Troubleshooting D3.js Issues - 🐦.ipynb"><button type="button" class="btn btn-secondary topbarbtn"
+                title="Launch Colab" data-toggle="tooltip" data-placement="left"><img class="colab-button-logo"
+                    src="../_static/images/logo_colab.png"
+                    alt="Interact on Colab">Colab</button></a>
+        
+        <button type="button" class="btn btn-secondary topbarbtn"
+            onclick="initThebeSBT()" title="Launch Thebe" data-toggle="tooltip" data-placement="left"><i
+                class="fas fa-play"></i><span style="margin-left: .4em;">Live Code</span></button>
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preface">
+   Preface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debugging">
+   Debugging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-a-debugger">
+     What is a debugger?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-this-screen">
+       What is this Screen?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-error-and-developer-tool">
+       Example Error and Developer Tool
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#console-logs">
+     Console Logs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#your-turn">
+   Your Turn
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Troubleshooting D3.js Issues - 🐦</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+                <div>
+                    <h2> Contents </h2>
+                </div>
+                <nav aria-label="Page">
+                    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preface">
+   Preface
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#debugging">
+   Debugging
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-a-debugger">
+     What is a debugger?
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#what-is-this-screen">
+       What is this Screen?
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#example-error-and-developer-tool">
+       Example Error and Developer Tool
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#console-logs">
+     Console Logs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#your-turn">
+   Your Turn
+  </a>
+ </li>
+</ul>
+
+                </nav>
+            </div>
+            
+              <div>
+                
+  <div class="section" id="troubleshooting-d3-js-issues">
+<h1>Troubleshooting D3.js Issues - 🐦<a class="headerlink" href="#troubleshooting-d3-js-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>I have run into 1000s of issues during my development time with D3.js. This page will be a growing document to express the more common problems and basics of debugging.</p>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>I will provide a perspective from Chrome, but these ideas will also carry through other browsers.</p>
+<div class="section" id="what-is-a-debugger">
+<h3>What is a debugger?<a class="headerlink" href="#what-is-a-debugger" title="Permalink to this headline">¶</a></h3>
+<p>There are much better places to learn more about debuggers, but you use them to debug your code at a high level. To be honest, it is mostly used to see errors or warnings (usually, errors). Especially when you expect to see something and that something does not show up.</p>
+<p>When you have Chrome (or another browser open), and you create your code and…! Nothing happens. Your first stop should be to find the Developer Tools.</p>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png" style="width: 500px;" /></a>
+<br><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also use the short-cut:</p>
+<ul class="simple">
+<li><p>Chrome:</p>
+<ul>
+<li><p>Shift + ⌘ + I (on macOS) or Ctrl + Shift + I (on Windows/Linux)</p></li>
+</ul>
+</li>
+<li><p>Firefox:</p>
+<ul>
+<li><p>Shift + ⌘ + I (on macOS) or Shift + CTRL + I (on Windows/Linux)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="what-is-this-screen">
+<h4>What is this Screen?<a class="headerlink" href="#what-is-this-screen" title="Permalink to this headline">¶</a></h4>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png" style="width: 800px;" /></a>
+<br><p>There is a lot to unpack in this screen, but we will focus on the Console for our conversation. I would highly recommend learning more about what is available in the Developer Tools, but this is a bit too much for our discussion today. Please, see <a class="reference external" href="https://developer.chrome.com/docs/devtools/javascript/">Chrome Developer Tools</a> for more information.</p>
+<p>For now, we will stick with only the debugger located in the Console (highlighted below).</p>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger3.png"><img alt="Finding the Developer Tools (Console highlighted)" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger3.png" style="width: 800px;" /></a>
+<br><p>In the console, we will see errors pop up when running code. Let’s see an example.</p>
+</div>
+<div class="section" id="example-error-and-developer-tool">
+<h4>Example Error and Developer Tool<a class="headerlink" href="#example-error-and-developer-tool" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
+    
+    <span class="nx">someVariable</span> <span class="o">+</span> <span class="mf">2</span> 
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script type="module">
+
+    someVariable + 2 
+
+</script>
+</div></div>
+</div>
+<p>↑ Code will not run ↑</p>
+<p>Let’s take a look at the Console.</p>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger4.png"><img alt="Finding the Developer Tools (Console highlighted)" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger4.png" style="width: 800px;" /></a>
+<br>
+<p>The error will specify two critical things:</p>
+<ul class="simple">
+<li><p>What the error is (good for Google Searching)</p>
+<ul>
+<li><p>In this case, “Uncaught ReferenceError: someVariable is not defined.”</p></li>
+</ul>
+</li>
+<li><p>Where the error occurred</p>
+<ul>
+<li><p>In this case, line 3.</p></li>
+</ul>
+</li>
+</ul>
+<p>Now, you may ask yourself, isn’t</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">someVariable</span> <span class="o">+</span> <span class="mf">2</span> 
+</pre></div>
+</div>
+<p>on line 3? You would be correct, but our first line tells Jupyter to run HTML code. So, start counting after</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="console-logs">
+<h3>Console Logs<a class="headerlink" href="#console-logs" title="Permalink to this headline">¶</a></h3>
+<p>The next big thing related to the Console or the Debugging Tools, is the ability</p>
+</div>
+</div>
+<div class="section" id="your-turn">
+<h2>Your Turn<a class="headerlink" href="#your-turn" title="Permalink to this headline">¶</a></h2>
+<p>Create a new cell and run the following code. Then use the Console to see the error and resolve it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;module&quot;</span><span class="o">&gt;</span>
+    
+    <span class="n">var</span> <span class="n">someVariable</span> <span class="o">=</span> <span class="mi">2</span> 
+    <span class="n">someVariable</span> <span class="o">=</span> <span class="n">someVariable</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">someVariable</span> <span class="o">=</span> <span class="n">somevariable</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">someVariable</span><span class="p">)</span>
+    
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "dudaspm/d3plotbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapter1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="troubleshooting-d3-js-issues">
+<h1>Troubleshooting D3.js Issues - 🐦<a class="headerlink" href="#troubleshooting-d3-js-issues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="preface">
+<h2>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h2>
+<p>I have run into 1000s of issues during my development time with D3.js. This page will be a growing document to express the more common problems and basics of debugging.</p>
+</div>
+<div class="section" id="debugging">
+<h2>Debugging<a class="headerlink" href="#debugging" title="Permalink to this headline">¶</a></h2>
+<p>I will provide a perspective from Chrome, but these ideas will also carry through other browsers.</p>
+<div class="section" id="what-is-a-debugger">
+<h3>What is a debugger?<a class="headerlink" href="#what-is-a-debugger" title="Permalink to this headline">¶</a></h3>
+<p>There are much better places to learn more about debuggers, but you use them to debug your code at a high level. To be honest, it is mostly used to see errors or warnings (usually, errors). Especially when you expect to see something and that something does not show up.</p>
+<p>When you have Chrome (or another browser open), and you create your code and…! Nothing happens. Your first stop should be to find the Developer Tools.</p>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger1.png" style="width: 500px;" /></a>
+<br><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can also use the short-cut:</p>
+<ul class="simple">
+<li><p>Chrome:</p>
+<ul>
+<li><p>Shift + ⌘ + I (on macOS) or Ctrl + Shift + I (on Windows/Linux)</p></li>
+</ul>
+</li>
+<li><p>Firefox:</p>
+<ul>
+<li><p>Shift + ⌘ + I (on macOS) or Shift + CTRL + I (on Windows/Linux)</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="what-is-this-screen">
+<h4>What is this Screen?<a class="headerlink" href="#what-is-this-screen" title="Permalink to this headline">¶</a></h4>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png"><img alt="Finding the Developer Tools" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger2.png" style="width: 800px;" /></a>
+<br><p>There is a lot to unpack in this screen, but we will focus on the Console for our conversation. I would highly recommend learning more about what is available in the Developer Tools, but this is a bit too much for our discussion today. Please, see <a class="reference external" href="https://developer.chrome.com/docs/devtools/javascript/">Chrome Developer Tools</a> for more information.</p>
+<p>For now, we will stick with only the debugger located in the Console (highlighted below).</p>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger3.png"><img alt="Finding the Developer Tools (Console highlighted)" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger3.png" style="width: 800px;" /></a>
+<br><p>In the console, we will see errors pop up when running code. Let’s see an example.</p>
+</div>
+<div class="section" id="example-error-and-developer-tool">
+<h4>Example Error and Developer Tool<a class="headerlink" href="#example-error-and-developer-tool" title="Permalink to this headline">¶</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span>
+    
+    <span class="nx">someVariable</span> <span class="o">+</span> <span class="mf">2</span> 
+    
+<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><script type="module">
+
+    someVariable + 2 
+
+</script>
+</div></div>
+</div>
+<p>↑ Code will not run ↑</p>
+<p>Let’s take a look at the Console.</p>
+<a class="debugging reference internal image-reference" href="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger4.png"><img alt="Finding the Developer Tools (Console highlighted)" class="debugging align-center" src="https://raw.githubusercontent.com/dudaspm/ProjectiOn/master/D3Tutorial/Images/debugger4.png" style="width: 800px;" /></a>
+<br>
+<p>The error will specify two critical things:</p>
+<ul class="simple">
+<li><p>What the error is (good for Google Searching)</p>
+<ul>
+<li><p>In this case, “Uncaught ReferenceError: someVariable is not defined.”</p></li>
+</ul>
+</li>
+<li><p>Where the error occurred</p>
+<ul>
+<li><p>In this case, line 3.</p></li>
+</ul>
+</li>
+</ul>
+<p>Now, you may ask yourself, isn’t</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">someVariable</span> <span class="o">+</span> <span class="mf">2</span> 
+</pre></div>
+</div>
+<p>on line 3? You would be correct, but our first line tells Jupyter to run HTML code. So, start counting after</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="console-logs">
+<h3>Console Logs<a class="headerlink" href="#console-logs" title="Permalink to this headline">¶</a></h3>
+<p>The next big thing related to the Console or the Debugging Tools, is the ability</p>
+</div>
+</div>
+<div class="section" id="your-turn">
+<h2>Your Turn<a class="headerlink" href="#your-turn" title="Permalink to this headline">¶</a></h2>
+<p>Create a new cell and run the following code. Then use the Console to see the error and resolve it.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%%</span><span class="n">html</span>
+<span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;module&quot;</span><span class="o">&gt;</span>
+    
+    <span class="n">var</span> <span class="n">someVariable</span> <span class="o">=</span> <span class="mi">2</span> 
+    <span class="n">someVariable</span> <span class="o">=</span> <span class="n">someVariable</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">someVariable</span> <span class="o">=</span> <span class="n">somevariable</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">someVariable</span><span class="p">)</span>
+    
+<span class="o">&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "dudaspm/d3plotbook",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapter1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="Getting%20Started%20-%20%F0%9F%90%98.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Getting Started  - 🐘</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../chapter2/The%20Basics%20-%20Intro%20-%20%F0%9F%90%A7.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Basics - Intro - 🐧</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Patrick M. Dudas<br/>
+    
+        &copy; Copyright 2021 - The Pennsylvania State University.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>

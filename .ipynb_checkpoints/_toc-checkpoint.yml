@@ -5,22 +5,22 @@ parts:
     chapters:
     - file: chapter1/Notebook Introduction - 🐸
     - file: chapter1/Getting Started - 🐘
-    - file: chapter1/Troubleshooting D3.js Issues
+    - file: chapter1/Troubleshooting D3.js Issues - 🐦
 
   - caption: The Basics
     chapters:
-    - file: chapter2/The Basics - Intro
-    - file: chapter2/Now with data!
-    - file: chapter2/Style, Scales, and Shapes
-    - file: chapter2/Accessing Data
-    - file: chapter2/Scaling, Legends, and Color
-    - file: chapter2/Transitions
+    - file: chapter2/The Basics - Intro - 🐧
+    - file: chapter2/Now with data! - 🐳
+    - file: chapter2/Style, Scales, and Shapes - 🐭
+    - file: chapter2/Accessing Data - 🐴
+    - file: chapter2/Scaling, Legends, and Color - 🐨
+    - file: chapter2/Transitions - 🐠
 
   - caption: Specific Designs
     chapters:
-    - file: chapter3/Specific Designs - Intro
-    - file: chapter3/Connected Scatterplot
-    - file: chapter3/Bar Charts
-    - file: chapter3/Network Graphs
-    - file: chapter3/Making a Map
-    - file: chapter3/D3+ThreeJS
+    - file: chapter3/Specific Designs - Intro - 🐲
+    - file: chapter3/Connected Scatterplot - 🐯
+    - file: chapter3/Bar Charts - 🐄
+    - file: chapter3/Network Graphs - 🐫
+    - file: chapter3/Making a Map - 🐒
+    - file: chapter3/D3+ThreeJS - 🐐
