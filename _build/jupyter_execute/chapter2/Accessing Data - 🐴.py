@@ -185,11 +185,15 @@ display(HTML(js))
 # 
 # I just want to showcase how to implement both. 
 
+# ### d3-fetch only
+
 # In[7]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";   \n    \n    d3.csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/data/StateCollege2000-2020.csv")\n        .then(function(data) {\n            var width = 600\n            var height = 300\n            var margin = 60 \n            var dateConverter = d3.timeParse("%Y-%m-%d")\n            data = data.filter(d=> (d.MONTH=="3") && (d.YEAR=="2020"))\n            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"TMAX":+d.TMAX}))\n            \n            var xScale = d3.scaleTime().range([margin , width - margin]).domain(d3.extent(data, (d,i) => d.DATE))\n            var yScale = d3.scaleLinear().range([height-margin , margin]).domain(d3.extent(data, (d,i) => d.TMAX)) \n            \n            var svg = d3.select("div#gohere1").append("svg")\n                .attr("width", width)\n                .attr("height", height)\n \n            svg.selectAll("circle")\n                .data(data)\n                .join("circle")\n                .attr("cx", d => xScale(d.DATE))\n                .attr("cy", d => yScale(d.TMAX))\n                .attr("r", 5)\n                .style("stroke", "darkgrey" )\n                .style("stroke-width", 1) \n                .style("fill", "steelblue")\n            \n        })\n        .catch(function(error){\n            console.log(error)\n        })\n    \n</script>')
 
+
+# ### BroadcastChannels
 
 # In[8]:
 
@@ -211,4 +215,27 @@ sender2.postMessage(message2);
 
 
 display(HTML(js))
+
+
+# ## Your Turn
+
+# Remember this code? Use it to create a d3-fetch version and then a BroadcastChannels version
+# 
+# Here is a link to the data:
+# https://raw.githubusercontent.com/dudaspm/d3plotbook/main/data/smallData.csv
+
+# ### d3-fetch
+
+# In[10]:
+
+
+get_ipython().run_cell_magic('html', '', '<div id="yourturn1"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    // USE D3-fetch TO GET THE DATA\n    drawingCircles = []\n    var width = 300\n    var height = 200\n    \n    var svg = d3.select("div#yourturn1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => i*20)\n        .attr("r", (d,i) => d)\n\n</script>')
+
+
+# ### BroadcastChannels
+
+# In[11]:
+
+
+get_ipython().run_cell_magic('html', '', '<div id="yourturn1"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    // USE BroadcastChannels TO GET THE DATA\n    drawingCircles = []\n    var width = 300\n    var height = 200\n    \n    var svg = d3.select("div#yourturn2").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => i*20)\n        .attr("r", (d,i) => d)\n\n</script>')
 
