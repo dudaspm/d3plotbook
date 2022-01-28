@@ -59,7 +59,7 @@
 # 
 # Here's a print out of the first row of data:
 
-# In[2]:
+# In[1]:
 
 
 get_ipython().run_cell_magic('html', '', '<p id="print1"></p>\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")\n    .then((data) => \n        document.getElementById("print1").innerHTML = JSON.stringify(data[0])    \n    )\n</script>')
@@ -80,7 +80,7 @@ get_ipython().run_cell_magic('html', '', '<p id="print1"></p>\n<script type="mod
 # 
 # Why? because Jupyter does a not so great job of showcasing errors. As much we try and teach ourselves to be perfect coders 🙄. We all make mistakes and too be honest, as much as I love D3.js. One small thing can cause problems. If you have not looked at the troubleshooting section of the notebook, please check it out. It will save you hours of your life in small errors. 
 
-# In[32]:
+# In[2]:
 
 
 get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv")\n    .then((data) => \n        document.getElementById("print2").innerHTML = JSON.stringify(data[0])    \n    )\n    .catch((error) => console.log(error) )\n</script>')
@@ -103,7 +103,7 @@ get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.
 # 
 # ```
 
-# In[33]:
+# In[3]:
 
 
 #!pip install pandas
@@ -127,11 +127,11 @@ get_ipython().run_cell_magic('html', '', '<p id="print2"></p>\n<script>\n    d3.
 # When using an external library, like Pandas, we can rename the library (as in this case, pandas to pd). This is a common way to see Pandas being used. This means when I want to use something from this library, I will use pd instead of pandas. 
 # ```
 
-# In[34]:
+# In[4]:
 
 
 import pandas as pd
-data=pd.read_csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/StateCollege2000-2020.csv")
+data=pd.read_csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/data/StateCollege2000-2020.csv")
 
 
 # Obviously, because this is csv, we use 
@@ -152,15 +152,15 @@ data=pd.read_csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/Stat
 
 # #### Receiver (JavaScript)
 
-# In[35]:
+# In[5]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="print3"></p>\n<script>\nvar receiver = new BroadcastChannel(\'channel\');\nreceiver.onmessage = (msg) => {\n    var data = d3.csvParse(msg.data.replaceAll(";;;","\\n"))\n    document.getElementById("print3").innerHTML = JSON.stringify(data[0])    \n    //###################################################\n    ////# This is where we would put our D3.js code #////\n    //###################################################\n};\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="print3"></p>\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    var receiver = new BroadcastChannel(\'channel\');\n    receiver.onmessage = (msg) => {\n        var data = d3.csvParse(msg.data.replaceAll(";;;","\\n"))\n        document.getElementById("print3").innerHTML = JSON.stringify(data[0])    \n        //###################################################\n        ////# This is where we would put our D3.js code #////\n        //###################################################\n    };\n</script>')
 
 
 # #### Sender (JavaScript)
 
-# In[36]:
+# In[6]:
 
 
 from IPython.display import display, HTML
@@ -185,19 +185,19 @@ display(HTML(js))
 # 
 # I just want to showcase how to implement both. 
 
-# In[37]:
+# In[7]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="text/javascript">   \n    \n    d3.csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/StateCollege2000-2020.csv")\n        .then(function(data) {\n            var width = 600\n            var height = 300\n            var margin = 60 \n            var dateConverter = d3.timeParse("%Y-%m-%d")\n            data = data.filter(d=> (d.MONTH=="3") && (d.YEAR=="2020"))\n            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"TMAX":+d.TMAX}))\n            \n            var xScale = d3.scaleTime().range([margin , width - margin]).domain(d3.extent(data, (d,i) => d.DATE))\n            var yScale = d3.scaleLinear().range([height-margin , margin]).domain(d3.extent(data, (d,i) => d.TMAX)) \n            \n            var svg = d3.select("div#gohere1").append("svg")\n                .attr("width", width)\n                .attr("height", height)\n            console.log(data)\n            svg.selectAll("circle")\n                .data(data)\n                .join("circle")\n                .attr("cx", d => xScale(d.DATE))\n                .attr("cy", d => yScale(d.TMAX))\n                .attr("r", 5)\n                .style("stroke", "darkgrey" )\n                .style("stroke-width", 1) \n                .style("fill", "steelblue")\n            \n        })\n        .catch(function(error){\n            console.log(error)\n        })\n    \n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere1"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";   \n    \n    d3.csv("https://raw.githubusercontent.com/dudaspm/d3plotbook/main/data/StateCollege2000-2020.csv")\n        .then(function(data) {\n            var width = 600\n            var height = 300\n            var margin = 60 \n            var dateConverter = d3.timeParse("%Y-%m-%d")\n            data = data.filter(d=> (d.MONTH=="3") && (d.YEAR=="2020"))\n            data = data.map(d=> ({"DATE":dateConverter(d.DATE),"TMAX":+d.TMAX}))\n            \n            var xScale = d3.scaleTime().range([margin , width - margin]).domain(d3.extent(data, (d,i) => d.DATE))\n            var yScale = d3.scaleLinear().range([height-margin , margin]).domain(d3.extent(data, (d,i) => d.TMAX)) \n            \n            var svg = d3.select("div#gohere1").append("svg")\n                .attr("width", width)\n                .attr("height", height)\n \n            svg.selectAll("circle")\n                .data(data)\n                .join("circle")\n                .attr("cx", d => xScale(d.DATE))\n                .attr("cy", d => yScale(d.TMAX))\n                .attr("r", 5)\n                .style("stroke", "darkgrey" )\n                .style("stroke-width", 1) \n                .style("fill", "steelblue")\n            \n        })\n        .catch(function(error){\n            console.log(error)\n        })\n    \n</script>')
 
 
-# In[38]:
+# In[8]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="text/javascript">   \n    \n    var receiver2 = new BroadcastChannel(\'channel2\');\n    receiver2.onmessage = (msg) => {\n        var data = d3.csvParse(msg.data.replaceAll(";;;","\\n"))\n        var width = 600\n        var height = 300\n        var margin = 60 \n        var dateConverter = d3.timeParse("%Y-%m-%d")\n        data = data.filter(d=> (d.MONTH=="3") && (d.YEAR=="2020"))\n        data = data.map(d=> ({"DATE":dateConverter(d.DATE),"TMAX":+d.TMAX}))\n\n        var xScale = d3.scaleTime().range([margin , width - margin]).domain(d3.extent(data, (d,i) => d.DATE))\n        var yScale = d3.scaleLinear().range([height-margin , margin]).domain(d3.extent(data, (d,i) => d.TMAX)) \n        d3.select("div#gohere2").selectAll("svg").remove()\n        var svg = d3.select("div#gohere2").append("svg")\n            .attr("width", width)\n            .attr("height", height)\n        svg.selectAll("circle")\n            .data(data)\n            .join("circle")\n            .attr("cx", d => xScale(d.DATE))\n            .attr("cy", d => yScale(d.TMAX))\n            .attr("r", 5)\n            .style("stroke", "darkgrey" )\n            .style("stroke-width", 1) \n            .style("fill", "steelblue")\n\n    }\n\n    \n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="gohere2"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    \n    var receiver2 = new BroadcastChannel(\'channel2\');\n    receiver2.onmessage = (msg) => {\n        var data = d3.csvParse(msg.data.replaceAll(";;;","\\n"))\n        var width = 600\n        var height = 300\n        var margin = 60 \n        var dateConverter = d3.timeParse("%Y-%m-%d")\n        data = data.filter(d=> (d.MONTH=="3") && (d.YEAR=="2020"))\n        data = data.map(d=> ({"DATE":dateConverter(d.DATE),"TMAX":+d.TMAX}))\n\n        var xScale = d3.scaleTime().range([margin , width - margin]).domain(d3.extent(data, (d,i) => d.DATE))\n        var yScale = d3.scaleLinear().range([height-margin , margin]).domain(d3.extent(data, (d,i) => d.TMAX)) \n        d3.select("div#gohere2").selectAll("svg").remove()\n        var svg = d3.select("div#gohere2").append("svg")\n            .attr("width", width)\n            .attr("height", height)\n        svg.selectAll("circle")\n            .data(data)\n            .join("circle")\n            .attr("cx", d => xScale(d.DATE))\n            .attr("cy", d => yScale(d.TMAX))\n            .attr("r", 5)\n            .style("stroke", "darkgrey" )\n            .style("stroke-width", 1) \n            .style("fill", "steelblue")\n\n    }\n\n    \n</script>')
 
 
-# In[39]:
+# In[9]:
 
 
 from IPython.display import display, HTML

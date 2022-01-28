@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -533,7 +533,7 @@ Also, there might be inconsistencies based on what is capitalized and what is no
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">us</span><span class="p">)</span> <span class="p">{</span>       
             <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">states</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))</span>
-            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="ow">new</span> <span class="nb">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
+            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
             <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#count&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="s2">&quot;Number of states in our dataset: &quot;</span><span class="o">+</span><span class="nx">states</span><span class="p">.</span><span class="nx">length</span><span class="p">)</span>
             
         <span class="p">})</span>
@@ -584,7 +584,7 @@ Also, there might be inconsistencies based on what is capitalized and what is no
             <span class="kd">var</span> <span class="nx">states</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="nx">us</span><span class="p">[</span><span class="s2">&quot;features&quot;</span><span class="p">].</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">states</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="o">+</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">.</span><span class="nx">STATEFP</span><span class="p">))</span>
             <span class="nx">states</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">a</span> <span class="o">-</span> <span class="nx">b</span><span class="p">)</span>
-            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="ow">new</span> <span class="nb">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
+            <span class="nx">states</span> <span class="o">=</span>  <span class="p">[...</span><span class="k">new</span> <span class="nx">Set</span><span class="p">(</span><span class="nx">states</span><span class="p">)];</span>
             
             <span class="nx">color</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">]).</span><span class="nx">domain</span><span class="p">([</span><span class="mf">0</span><span class="p">,</span><span class="nx">states</span><span class="p">.</span><span class="nx">length</span><span class="o">-</span><span class="mf">1</span><span class="p">])</span>
             <span class="nx">palette</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">interpolateSpectral</span>
@@ -694,7 +694,7 @@ To do this, we need to filter to PA’s data.</p>
                 <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke&#39;</span><span class="p">,</span> <span class="s1">&#39;#999999&#39;</span><span class="p">)</span>
                 <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s1">&#39;stroke-width&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">)</span>
                 <span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;title&quot;</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39;\t&#39;</span><span class="p">))</span>
+                <span class="p">.</span><span class="nx">text</span><span class="p">(</span><span class="nx">d</span><span class="p">=&gt;</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">d</span><span class="p">.</span><span class="nx">properties</span><span class="p">,</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39;\t&#39;</span><span class="p">))</span>
                 
             
         <span class="p">})</span>
@@ -758,7 +758,7 @@ To do this, we need to filter to PA’s data.</p>
     
     <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/datadesk/census-data-downloader/613e69f6413d917a6db60186e5ddf253e722dcfd/data/processed/acs5_2017_internet_counties.csv&quot;</span><span class="p">)</span>
         <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">census</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#output4&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">census</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39;\t&#39;</span><span class="p">))</span>
+            <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#output4&quot;</span><span class="p">).</span><span class="nx">text</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">census</span><span class="p">[</span><span class="mf">0</span><span class="p">],</span><span class="kc">null</span><span class="p">,</span><span class="s1">&#39;\t&#39;</span><span class="p">))</span>
             
         <span class="p">})</span>
         <span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">error</span><span class="p">){</span>
