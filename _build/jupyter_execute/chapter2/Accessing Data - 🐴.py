@@ -30,20 +30,6 @@
 # ### Pros/Cons of Both
 # There is little difference between the two, obviously you are adding another step with Python, but you get the added benefit of being able to use all of Python's tools before working with the file. Not to say D3.js does not have these similar capabilities. If anything, I (my preference) think D3.js are a bit better and easier to use, but this not the case for everyone. Let's showcase both. 
 
-# ## Start D3.jsfrom IPython.display import  HTML
-# 
-# 
-
-# In[30]:
-
-
-from IPython.display import  HTML
-
-def load_d3_in_cell_output():
-  display(HTML("<script src='https://d3js.org/d3.v6.min.js'></script>"))
-get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
-
-
 # ## Acknowledgement for Data
 # 
 # <cite>Cite as: Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeal, Kristy Thomas, Xungang Yin, Steven Anthony, Ron Ray, Russell S. Vose, Byron E.Gleason, and Tamara G. Houston (2012): Global Historical Climatology Network - Daily (GHCN-Daily), Version 3. CITY:US420020. NOAA National Climatic Data Center. doi:10.7289/V5D21VHZ 02/22/2021. 
@@ -73,15 +59,23 @@ get_ipython().events.register('pre_run_cell', load_d3_in_cell_output)
 # 
 # Here's a print out of the first row of data:
 
-# In[31]:
+# In[2]:
 
 
-get_ipython().run_cell_magic('html', '', '<p id="print1"></p>\n<script>\n    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")\n    .then((data) => \n        document.getElementById("print1").innerHTML = JSON.stringify(data[0])    \n    )\n</script>')
+get_ipython().run_cell_magic('html', '', '<p id="print1"></p>\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")\n    .then((data) => \n        document.getElementById("print1").innerHTML = JSON.stringify(data[0])    \n    )\n</script>')
 
 
-# One thing you can add to this (💥💥AND I STRONGLY RECOMMEND DOING THIS💥💥) is adding 
+# ```{admonition} 💥💥AND I STRONGLY RECOMMEND DOING THIS💥💥
+# :class: tip
+# with these types of calls (.then()), you can also include .catch((error) => console.log(error)). 
+# This will make sure that you notified if there is an error and what that error is. 
+# ```
+
+# Here is what the complete step will look like. 
 # ```javascript
-# .catch((error) => console.log(error) )
+#     d3.csv("file")
+#         .then((data) => do something with the data
+#         .catch((error) => console.log(error))
 # ```
 # 
 # Why? because Jupyter does a not so great job of showcasing errors. As much we try and teach ourselves to be perfect coders 🙄. We all make mistakes and too be honest, as much as I love D3.js. One small thing can cause problems. If you have not looked at the troubleshooting section of the notebook, please check it out. It will save you hours of your life in small errors. 

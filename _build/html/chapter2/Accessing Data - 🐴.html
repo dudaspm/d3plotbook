@@ -42,7 +42,7 @@
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
         const thebe_selector_input = "pre,.cell_input div.highlight"
@@ -271,11 +271,6 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#start-d3-jsfrom-ipython-display-import-html">
-   Start D3.jsfrom IPython.display import  HTML
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#acknowledgement-for-data">
    Acknowledgement for Data
   </a>
@@ -359,22 +354,6 @@
 <p>There is little difference between the two, obviously you are adding another step with Python, but you get the added benefit of being able to use all of Python’s tools before working with the file. Not to say D3.js does not have these similar capabilities. If anything, I (my preference) think D3.js are a bit better and easier to use, but this not the case for everyone. Let’s showcase both.</p>
 </div>
 </div>
-<div class="section" id="start-d3-jsfrom-ipython-display-import-html">
-<h2>Start D3.jsfrom IPython.display import  HTML<a class="headerlink" href="#start-d3-jsfrom-ipython-display-import-html" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span>  <span class="n">HTML</span>
-
-<span class="k">def</span> <span class="nf">load_d3_in_cell_output</span><span class="p">():</span>
-  <span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="s2">&quot;&lt;script src=&#39;https://d3js.org/d3.v6.min.js&#39;&gt;&lt;/script&gt;&quot;</span><span class="p">))</span>
-<span class="n">get_ipython</span><span class="p">()</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="s1">&#39;pre_run_cell&#39;</span><span class="p">,</span> <span class="n">load_d3_in_cell_output</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div></div>
-</div>
-</div>
 <div class="section" id="acknowledgement-for-data">
 <h2>Acknowledgement for Data<a class="headerlink" href="#acknowledgement-for-data" title="Permalink to this headline">¶</a></h2>
 <p><cite>Cite as: Menne, Matthew J., Imke Durre, Bryant Korzeniewski, Shelley McNeal, Kristy Thomas, Xungang Yin, Steven Anthony, Ron Ray, Russell S. Vose, Byron E.Gleason, and Tamara G. Houston (2012): Global Historical Climatology Network - Daily (GHCN-Daily), Version 3. CITY:US420020. NOAA National Climatic Data Center. doi:10.7289/V5D21VHZ 02/22/2021.</p>
@@ -403,18 +382,20 @@
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;print1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span> 
+    <span class="k">import</span> <span class="o">*</span> <span class="k">as</span> <span class="nx">d3</span> <span class="k">from</span> <span class="s2">&quot;https://cdn.skypack.dev/d3@7&quot;</span><span class="p">;</span>  
     <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> 
-        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print1&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
     <span class="p">)</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><script src='https://d3js.org/d3.v6.min.js'></script></div><div class="output text_html"><p id="print1"></p>
-<script>
+<div class="output text_html"><p id="print1"></p>
+<script type="module"> 
+    import * as d3 from "https://cdn.skypack.dev/d3@7";  
     d3.csv("https://gist.githubusercontent.com/dudaspm/13174849c09aba7a0716d5fa230ebe95/raw/a4866834185bad7e4a1e1b8f90da76b168eb1361/StateCollege2010-2020_min.csv")
     .then((data) => 
         document.getElementById("print1").innerHTML = JSON.stringify(data[0])    
@@ -422,8 +403,15 @@
 </script>
 </div></div>
 </div>
-<p>One thing you can add to this (💥💥AND I STRONGLY RECOMMEND DOING THIS💥💥) is adding</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
+<div class="tip admonition">
+<p class="admonition-title">💥💥AND I STRONGLY RECOMMEND DOING THIS💥💥</p>
+<p>with these types of calls (.then()), you can also include .catch((error) =&gt; console.log(error)).
+This will make sure that you notified if there is an error and what that error is.</p>
+</div>
+<p>Here is what the complete step will look like.</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>    <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;file&quot;</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="k">do</span> <span class="nx">something</span> <span class="kd">with</span> <span class="nx">the</span> <span class="nx">data</span>
+        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Why? because Jupyter does a not so great job of showcasing errors. As much we try and teach ourselves to be perfect coders 🙄. We all make mistakes and too be honest, as much as I love D3.js. One small thing can cause problems. If you have not looked at the troubleshooting section of the notebook, please check it out. It will save you hours of your life in small errors.</p>
@@ -434,7 +422,7 @@
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
     <span class="nx">d3</span><span class="p">.</span><span class="nx">csv</span><span class="p">(</span><span class="s2">&quot;https://raw.githubusercontent.com/dudaspm/d3plotbook/main/weather.csv&quot;</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span> <span class="p">=&gt;</span> 
-        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
+        <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print2&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
     <span class="p">)</span>
     <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="p">)</span>
 <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
@@ -503,7 +491,7 @@ You can actually do this in the notebook. Create a new cell (after this one) and
 </div>
 <p>Here is a listing of all of Pandas I/Os (input/outputs): <a class="reference external" href="https://pandas.pydata.org/docs/reference/io.html">https://pandas.pydata.org/docs/reference/io.html</a></p>
 <p>We next need to create a <em>sender</em> and <em>receiver</em> model. Again, it is not as simple as handing the data to JavaScript and having it work. Instead we need to broadcast the data to the <em>receiver</em> using a</p>
-<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="ow">new</span> <span class="nx">BroadcastChannel</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">new</span> <span class="nx">BroadcastChannel</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>You do need to run these in order but it works ¯\_(ツ)_/¯</p>
@@ -517,10 +505,10 @@ You can actually do this in the notebook. Create a new cell (after this one) and
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
 <span class="p">&lt;</span><span class="nt">p</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;print3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
 <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="kd">var</span> <span class="nx">receiver</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">BroadcastChannel</span><span class="p">(</span><span class="s1">&#39;channel&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">receiver</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BroadcastChannel</span><span class="p">(</span><span class="s1">&#39;channel&#39;</span><span class="p">);</span>
 <span class="nx">receiver</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">csvParse</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s2">&quot;;;;&quot;</span><span class="p">,</span><span class="s2">&quot;\n&quot;</span><span class="p">))</span>
-    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nb">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
+    <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;print3&quot;</span><span class="p">).</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">[</span><span class="mf">0</span><span class="p">])</span>    
     <span class="c1">//###################################################</span>
     <span class="c1">////# This is where we would put our D3.js code #////</span>
     <span class="c1">//###################################################</span>
@@ -675,7 +663,7 @@ sender.postMessage(message);
 
 <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
     
-    <span class="kd">var</span> <span class="nx">receiver2</span> <span class="o">=</span> <span class="ow">new</span> <span class="nx">BroadcastChannel</span><span class="p">(</span><span class="s1">&#39;channel2&#39;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">receiver2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BroadcastChannel</span><span class="p">(</span><span class="s1">&#39;channel2&#39;</span><span class="p">);</span>
     <span class="nx">receiver2</span><span class="p">.</span><span class="nx">onmessage</span> <span class="o">=</span> <span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
         <span class="kd">var</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">csvParse</span><span class="p">(</span><span class="nx">msg</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">replaceAll</span><span class="p">(</span><span class="s2">&quot;;;;&quot;</span><span class="p">,</span><span class="s2">&quot;\n&quot;</span><span class="p">))</span>
         <span class="kd">var</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">600</span>
