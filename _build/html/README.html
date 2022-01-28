@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Website &#8212; D3.js + Jupyter Lab</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="_static/clipboard.min.js"></script>
     <script src="_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -52,10 +52,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -73,14 +70,13 @@
     <a class="navbar-brand text-wrap" href="index.html">
       
       
-      
       <h1 class="site-logo" id="site-title">D3.js + Jupyter Lab</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -193,7 +189,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -223,12 +219,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
@@ -258,96 +254,7 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Website</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   Website
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#d3-plot-jupyter">
-   D3 + Plot + Jupyter
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#contributors">
-     Contributors
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#credits">
-     Credits
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-                </nav>
-            </div>
-            
-              <div>
-                
-  <div class="section" id="website">
-<h1>Website<a class="headerlink" href="#website" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://dudaspm.github.io/d3plotbook">https://dudaspm.github.io/d3plotbook</a></p>
-</div>
-<div class="section" id="d3-plot-jupyter">
-<h1>D3 + Plot + Jupyter<a class="headerlink" href="#d3-plot-jupyter" title="Permalink to this headline">¶</a></h1>
-<p>This is the source files for creating a D3.js and Plot (ObservableHQ) graphs in Jupyter Lab and Google Colab. This book is an introduction to both platforms and will cover:</p>
-<ul class="simple">
-<li><p>How to get started using D3.js in JupyterLab or Google Colab (Completed)</p></li>
-<li><p>Creating a simple shape, without data, in D3.js (Completed)</p></li>
-<li><p>Using D3.js with a small data set. Including selectAll, data, join (Completed)</p></li>
-</ul>
-<div class="section" id="contributors">
-<h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this headline">¶</a></h2>
-<p>We welcome and recognize all contributions. You can see a list of current contributors in the <a class="reference external" href="https://github.com/dudaspm/d3_+_plot_+_jupyter/graphs/contributors">contributors tab</a>.</p>
-</div>
-<div class="section" id="credits">
-<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h2>
-<p>This project is created using the open source <a class="reference external" href="https://jupyterbook.org/">Jupyter Book project</a> and the <a class="reference external" href="https://github.com/executablebooks/cookiecutter-jupyter-book">executablebooks/cookiecutter-jupyter-book template</a>.</p>
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "dudaspm/d3plotbook",
-            ref: "main",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./."
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
+    <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -397,27 +304,31 @@
               </div>
               
         
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-</div>
+        <div class='prev-next-bottom'>
+            
+
+        </div>
         
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By Patrick M. Dudas<br/>
-    
-        &copy; Copyright 2021 - The Pennsylvania State University.<br/>
-  </p>
-</footer>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Patrick M. Dudas<br/>
+        
+            &copy; Copyright 2021 - The Pennsylvania State University.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

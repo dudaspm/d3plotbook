@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Basics - Intro - 🐧 &#8212; D3.js + Jupyter Lab</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -54,10 +54,7 @@
     <link rel="next" title="Now with data! - 🐳" href="Now%20with%20data%21%20-%20%F0%9F%90%B3.html" />
     <link rel="prev" title="Troubleshooting D3.js Issues - 🐦" href="../chapter1/Troubleshooting%20D3.js%20Issues%20-%20%F0%9F%90%A6.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -75,14 +72,13 @@
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
-      
       <h1 class="site-logo" id="site-title">D3.js + Jupyter Lab</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -195,7 +191,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -250,87 +246,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>The Basics - Intro - 🐧</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-            </div>
-            
-              <div>
-                
-  <div class="section" id="the-basics-intro">
-<h1>The Basics - Intro - 🐧<a class="headerlink" href="#the-basics-intro" title="Permalink to this headline">¶</a></h1>
-<p>These first notebooks will layout the foundation of D3.js. The expectation is that you are new to D3.js but have a minimal amount of programming knowledge in general.</p>
-<p>I consider these chapters the basic building blocks of D3.js, but if you have other suggestions of introductory material. Let me know!</p>
-<p>The way this section is layed out is to focus on what I would consider to be the essenstial parts of D3.js.</p>
-<ul class="simple">
-<li><p>Chapter 2 - The Basics</p>
-<ul>
-<li><p>Now with data! - 🐳</p>
-<ul>
-<li><p>As D3 stands for data-driven documents, your first real steps in D3.js should have some data. We start with a static, small array, but intro the connection between objects you will creating to the data itself.</p></li>
-</ul>
-</li>
-<li><p>Style, Scales, and Shapes!</p>
-<ul>
-<li><p>OK, we have a small data set, now what? Not only can you use the data to think about creating objects, but all the other visual encodings you would expect.</p></li>
-</ul>
-</li>
-<li><p>Accessing Data</p>
-<ul>
-<li><p>Let’s expand what we know to a larger data set. This is a mostly Jupyter Lab/Google Colab context for bringing in data and making use of it in D3.js. We will discuss a couple of approach to this idea.</p></li>
-</ul>
-</li>
-<li><p>Scaling, Legends, and Color</p>
-<ul>
-<li><p>We introduce more robust ways to scale data and its connection to legends and colors.</p></li>
-</ul>
-</li>
-<li><p>Transitions</p>
-<ul>
-<li><p>Finally, we conconclude by discussing transitions, which can make data sets more lively and an engaging. Also, they can be a lot of fun!</p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "dudaspm/d3plotbook",
-            ref: "main",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./chapter2"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
+    <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -396,41 +317,33 @@
               </div>
               
         
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="../chapter1/Troubleshooting%20D3.js%20Issues%20-%20%F0%9F%90%A6.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Troubleshooting D3.js Issues - 🐦</p>
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="../chapter1/Troubleshooting%20D3.js%20Issues%20-%20%F0%9F%90%A6.html" title="previous page">Troubleshooting D3.js Issues - 🐦</a>
+    <a class='right-next' id="next-link" href="Now%20with%20data%21%20-%20%F0%9F%90%B3.html" title="next page">Now with data! - 🐳</a>
+
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="Now%20with%20data%21%20-%20%F0%9F%90%B3.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Now with data! - 🐳</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
         
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By Patrick M. Dudas<br/>
-    
-        &copy; Copyright 2021 - The Pennsylvania State University.<br/>
-  </p>
-</footer>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Patrick M. Dudas<br/>
+        
+            &copy; Copyright 2021 - The Pennsylvania State University.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

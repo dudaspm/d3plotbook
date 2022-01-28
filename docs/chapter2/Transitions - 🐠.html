@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Transitions - 🐠 &#8212; D3.js + Jupyter Lab</title>
     
-  <link href="../_static/css/theme.css" rel="stylesheet">
-  <link href="../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -23,7 +23,7 @@
 
     
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinx-book-theme.acff12b8f9c144ce68a297486a2fa670.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
     <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
     
-  <link rel="preload" as="script" href="../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -41,7 +41,7 @@
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
     <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script src="../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script >
         const thebe_selector = ".thebe,.cell"
@@ -53,10 +53,7 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Scaling, Legends, and Color - 🐨" href="Scaling%2C%20Legends%2C%20and%20Color%20-%20%F0%9F%90%A8.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -74,14 +71,13 @@
     <a class="navbar-brand text-wrap" href="../index.html">
       
       
-      
       <h1 class="site-logo" id="site-title">D3.js + Jupyter Lab</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
   <i class="icon fas fa-search"></i>
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
  <li class="toctree-l1">
@@ -194,7 +190,7 @@
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -249,12 +245,12 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+        <div class="d-none d-md-block col-md-2 bd-toc show">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
+            <nav id="bd-toc-nav">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#starting-graph">
@@ -312,822 +308,7 @@
         </div>
     </div>
 </div>
-    <!-- Table of contents that is only displayed when printing the page -->
-    <div id="jb-print-docs-body" class="onlyprint">
-        <h1>Transitions - 🐠</h1>
-        <!-- Table of contents -->
-        <div id="print-main-content" class="row">
-            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
-            <div id="jb-print-toc">
-                
-                <div>
-                    <h2> Contents </h2>
-                </div>
-                <nav aria-label="Page">
-                    <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#starting-graph">
-   Starting Graph
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#transition">
-   Transition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#duration">
-   Duration
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#delay">
-   Delay
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#easing">
-   Easing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#buttons">
-   Buttons
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#radio-buttons">
-   Radio buttons
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#checkbox">
-   Checkbox
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#sliders">
-   Sliders
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#adding-a-button">
-   Adding a button
-  </a>
- </li>
-</ul>
-
-                </nav>
-            </div>
-            
-              <div>
-                
-  <div class="section" id="transitions">
-<h1>Transitions - 🐠<a class="headerlink" href="#transitions" title="Permalink to this headline">¶</a></h1>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">Javascript</span><span class="p">,</span> <span class="n">display</span>
-
-<span class="k">def</span> <span class="nf">configure_d3</span><span class="p">():</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">Javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
-<span class="s2">    require.config({</span>
-<span class="s2">      paths: {</span>
-<span class="s2">        d3: &quot;https://d3js.org/d3.v6.min&quot;</span>
-<span class="s2">      }</span>
-<span class="s2">    })&quot;&quot;&quot;</span><span class="p">))</span>
-
-
-<span class="n">configure_d3</span><span class="p">()</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<script type="application/javascript">
-    require.config({
-      paths: {
-        d3: "https://d3js.org/d3.v6.min"
-      }
-    })</script></div>
-</div>
-<div class="section" id="starting-graph">
-<h2>Starting Graph<a class="headerlink" href="#starting-graph" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere1&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere1&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere1"></div>
-
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere1").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-    .data(dataset)
-    .join("circle")
-    .attr("cx", (d,i)=> x(i))
-    .attr("cy", height/2)
-    .attr("r", (d,i)=> d)
-});
-</script>
-</div></div>
-</div>
-</div>
-<div class="section" id="transition">
-<h2>Transition<a class="headerlink" href="#transition" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere2&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere2&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere2"></div>
-
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere2").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-    .data(dataset)
-    .join("circle")
-    .attr("cx", (d,i)=> x(i))
-    .attr("cy", height/2)
-    .attr("r", 0)
-    .transition()
-    .attr("r", (d,i)=> d)
-});
-</script>
-</div></div>
-</div>
-</div>
-<div class="section" id="duration">
-<h2>Duration<a class="headerlink" href="#duration" title="Permalink to this headline">¶</a></h2>
-<p>Amount of time the transition takes in ms (1000 ms = 1 second)</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere3&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere3&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">10000</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere3"></div>
-
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere3").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-    .data(dataset)
-    .join("circle")
-    .attr("cx", (d,i)=> x(i))
-    .attr("cy", height/2)
-    .attr("r", 0)
-    .transition()
-    .duration(10000)
-    .attr("r", (d,i)=> d)
-});
-</script>
-</div></div>
-</div>
-</div>
-<div class="section" id="delay">
-<h2>Delay<a class="headerlink" href="#delay" title="Permalink to this headline">¶</a></h2>
-<p>Setting a specific delay on each element based on an amount of time.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere4&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere4&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-    <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">delay</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">100</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere4"></div>
-
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere4").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-    .data(dataset)
-    .join("circle")
-    .attr("cx", (d,i)=> x(i))
-    .attr("cy", height/2)
-    .attr("r", 0)
-    .transition()
-    .duration(1000)
-    .delay((d,i)=> i*100)
-    .attr("r", (d,i)=> d)
-});
-</script>
-</div></div>
-</div>
-</div>
-<div class="section" id="easing">
-<h2>Easing<a class="headerlink" href="#easing" title="Permalink to this headline">¶</a></h2>
-<p>The pattern the transition use.
-<a class="reference external" href="https://observablehq.com/&#64;d3/easing-animations">https://observablehq.com/&#64;d3/easing-animations</a></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere5&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere5&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">2</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-        <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">3</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-        <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span> 
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere5"></div>
-
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere5").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-        .data(dataset)
-        .join("circle")
-        .attr("cx", (d,i)=> x(i))
-        .attr("cy", height/2)
-        .attr("r", 2)
-        .transition()
-        .duration(1000)
-        .attr("cy", height/3)
-        .transition()
-        .duration(1000) 
-        .attr("r", (d,i)=> d)
-});
-</script>
-</div></div>
-</div>
-<p>Using inputs for transitions.</p>
-<p>There are a number of different types of <a class="reference external" href="https://www.w3schools.com/html/html_form_input_types.asp">inputs</a>, but we will be covering the following:</p>
-<ul class="simple">
-<li><p>Buttons</p></li>
-<li><p>Radio buttons</p></li>
-<li><p>Checkboxes</p></li>
-<li><p>Range</p></li>
-</ul>
-</div>
-<div class="section" id="buttons">
-<h2>Buttons<a class="headerlink" href="#buttons" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;button1&quot;</span> <span class="na">onclick</span><span class="o">=</span><span class="s">&quot;console.log(&#39;Hello, Everyone!&#39;)&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Click the button&quot;</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><input type="button" id="button1" onclick="console.log('Hello, Everyone!')" value="Click the button">
-</div></div>
-</div>
-</div>
-<div class="section" id="radio-buttons">
-<h2>Radio buttons<a class="headerlink" href="#radio-buttons" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>   
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;vanilla&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;iceCream&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;vanilla&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;vanilla&quot;</span><span class="p">&gt;</span>Vanilla<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;chocolate&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;iceCream&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;chocolate&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;chocolate&quot;</span><span class="p">&gt;</span>Chocolate<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;other&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;iceCream&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;other&quot;</span> <span class="na">checked</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;other&quot;</span><span class="p">&gt;</span>Other<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><input type="radio" id="vanilla" name="iceCream" value="vanilla">
-<label for="vanilla">Vanilla</label><br>
-<input type="radio" id="chocolate" name="iceCream" value="chocolate">
-<label for="chocolate">Chocolate</label><br>
-<input type="radio" id="other" name="iceCream" value="other" checked>
-<label for="other">Other</label>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>   
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;vanilla&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;iceCream&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;vanilla&quot;</span> <span class="na">checked</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;vanilla&quot;</span><span class="p">&gt;</span>Vanilla<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;chocolate&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;iceCream&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;chocolate&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;chocolate&quot;</span><span class="p">&gt;</span>Chocolate<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;radio&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;other&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;iceCream&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;other&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;other&quot;</span><span class="p">&gt;</span>Other<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><input type="radio" id="vanilla" name="iceCream" value="vanilla" checked>
-<label for="vanilla">Vanilla</label><br>
-<input type="radio" id="chocolate" name="iceCream" value="chocolate">
-<label for="chocolate">Chocolate</label><br>
-<input type="radio" id="other" name="iceCream" value="other">
-<label for="other">Other</label>
-</div></div>
-</div>
-</div>
-<div class="section" id="checkbox">
-<h2>Checkbox<a class="headerlink" href="#checkbox" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;toppings1&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;toppings1&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;sprinkles&quot;</span> <span class="na">checked</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;toppings1&quot;</span><span class="p">&gt;</span>Sprinkles<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;toppings2&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;toppings2&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;whippedCream&quot;</span> <span class="na">checked</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;toppings2&quot;</span><span class="p">&gt;</span>Whipped Cream<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;&lt;</span><span class="nt">br</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;toppings3&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;toppings3&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;cherry&quot;</span> <span class="na">checked</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;toppings3&quot;</span><span class="p">&gt;</span>Cherry<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><input type="checkbox" id="toppings1" name="toppings1" value="sprinkles" checked>
-<label for="toppings1">Sprinkles</label><br>
-<input type="checkbox" id="toppings2" name="toppings2" value="whippedCream" checked>
-<label for="toppings2">Whipped Cream</label><br>
-<input type="checkbox" id="toppings3" name="toppings3" value="cherry" checked>
-<label for="toppings3">Cherry</label>
-</div></div>
-</div>
-</div>
-<div class="section" id="sliders">
-<h2>Sliders<a class="headerlink" href="#sliders" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;range&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;orders&quot;</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;orders&quot;</span> <span class="na">min</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">max</span><span class="o">=</span><span class="s">&quot;10&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;5&quot;</span> <span class="na">step</span><span class="o">=</span><span class="s">&quot;5&quot;</span> <span class="na">style</span><span class="o">=</span><span class="s">&quot;width:200px&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;orders&quot;</span><span class="p">&gt;</span>Number of Orders<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><input type="range" id="orders" name="orders" min="0" max="10" value="5" step="5" style="width:200px">
-<label for="orders">Number of Orders</label>
-</div></div>
-</div>
-</div>
-<div class="section" id="adding-a-button">
-<h2>Adding a button<a class="headerlink" href="#adding-a-button" title="Permalink to this headline">¶</a></h2>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere6&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;button2&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Run the Transition!&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere6&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>
-    
-    <span class="c1">// d3.select can select any element on our page</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;input#button2&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;button pushed!&quot;</span><span class="p">)</span>
-        <span class="p">})</span>
-
-
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere6"></div>
-<input type="button" id="button2" value="Run the Transition!">
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere6").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-        .data(dataset)
-        .join("circle")
-        .attr("cx", (d,i)=> x(i))
-        .attr("cy", height/2)
-        .attr("r", 1)
-
-    // d3.select can select any element on our page
-    d3.select("input#button2")
-        .on("click",function() {
-            console.log("button pushed!")
-        })
-
-
-});
-</script>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere7&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;button3&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Run the Transition!&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere7&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>
-    
-    <span class="c1">// d3.select can select any element on our page</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;input#button3&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="c1">// svg.select selects things in the given graph</span>
-            <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-                <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">delay</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">100</span><span class="p">)</span>
-                <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>
-        <span class="p">})</span>
-
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere7"></div>
-<input type="button" id="button3" value="Run the Transition!">
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere7").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-        .data(dataset)
-        .join("circle")
-        .attr("cx", (d,i)=> x(i))
-        .attr("cy", height/2)
-        .attr("r", 1)
-
-    // d3.select can select any element on our page
-    d3.select("input#button3")
-        .on("click",function() {
-            // svg.select selects things in the given graph
-            svg.selectAll("circle")
-                .transition()
-                .duration(1000)
-                .delay((d,i)=> i*100)
-                .attr("r", (d,i)=> d)
-        })
-
-});
-</script>
-</div></div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%html</span>
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;gohere8&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">input</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;button&quot;</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;button4&quot;</span> <span class="na">value</span><span class="o">=</span><span class="s">&quot;Run the Transition!&quot;</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="p">&gt;</span>   
-<span class="nx">require</span><span class="p">([</span><span class="s1">&#39;d3&#39;</span><span class="p">],</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">d3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">const</span> <span class="nx">width</span> <span class="o">=</span> <span class="mf">300</span>
-    <span class="kd">const</span> <span class="nx">height</span> <span class="o">=</span> <span class="mf">100</span>
-    <span class="nx">margin</span> <span class="o">=</span> <span class="mf">40</span> 
-    <span class="kd">const</span> <span class="nx">dataset</span> <span class="o">=</span> <span class="p">[</span><span class="mf">3</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">5</span><span class="p">,</span> <span class="mf">6</span><span class="p">,</span> <span class="mf">15</span><span class="p">,</span> <span class="mf">18</span><span class="p">]</span>
-    
-    <span class="kd">const</span> <span class="nx">svg</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;div#gohere8&quot;</span><span class="p">).</span><span class="nx">append</span><span class="p">(</span><span class="s2">&quot;svg&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;width&quot;</span><span class="p">,</span> <span class="nx">width</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="p">)</span>
-    
-    <span class="kd">const</span> <span class="nx">x</span> <span class="o">=</span> <span class="nx">d3</span><span class="p">.</span><span class="nx">scaleLinear</span><span class="p">().</span><span class="nx">range</span><span class="p">([</span><span class="nx">margin</span><span class="p">,</span><span class="nx">width</span><span class="o">-</span><span class="nx">margin</span><span class="p">]).</span><span class="nx">domain</span><span class="p">(</span><span class="nx">d3</span><span class="p">.</span><span class="nx">extent</span><span class="p">(</span><span class="nx">dataset</span><span class="p">,(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="p">))</span>
-    
-    <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">data</span><span class="p">(</span><span class="nx">dataset</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cx&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">x</span><span class="p">(</span><span class="nx">i</span><span class="p">))</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;cy&quot;</span><span class="p">,</span> <span class="nx">height</span><span class="o">/</span><span class="mf">2</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="mf">1</span><span class="p">)</span>
-    
-    <span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
-    
-    <span class="c1">// d3.select can select any element on our page</span>
-    <span class="nx">d3</span><span class="p">.</span><span class="nx">select</span><span class="p">(</span><span class="s2">&quot;input#button4&quot;</span><span class="p">)</span>
-        <span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
-            <span class="c1">// svg.select selects things in the given graph</span>
-            <span class="k">if</span> <span class="p">(</span><span class="nx">selected</span><span class="p">)</span> <span class="p">{</span>
-                <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-                    <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-                    <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
-                    <span class="p">.</span><span class="nx">delay</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">100</span><span class="p">)</span>
-                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">d</span><span class="p">)</span>  
-                <span class="nx">selected</span> <span class="o">=</span> <span class="mf">0</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="k">else</span> <span class="p">{</span>
-                <span class="nx">svg</span><span class="p">.</span><span class="nx">selectAll</span><span class="p">(</span><span class="s2">&quot;circle&quot;</span><span class="p">)</span>
-                    <span class="p">.</span><span class="nx">transition</span><span class="p">()</span>
-                    <span class="p">.</span><span class="nx">duration</span><span class="p">(</span><span class="mf">1000</span><span class="p">)</span>
-                    <span class="p">.</span><span class="nx">delay</span><span class="p">((</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="nx">i</span><span class="o">*</span><span class="mf">100</span><span class="p">)</span>
-                    <span class="p">.</span><span class="nx">attr</span><span class="p">(</span><span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="p">(</span><span class="nx">d</span><span class="p">,</span><span class="nx">i</span><span class="p">)=&gt;</span> <span class="mf">1</span><span class="p">)</span>  
-                <span class="nx">selected</span> <span class="o">=</span> <span class="mf">1</span><span class="p">;</span>
-            <span class="p">}</span>
-
-        <span class="p">})</span>
-
-<span class="p">});</span>
-<span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_html"><div id="gohere8"></div>
-<input type="button" id="button4" value="Run the Transition!">
-<script type="text/javascript">   
-require(['d3'], function (d3) {
-    const width = 300
-    const height = 100
-    margin = 40 
-    const dataset = [3, 5, 5, 6, 15, 18]
-
-    const svg = d3.select("div#gohere8").append("svg")
-        .attr("width", width)
-        .attr("height", height)
-
-    const x = d3.scaleLinear().range([margin,width-margin]).domain(d3.extent(dataset,(d,i)=> i))
-
-    svg.selectAll("circle")
-        .data(dataset)
-        .join("circle")
-        .attr("cx", (d,i)=> x(i))
-        .attr("cy", height/2)
-        .attr("r", 1)
-
-    var selected = 1;
-
-    // d3.select can select any element on our page
-    d3.select("input#button4")
-        .on("click",function() {
-            // svg.select selects things in the given graph
-            if (selected) {
-                svg.selectAll("circle")
-                    .transition()
-                    .duration(1000)
-                    .delay((d,i)=> i*100)
-                    .attr("r", (d,i)=> d)  
-                selected = 0;
-            }
-            else {
-                svg.selectAll("circle")
-                    .transition()
-                    .duration(1000)
-                    .delay((d,i)=> i*100)
-                    .attr("r", (d,i)=> 1)  
-                selected = 1;
-            }
-
-        })
-
-});
-</script>
-</div></div>
-</div>
-</div>
-</div>
-
-    <script type="text/x-thebe-config">
-    {
-        requestKernel: true,
-        binderOptions: {
-            repo: "dudaspm/d3plotbook",
-            ref: "main",
-        },
-        codeMirrorConfig: {
-            theme: "abcdef",
-            mode: "python"
-        },
-        kernelOptions: {
-            kernelName: "python3",
-            path: "./chapter2"
-        },
-        predefinedOutput: true
-    }
-    </script>
-    <script>kernelName = 'python3'</script>
-
-              </div>
-              
-            </div>
-        </div>
-    </div>
-    <div id="main-content" class="row noprint">
+    <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
               <div>
@@ -1875,34 +1056,32 @@ require(['d3'], function (d3) {
               </div>
               
         
-            <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="Scaling%2C%20Legends%2C%20and%20Color%20-%20%F0%9F%90%A8.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Scaling, Legends, and Color - 🐨</p>
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="Scaling%2C%20Legends%2C%20and%20Color%20-%20%F0%9F%90%A8.html" title="previous page">Scaling, Legends, and Color - 🐨</a>
+
         </div>
-    </a>
-</div>
         
         </div>
     </div>
-    <footer class="footer">
-  <p>
-    
-      By Patrick M. Dudas<br/>
-    
-        &copy; Copyright 2021 - The Pennsylvania State University.<br/>
-  </p>
-</footer>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By Patrick M. Dudas<br/>
+        
+            &copy; Copyright 2021 - The Pennsylvania State University.<br/>
+      </p>
+    </div>
+  </footer>
 </main>
 
 
       </div>
     </div>
   
-  <script src="../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
+  
   </body>
 </html>

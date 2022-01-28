@@ -37,6 +37,7 @@ get_ipython().run_cell_magic('html', '', '<script type="module">\n    var grocer
 # :width: 100px
 # :align: center
 # ```
+# 
 
 # <cite>File:CamelCase new.svg. (2020, April 15). Wikimedia Commons, the free media repository. Retrieved 15:25, June 3, 2020 from https://commons.wikimedia.org/w/index.php?title=File:CamelCase_new.svg&oldid=411544943.</cite>
 
@@ -61,6 +62,7 @@ get_ipython().run_cell_magic('html', '', '<p id="printout1"></p>\n\n<script type
 # :width: 200px
 # :align: center
 # ```
+# 
 
 # In[3]:
 
@@ -204,12 +206,14 @@ get_ipython().run_cell_magic('html', '', '<div id="gohere3"></div>\n\n<script ty
 get_ipython().run_cell_magic('html', '', '<div id="gohere4"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#gohere4").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n    // Collect\n        .data(drawingCircles)\n    // Update\n        .join("circle")\n        .attr("cx", (d,i) => i*30)\n        .attr("cy", (d,i) => height - (i*20))\n        .attr("r", (d,i) => d)\n    \n</script>')
 
 
+# ## Your Turn
+
 # Your turn: Using the provided template. Create a new array with random numbers in it (how many and the order does not matter). Then create circles with that array.
 
 # In[15]:
 
 
-get_ipython().run_cell_magic('html', '', '<div id="yourturn"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    //var drawingCircles = [3, 5, 5, 6, 15, 18]\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#yourturn").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n\n    \n</script>')
+get_ipython().run_cell_magic('html', '', '<div id="yourturn"></div>\n\n<script type="module"> \n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n\n    // Your data\n    var width = 600\n    var height = 400\n    \n    var svg = d3.select("div#yourturn").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n    \n    // Observe\n    svg.selectAll("circle")\n\n    \n</script>')
 
 
 # In[ ]:

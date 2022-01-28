@@ -80,7 +80,7 @@
 
 # ### Both Colab and Jupyter Lab will be able to run the following example
 
-# In[8]:
+# In[3]:
 
 
 get_ipython().run_cell_magic('html', '', '<div id="example1"></div>\n\n<script type="module">\n    import * as d3 from "https://cdn.skypack.dev/d3@7";  \n    var width = 300\n    var height = 100\n    \n    var svg = d3.select("div#example1").append("svg")\n        .attr("width", width)\n        .attr("height", height)\n\n    var circle = svg.append("circle")\n        .attr("cx", 150)\n        .attr("cy", 50)\n        .attr("r", 20)\n        .style("fill", "blue")\n        .style("stroke", "black")\n\n</script>')
